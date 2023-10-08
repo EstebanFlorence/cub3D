@@ -6,17 +6,17 @@
 #    By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/07 16:36:29 by adi-nata          #+#    #+#              #
-#    Updated: 2023/10/07 17:01:31 by adi-nata         ###   ########.fr        #
+#    Updated: 2023/10/08 19:41:29 by adi-nata         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		=	minishell
+NAME		=	cub3D
 
 SRC_DIR		=	src
 
 OBJ_DIR		=	.obj
 
-SRCS		=   ${SRC_DIR}/cub3d.c\
+SRCS		=   ${SRC_DIR}/cub3d.c		${SRC_DIR}/parser.c\
 
 OBJS        =	${patsubst ${SRC_DIR}/%.c,${OBJ_DIR}/%.o,${SRCS}}
 
@@ -24,7 +24,7 @@ CC			=	gcc
 
 RM			=	rm -rf
 
-FLAGS		=	-g -Iinclude/ -Ilibft/include/ -Wall -Wextra -Werror
+FLAGS		=	-g -I./ -Ilibft/include/ -Wall -Wextra -Werror
 
 MAKEFLAGS	+=	--silent
 
