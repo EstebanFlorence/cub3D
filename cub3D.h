@@ -6,7 +6,7 @@
 /*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 16:49:27 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/10/08 20:29:32 by adi-nata         ###   ########.fr       */
+/*   Updated: 2023/10/09 18:40:07 by adi-nata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,13 @@
 # include "minilibx-linux/mlx.h"
 
 # include <math.h>
+
+# define NORTH		1
+# define SOUTH		2
+# define WEST		3
+# define EAST		4
+# define FLOOR		5
+# define CEILING	6
 
 typedef struct s_img
 {
@@ -31,7 +38,14 @@ typedef struct s_img
 typedef struct s_cube
 {
 	char	*mapath;
-	
+	int		fd;
+
+	int		cardinal[4];
+	char	*paths[4];
+	int		skyground[2];
+	int		colors[2][3];
+
+	void	*mlx;
 
 }	t_cube;
 
