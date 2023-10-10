@@ -6,7 +6,7 @@
 /*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 16:49:27 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/10/09 18:40:07 by adi-nata         ###   ########.fr       */
+/*   Updated: 2023/10/10 16:30:18 by adi-nata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,21 @@ typedef struct s_cube
 	int		skyground[2];
 	int		colors[2][3];
 
+	int		**map;
+
 	void	*mlx;
 
 }	t_cube;
+
+int		check(int ac);
+int		innit(char **av, t_cube *cube);
+int		puterr(int n);
+void	parser(t_cube *cube);
+int		check_next_line(char *line, int *id, t_cube *cube);
+void	add_element(char **tok, int *id, int type, t_cube *cube);
+void	add_path(char **tok, int i, int type, t_cube *cube);
+int		is_map(char *line, t_cube *cube);
+void	add_map(char *line, t_cube *cube);
+
 
 #endif

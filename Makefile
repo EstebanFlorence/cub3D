@@ -6,7 +6,7 @@
 #    By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/07 16:36:29 by adi-nata          #+#    #+#              #
-#    Updated: 2023/10/08 19:41:29 by adi-nata         ###   ########.fr        #
+#    Updated: 2023/10/10 17:26:21 by adi-nata         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,7 @@ SRC_DIR		=	src
 OBJ_DIR		=	.obj
 
 SRCS		=   ${SRC_DIR}/cub3d.c		${SRC_DIR}/parser.c\
+				${SRC_DIR}/tools.c		${SRC_DIR}/parser_tools.c\
 
 OBJS        =	${patsubst ${SRC_DIR}/%.c,${OBJ_DIR}/%.o,${SRCS}}
 
