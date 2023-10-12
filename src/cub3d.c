@@ -6,7 +6,7 @@
 /*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 19:02:54 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/10/10 16:00:36 by adi-nata         ###   ########.fr       */
+/*   Updated: 2023/10/12 23:19:03 by adi-nata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	innit(char **av, t_cube *cube)
 		//free(cube);
 		return (puterr(1));
 	}
-	//	...
+
 	return (0);
 }
 
@@ -50,7 +50,9 @@ int	main(int ac, char **av)
 	parser(&cube);
 
 	for (int i = 0; cube.cardinal[i]; i++)
-		printf("cardinal: %d\n", cube.cardinal[i]);
+		printf("cardinal: %d\t%s\n", cube.cardinal[i], cube.paths[i]);
+	//for (int i = 0; cube.skyground[i]; i++)
+	//	printf("cardinal: %d\t%s\n", cube.skyground[i], cube.colors[i]);
 
 	//	destroy()
 	return (0);

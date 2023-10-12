@@ -6,69 +6,86 @@
 /*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 19:02:51 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/10/10 19:34:18 by adi-nata         ###   ########.fr       */
+/*   Updated: 2023/10/12 23:11:40 by adi-nata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void	alloc_map(int start, t_cube *cube)
+void	add_map()
 {
-	int		len;
-	int		x;
-	int		y;
-	char	*line;
+	printf("Daje\n");
+}
+
+void	mapalloc_size(char *line, int *x, int *y, t_cube *cube)
+{
+	int	len;
 
 	len = 0;
-	x = 0;
-	y = 0;
-	while (y < start)
-	{
-		line = get_next_line(cube->fd);
-		free(line);
-		y++;
-	}
-	y = 0;
-	line = get_next_line(cube->fd);
-	while(line[x])
-		x++;
-	free(line);
 	while (42)
 	{
 		line = get_next_line(cube->fd);
+		if (!line)
+		{
+			get_next_line(-42);
+			close(cube->fd);
+			break ;
+		}
 		while (line[len])
 			len++;
 		free(line);
-		if (len > x)
-			x = len;
-		y++;
+		if (len > *x)
+			*x = len;
+		(*y)++;
 		len = 0;
 	}
+}
+
+void	gotomap(char *line, int start, t_cube *cube)
+{
+	int	i;
+
+	i = 0;
+	while (i < start)
+	{
+		line = get_next_line(cube->fd);
+		free(line);
+		i++;
+	}
+}
+
+void	mapalloc(int start, char *line, t_cube *cube)
+{
+	int		x;
+	int		y;
+	//char	*line;
+	(void)start;
+	//gotomap(line, start, cube);
+
+	x = 0;
+	y = 0;
+	//line = get_next_line(cube->fd);
+	while (line[x])
+		x++;
+	free(line);
+	y++;
+
+	mapalloc_size(line, &x, &y, cube);
+
 	cube->map = (int **)ft_calloc(y, sizeof(int *));
 	y = -1;
 	while (cube->map[++y])
 		cube->map[y] = (int *)ft_calloc(x, sizeof(int));
 }
 
-void	add_map(char *line, t_cube *cube)
+int	check_next_map(int start, char *line, t_cube *cube)
 {
-
-}
-
-int	check_next_map(int start, t_cube *cube)
-{
-	int		len;
-	int		x;
-	int		y;
-	char	*line;
-
-	cube->fd = open(cube->mapath, O_RDONLY);
-	if (cube->fd == -1)
-	{
-		free(cube->mapath);
-		//free(cube);
-		return (puterr(1));
-	}
+	//if (open_path(cube))
+	//	return (1);
+	mapalloc(start, line, cube);
+	if (open_path(cube))
+		return (1);
+	add_map(cube);
 
 
 	return (0);
@@ -81,13 +98,13 @@ int	check_next_line(char *line, int *id, t_cube *cube)
 
 	if (!line)
 		return (puterr(2));
-		
-	if (is_map(line, cube))
+	else if (is_map(line, cube))
 	{
 		*id = -1;
 		return (0);
 	}
-
+	else if (!ft_strncmp(line, "\n", ft_strlen(line)))
+		return (0);
 	n = -1;
 	tok = ft_split(line, ' ');
 	if (!tok)
@@ -129,30 +146,28 @@ void	parser(t_cube *cube)
 	while (42)
 	{
 		line = get_next_line(cube->fd);
-
 		if (check_next_line(line, &i, cube))
 		{
 			//	Error
 			//	Free
 			break ;
 		}
-		if (i == -1)
+		else if (i == -1)
 		{
 			//	Free + close fd + save line (n) where map starts and repeat
-			free(line);
-			get_next_line(-42);
-			close(cube->fd);
-			if (check_next_map(n, cube))
+			//free(line);
+			//get_next_line(-42);
+			//close(cube->fd);
+			if (check_next_map(n, line, cube))
 			{
 				//	Error
 				//	Free
 				break ;
 			}
+			break ;
 		}
-
 		free(line);
-		//i++;
 		n++;
 	}
-	printf("lines: %d\n", i);
+	printf("lines: %d\n", n);
 }

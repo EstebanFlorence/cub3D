@@ -6,7 +6,7 @@
 /*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 17:24:47 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/10/10 17:27:46 by adi-nata         ###   ########.fr       */
+/*   Updated: 2023/10/12 23:19:19 by adi-nata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,13 @@
 
 int	is_map(char *line, t_cube *cube)
 {
-	int 	i;
-	int		j;
+	int	i;
 
 	i = -1;
 	while (cube->cardinal[++i])
 		i++;
-	j = -1;
-	while (cube->skyground[++j])
-		j++;
-	if (i == 4 && j == 2)
+
+	if (i == 4 && cube->colors[0] && cube->colors[1])
 	{
 		i = 0;
 		while (line[i])
@@ -35,8 +32,9 @@ int	is_map(char *line, t_cube *cube)
 			}
 			i++;
 		}
+		return (1);
 	}
-	return (1);
+	return (0);
 }
 
 /* void	add_rgb(char **tok, int type, t_cube *cube)
@@ -83,5 +81,5 @@ void	add_element(char **tok, int *id, int type, t_cube *cube)
 		i++;
 	}
 	add_path(tok, *id, type, cube);
-	*id++;
+	(*id)++;
 }

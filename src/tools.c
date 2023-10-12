@@ -6,13 +6,23 @@
 /*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 16:00:03 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/10/10 16:00:52 by adi-nata         ###   ########.fr       */
+/*   Updated: 2023/10/12 23:10:10 by adi-nata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-
+int	open_path(t_cube *cube)
+{
+	cube->fd = open(cube->mapath, O_RDONLY);
+	if (cube->fd == -1)
+	{
+		//	Free
+		free(cube->mapath);
+		return (puterr(1));
+	}
+	return (0);
+}
 
 int	puterr(int n)
 {
@@ -38,7 +48,7 @@ int	puterr(int n)
 	}
 	else if (n == 4)
 	{
-		write(STDERR_FILENO, "Error!\nInvalid info for map", 28);
+		write(STDERR_FILENO, "Error!\nInvalid info for map\n", 28);
 
 	}
 
