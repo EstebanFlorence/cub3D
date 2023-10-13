@@ -6,7 +6,7 @@
 /*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 19:02:54 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/10/12 23:19:03 by adi-nata         ###   ########.fr       */
+/*   Updated: 2023/10/13 19:41:11 by adi-nata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,16 @@ int	innit(char **av, t_cube *cube)
 		//free(cube);
 		return (puterr(1));
 	}
-
+	cube->cardinal[0] = 0;
+	cube->cardinal[1] = 0;
+	cube->cardinal[2] = 0;
+	cube->cardinal[3] = 0;
+	cube->colors[0][0] = 0;
+	cube->colors[0][1] = 0;
+	cube->colors[0][2] = 0;
+	cube->colors[1][0] = 0;
+	cube->colors[1][1] = 0;
+	cube->colors[1][2] = 0;
 	return (0);
 }
 
@@ -35,6 +44,19 @@ int	check(int ac)
 		return (1);
 	}
 	return (0);
+}
+
+void	destroy(t_cube *cube)
+{
+	int	i;
+
+	free(cube->mapath);
+	i = 0;
+	while(cube->tex_path[i])
+		free(cube->tex_path[i++]);
+	i = 0;
+	while(cube->map[i])
+		free(cube->map[i++]);
 }
 
 int	main(int ac, char **av)
@@ -50,10 +72,7 @@ int	main(int ac, char **av)
 	parser(&cube);
 
 	for (int i = 0; cube.cardinal[i]; i++)
-		printf("cardinal: %d\t%s\n", cube.cardinal[i], cube.paths[i]);
-	//for (int i = 0; cube.skyground[i]; i++)
-	//	printf("cardinal: %d\t%s\n", cube.skyground[i], cube.colors[i]);
-
-	//	destroy()
+		printf("cardinal: %d\t%s\n", cube.cardinal[i], cube.tex_path[i]);
+	destroy(&cube);
 	return (0);
 }

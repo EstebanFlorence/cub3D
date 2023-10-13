@@ -6,7 +6,7 @@
 /*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 19:02:51 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/10/12 23:11:40 by adi-nata         ###   ########.fr       */
+/*   Updated: 2023/10/13 19:38:07 by adi-nata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,17 @@ int	check_next_map(int start, char *line, t_cube *cube)
 	return (0);
 }
 
+void	free_next_line(char **tok)
+{
+	int	i;
+
+	i = -1;
+	while(tok[++i])
+		free(tok[i]);
+	free(tok);
+
+}
+
 int	check_next_line(char *line, int *id, t_cube *cube)
 {
 	int		n;
@@ -105,11 +116,11 @@ int	check_next_line(char *line, int *id, t_cube *cube)
 	}
 	else if (!ft_strncmp(line, "\n", ft_strlen(line)))
 		return (0);
-	n = -1;
 	tok = ft_split(line, ' ');
 	if (!tok)
 		return (puterr(2));
-	while (tok[++n])
+	n = 0;
+	while (tok[n])
 		n++;
 	if (n > 2)
 		return (puterr(2));
@@ -130,7 +141,11 @@ int	check_next_line(char *line, int *id, t_cube *cube)
 	else if (ft_strncmp(tok[0], "C", ft_strlen(tok[0])) == 0)
 		add_element(tok, id, CEILING, cube);
 	else
+	{
+		free_next_line(tok);
 		return (puterr(3));
+	}
+	free_next_line(tok);
 
 	return (0);
 }

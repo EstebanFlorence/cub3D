@@ -6,7 +6,7 @@
 /*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 16:49:27 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/10/12 23:02:06 by adi-nata         ###   ########.fr       */
+/*   Updated: 2023/10/13 18:34:03 by adi-nata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,8 @@ typedef struct s_cube
 	int		fd;
 
 	int		cardinal[4];
-	char	*paths[4];
-	//int		skyground[2];
+	char	*tex_path[4];
 	int		colors[2][3];
-
 	int		**map;
 
 	void	*mlx;
