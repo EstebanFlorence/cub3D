@@ -6,31 +6,46 @@
 /*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 17:24:47 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/10/13 19:37:58 by adi-nata         ###   ########.fr       */
+/*   Updated: 2023/10/17 17:05:25 by adi-nata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-int	is_map(char *line, t_cube *cube)
+void	gotomap(char *line, int start, t_cube *cube)
 {
 	int	i;
-	int	j;
 
 	i = 0;
-	j = 0;
-	while (cube->cardinal[i])
+	while (i < start)
+	{
+		line = get_next_line(cube->fd);
+		free(line);
 		i++;
-	while(cube->colors[0][j])
-		j++;
-	while(cube->colors[1][j])
-		j++;
-	if (i == 4 && j == 6)
+	}
+}
+
+int	is_mapstart(char *line, t_cube *cube)
+{
+	int	i;
+	int	f;
+	int	c;
+
+	i = 0;
+	f = 0;
+	c = 0;
+	while (i < 4 && cube->cardinal[i])
+		i++;
+	while (f < 3 && cube->colors[0][f] >= 0)
+		f++;
+	while (c < 3 && cube->colors[1][c] >= 0)
+		c++;
+	if (i == 4 && f == 3 && c == 3)
 	{
 		i = 0;
 		while (line[i])
 		{
-			if (line[i] != '1' || line[i] != ' ')
+			if (line[i] != '1' && line[i] != ' ' && line[i] != '\t' && line[i] != '\n')
 			{
 				puterr(4);
 				return (0);
@@ -83,7 +98,6 @@ void	add_color(int type, char **tok, t_cube *cube)
 
 void	add_path(char **tok, int i, int type, t_cube *cube)
 {
-
 	cube->cardinal[i] = type;
 	cube->tex_path[i] = ft_strdup(tok[1]);
 }
