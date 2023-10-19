@@ -6,7 +6,7 @@
 /*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 19:02:51 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/10/19 18:12:22 by adi-nata         ###   ########.fr       */
+/*   Updated: 2023/10/19 18:59:16 by adi-nata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -220,14 +220,13 @@ int	check_next_line(char *line, int *id, t_cube *cube)
 		return (puterr(2));
 	else if (!ft_strncmp(line, "\n", ft_strlen(line)))
 		return (0);
-	if (is_mapstart(line, cube))
+	tok = ft_split(line, ' ');
+	if (is_mapstart(line, tok, cube))
 	{
 		*id = -1;
+		free_next_line(tok);
 		return (0);
 	}
-	//else
-	//	return (1);
-	tok = ft_split(line, ' ');
 	if (!tok)
 		return (puterr(2));
 	n = 0;

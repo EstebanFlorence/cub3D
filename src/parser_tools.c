@@ -6,7 +6,7 @@
 /*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 17:24:47 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/10/18 19:36:47 by adi-nata         ###   ########.fr       */
+/*   Updated: 2023/10/19 18:57:39 by adi-nata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,31 @@ void	gotomap(char *line, int start, t_cube *cube)
 	}
 }
 
-int	is_mapstart(char *line, t_cube *cube)
+int	is_orient(char **tok)
+{
+	if (ft_strncmp(tok[0], "NO", ft_strlen(tok[0])) == 0)
+		return (1);
+	else if (ft_strncmp(tok[0], "SO", ft_strlen(tok[0])) == 0)
+		return (1);
+	else if (ft_strncmp(tok[0], "WE", ft_strlen(tok[0])) == 0)
+		return (1);
+	else if (ft_strncmp(tok[0], "EA", ft_strlen(tok[0])) == 0)
+		return (1);
+	else if (ft_strncmp(tok[0], "F", ft_strlen(tok[0])) == 0)
+		return (1);
+	else if (ft_strncmp(tok[0], "C", ft_strlen(tok[0])) == 0)
+		return (1);
+	return (0);
+}
+
+int	is_mapstart(char *line, char **tok, t_cube *cube)
 {
 	int	i;
 	int	f;
 	int	c;
 
+	if (is_orient(tok))
+		return (0);
 	i = 0;
 	f = 0;
 	c = 0;

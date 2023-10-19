@@ -6,7 +6,7 @@
 /*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 16:49:27 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/10/18 19:53:48 by adi-nata         ###   ########.fr       */
+/*   Updated: 2023/10/19 18:57:06 by adi-nata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ int		innit(char **av, t_map *map, t_cube *cube);
 void	destroy(t_cube *cube);
 void	add_element(char **tok, int *id, int type, t_cube *cube);
 void	add_path(char **tok, int i, int type, t_cube *cube);
-int		is_mapstart(char *line, t_cube *cube);
 int		open_path(t_cube *cube);
 
 //	Tools
@@ -90,7 +89,8 @@ void	add_color(int type, char **tok, t_cube *cube);
 void	add_rgb(int type, char **rgb, t_cube *cube);
 int		is_map(char *prev_line, char *line, t_cube *cube);
 int		is_valid(char c);
-int		is_mapstart(char *line, t_cube *cube);
+int		is_orient(char **tok);
+int		is_mapstart(char *line, char **tok, t_cube *cube);
 void	free_next_line(char **tok);
 
 void	gotomap(char *line, int start, t_cube *cube);
