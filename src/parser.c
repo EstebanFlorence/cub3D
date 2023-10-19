@@ -6,7 +6,7 @@
 /*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 19:02:51 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/10/17 20:24:39 by adi-nata         ###   ########.fr       */
+/*   Updated: 2023/10/19 18:12:22 by adi-nata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,28 +48,26 @@ int	linecmp(int i, char *prev_line, char *line)
 
 int	add_orient(char c, t_cube *cube)
 {
+	if (cube->map->oriented == true)
+		return (1);
 	if (c == 'N')
 	{
-		if (cube->map->n == true)
-			return (1);
+		cube->map->oriented = true;
 		cube->map->n = true;
 	}
-	if (c == 'S')
+	else if (c == 'S')
 	{
-		if (cube->map->s == true)
-			return (1);
+		cube->map->oriented = true;
 		cube->map->s = true;
 	}
-	if (c == 'E')
+	else if (c == 'E')
 	{
-		if (cube->map->e == true)
-			return (1);
+		cube->map->oriented = true;
 		cube->map->e = true;
 	}
-	if (c == 'W')
+	else if (c == 'W')
 	{
-		if (cube->map->w == true)
-			return (1);
+		cube->map->oriented = true;
 		cube->map->w = true;
 	}
 	return (0);
@@ -77,7 +75,7 @@ int	add_orient(char c, t_cube *cube)
 
 int	line_walls(int i, char *line, t_cube *cube)
 {
-	while (line[i])
+	while (line[i] && line[i] != '\n')
 	{
 		if (line[i] == ' ')
 		{
@@ -93,6 +91,8 @@ int	line_walls(int i, char *line, t_cube *cube)
 			if (add_orient(line[i], cube))
 				return (1);
 		}
+		else if (line[i] != '1' && line[i] != '0')
+			return (1);
 		i++;
 	}
 	if (line[i - 1] != '1')
@@ -110,14 +110,14 @@ int	is_map(char *prev_line, char *line, t_cube *cube)
 	if (line[i] != '1')
 		return (0);
 	i++;
-	while (line[i])
+	if (line_walls(i, line, cube))
+		return (0);
+	while (line[i] && line[i] != '\n')
 	{
 		if (!is_valid(line[i]))
-			return (-1);
+			return (0);
 		if (linecmp(i, prev_line, line))
-			return (-1);
-		if (line_walls(i, line, cube))
-			return (-1);
+			return (0);
 
 		i++;
 	}
@@ -127,39 +127,44 @@ int	is_map(char *prev_line, char *line, t_cube *cube)
 
 int	map_sizecheck(char *line, int *x, int *y, t_cube *cube)
 {
+	int	i = 12;
 	int		len;
 	char	*prev_line;
 
 	len = 0;
-	prev_line = line;
+	prev_line = ft_strdup(line);
+	free(line);
 	while (42)
 	{
 		line = get_next_line(cube->fd);
+
+		printf("map_sizecheck line: %d\n", i);
+		i++;
+
 		if (!line)
 		{
 			free(prev_line);
-			free(line);
 			get_next_line(-42);
 			close(cube->fd);
 			return (1);
 		}
 		len = is_map(prev_line, line, cube);
-		free(prev_line);
-		prev_line = line;
-		//free(line);
 		if (!len)
 		{
 			puterr(4);
 			//	Free + exit
+			free(line);
+			free(prev_line);
 			return (1);
 		}
+		free(prev_line);
+		prev_line = ft_strdup(line);
+		free(line);
 		if (len > *x)
 			*x = len;
 		(*y)++;
 		len = 0;
 	}
-	if (line)
-		free(line);
 	return (0);
 }
 
@@ -215,11 +220,13 @@ int	check_next_line(char *line, int *id, t_cube *cube)
 		return (puterr(2));
 	else if (!ft_strncmp(line, "\n", ft_strlen(line)))
 		return (0);
-	else if (is_mapstart(line, cube))
+	if (is_mapstart(line, cube))
 	{
 		*id = -1;
 		return (0);
 	}
+	//else
+	//	return (1);
 	tok = ft_split(line, ' ');
 	if (!tok)
 		return (puterr(2));
@@ -266,20 +273,20 @@ void	parser(t_cube *cube)
 		line = get_next_line(cube->fd);
 		if (check_next_line(line, &i, cube))
 		{
-			//	Error
-			//	Free
-			break ;
+			free(line);
+			get_next_line(-42);
+			destroy(cube);
+			exit(EXIT_FAILURE);
 		}
 		else if (i == -1)
 		{
 			n++;
 			if (check_next_map(n, line, cube))
 			{
-				//	Error
-				//	Free
-				break ;
+				get_next_line(-42);
+				destroy(cube);
+				exit(EXIT_FAILURE);
 			}
-			break ;
 		}
 		free(line);
 		n++;
