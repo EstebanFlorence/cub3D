@@ -6,7 +6,7 @@
 /*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 19:02:51 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/10/19 18:59:16 by adi-nata         ###   ########.fr       */
+/*   Updated: 2023/10/19 21:21:47 by adi-nata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,15 @@
 
 void	add_map(int start, t_cube *cube)
 {
-	(void)start;
-	(void)cube;
-	printf("Daje\n");
+	char	*line;
+	//(void)start;
+	//(void)cube;
+	//printf("Daje\n");
+	line = NULL;
+	gotomap(line, start, cube);
+	
+
+
 }
 
 int	is_valid(char c)
@@ -146,7 +152,7 @@ int	map_sizecheck(char *line, int *x, int *y, t_cube *cube)
 			free(prev_line);
 			get_next_line(-42);
 			close(cube->fd);
-			return (1);
+			return (0);
 		}
 		len = is_map(prev_line, line, cube);
 		if (!len)
@@ -184,7 +190,7 @@ int	mapalloc(char *line, t_cube *cube)
 	cube->map->y = y;
 	cube->map->maprix = (int **)ft_calloc(y, sizeof(int *));
 	y = -1;
-	while (++y <= cube->map->y)
+	while (++y < cube->map->y)
 		cube->map->maprix[y] = (int *)ft_calloc(x, sizeof(int));
 	return (0);
 }
@@ -286,6 +292,7 @@ void	parser(t_cube *cube)
 				destroy(cube);
 				exit(EXIT_FAILURE);
 			}
+			break ;
 		}
 		free(line);
 		n++;

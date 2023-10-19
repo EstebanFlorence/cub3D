@@ -6,7 +6,7 @@
 /*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 19:02:54 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/10/19 17:10:56 by adi-nata         ###   ########.fr       */
+/*   Updated: 2023/10/19 19:56:10 by adi-nata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,9 +70,10 @@ void	destroy(t_cube *cube)
 		while(i < 4 && cube->tex_path[i])
 			free(cube->tex_path[i++]);		
 	}
-	//i = 0;
-	//while(i < cube->map->y)
-	//	free(cube->map->maprix[i++]);
+	i = 0;
+	while(i < cube->map->y)
+		free(cube->map->maprix[i++]);
+	free(cube->map->maprix);
 }
 
 int	main(int ac, char **av)
