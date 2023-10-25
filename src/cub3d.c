@@ -6,7 +6,7 @@
 /*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 19:02:54 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/10/19 19:56:10 by adi-nata         ###   ########.fr       */
+/*   Updated: 2023/10/25 17:22:19 by adi-nata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,28 +22,30 @@ int	innit(char **av, t_map *map, t_cube *cube)
 		//free(cube);
 		return (puterr(1));
 	}
-	cube->tex_path[0] = NULL;
-	cube->tex_path[1] = NULL;
-	cube->tex_path[2] = NULL;
-	cube->tex_path[3] = NULL;
-
-	cube->cardinal[0] = 0;
-	cube->cardinal[1] = 0;
-	cube->cardinal[2] = 0;
-	cube->cardinal[3] = 0;
-	cube->colors[0][0] = -1;
-	cube->colors[0][1] = -1;
-	cube->colors[0][2] = -1;
-	cube->colors[1][0] = -1;
-	cube->colors[1][1] = -1;
-	cube->colors[1][2] = -1;
-
 	cube->map = map;
+
+	cube->map->tex_path[0] = NULL;
+	cube->map->tex_path[1] = NULL;
+	cube->map->tex_path[2] = NULL;
+	cube->map->tex_path[3] = NULL;
+
+	cube->map->cardinal[0] = 0;
+	cube->map->cardinal[1] = 0;
+	cube->map->cardinal[2] = 0;
+	cube->map->cardinal[3] = 0;
+	cube->map->colors[0][0] = -1;
+	cube->map->colors[0][1] = -1;
+	cube->map->colors[0][2] = -1;
+	cube->map->colors[1][0] = -1;
+	cube->map->colors[1][1] = -1;
+	cube->map->colors[1][2] = -1;
+
 	cube->map->oriented = false;
 	cube->map->n = false;
 	cube->map->s = false;
 	cube->map->e = false;
 	cube->map->w = false;
+
 	return (0);
 }
 
@@ -64,11 +66,11 @@ void	destroy(t_cube *cube)
 
 	free(cube->mapath);
 	//close(cube->fd);
-	if (cube->tex_path)
+	i = 0;
+	if (cube->map->tex_path[i])
 	{
-		i = 0;
-		while(i < 4 && cube->tex_path[i])
-			free(cube->tex_path[i++]);		
+		while(i < 4 && cube->map->tex_path[i])
+			free(cube->map->tex_path[i++]);		
 	}
 	i = 0;
 	while(i < cube->map->y)
@@ -89,8 +91,9 @@ int	main(int ac, char **av)
 	//	mlx_innit()
 	parser(&cube);
 
-	for (int i = 0; i < 4 && cube.cardinal[i]; i++)
-		printf("cardinal: %d\t%s\n", cube.cardinal[i], cube.tex_path[i]);
+	for (int i = 0; i < 4 && cube.map->cardinal[i]; i++)
+		printf("cardinal: %d\t%s\n", cube.map->cardinal[i], cube.map->tex_path[i]);
 	destroy(&cube);
+
 	return (0);
 }

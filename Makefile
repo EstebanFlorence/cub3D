@@ -6,7 +6,7 @@
 #    By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/07 16:36:29 by adi-nata          #+#    #+#              #
-#    Updated: 2023/10/10 17:26:21 by adi-nata         ###   ########.fr        #
+#    Updated: 2023/10/25 17:00:54 by adi-nata         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,8 +16,9 @@ SRC_DIR		=	src
 
 OBJ_DIR		=	.obj
 
-SRCS		=   ${SRC_DIR}/cub3d.c		${SRC_DIR}/parser.c\
-				${SRC_DIR}/tools.c		${SRC_DIR}/parser_tools.c\
+SRCS		=   ${SRC_DIR}/cub3d.c			${SRC_DIR}/parser.c\
+				${SRC_DIR}/tools.c			${SRC_DIR}/parser_tools.c\
+				${SRC_DIR}/parser_map.c\
 
 OBJS        =	${patsubst ${SRC_DIR}/%.c,${OBJ_DIR}/%.o,${SRCS}}
 
@@ -34,6 +35,8 @@ LIBFLAGS	=	-L./libft/include/ -lft
 LIB			=	libft
 
 LIBX		=	minilibx
+
+ARG			=	prova.cub
 
 CLR_RMV		=	\033[0m
 RED		    =	\033[1;31m
@@ -53,7 +56,7 @@ ${NAME}:		${OBJS}
 				@echo "${GREEN}${LIB} created[0m ✔️"
 
 				@echo "$(GREEN)Compilation ${CLR_RMV}of ${YELLOW}$(LIBX) ${CLR_RMV}..."
-				@make -sC ./minilibx-linux
+				@make -sC ./minilibx_opengl_20191021
 				@echo "$(GREEN)$(LIBX) created[0m ✔️"
 
 				@echo "${GREEN}Compilation ${CLR_RMV}of ${YELLOW}${NAME} ${CLR_RMV}..."
@@ -70,7 +73,7 @@ clean:
 				@make clean -C ./libft
 
 				@ echo "$(RED)fclean $(CYAN)$(LIBX) ✔️"
-				@make clean -C ./minilibx-linux
+				@make clean -C ./minilibx_opengl_20191021
 
 				@ echo "${RED}Deleting ${CYAN}${NAME} ${CLR_RMV}objs ✔️"
 				@${RM} ${OBJ_DIR}
@@ -84,5 +87,9 @@ fclean:			clean
 				@${RM} ${NAME}
 
 re:				fclean all
+
+mem:			all
+				export MallocStackLogging=1
+				leaks --atExit --list -- ./${NAME} ${ARG}
 
 .PHONY:			all clean fclean re bonus

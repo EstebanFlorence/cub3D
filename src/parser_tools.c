@@ -6,24 +6,11 @@
 /*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 17:24:47 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/10/19 18:57:39 by adi-nata         ###   ########.fr       */
+/*   Updated: 2023/10/25 18:51:10 by adi-nata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
-
-void	gotomap(char *line, int start, t_cube *cube)
-{
-	int	i;
-
-	i = 0;
-	while (i < start)
-	{
-		line = get_next_line(cube->fd);
-		free(line);
-		i++;
-	}
-}
 
 int	is_orient(char **tok)
 {
@@ -42,6 +29,14 @@ int	is_orient(char **tok)
 	return (0);
 }
 
+int	is_valid(char c)
+{
+	if (c != '1' && c != ' ' && c != '\n' && c != '0' &&
+		c != 'N' && c != 'S' && c != 'E' && c != 'W')
+		return (0);
+	return (1);
+}
+
 int	is_mapstart(char *line, char **tok, t_cube *cube)
 {
 	int	i;
@@ -53,11 +48,11 @@ int	is_mapstart(char *line, char **tok, t_cube *cube)
 	i = 0;
 	f = 0;
 	c = 0;
-	while (i < 4 && cube->cardinal[i])
+	while (i < 4 && cube->map->cardinal[i])
 		i++;
-	while (f < 3 && cube->colors[0][f] >= 0)
+	while (f < 3 && cube->map->colors[0][f] >= 0)
 		f++;
-	while (c < 3 && cube->colors[1][c] >= 0)
+	while (c < 3 && cube->map->colors[1][c] >= 0)
 		c++;
 	if (i == 4 && f == 3 && c == 3)
 	{
@@ -80,15 +75,15 @@ void	add_rgb(int type, char **rgb, t_cube *cube)
 {
 	if (type == FLOOR)
 	{
-		cube->colors[0][0] = ft_atoi(rgb[0]);
-		cube->colors[0][1] = ft_atoi(rgb[1]);
-		cube->colors[0][2] = ft_atoi(rgb[2]);
+		cube->map->colors[0][0] = ft_atoi(rgb[0]);
+		cube->map->colors[0][1] = ft_atoi(rgb[1]);
+		cube->map->colors[0][2] = ft_atoi(rgb[2]);
 	}
 	if (type == CEILING)
 	{
-		cube->colors[1][0] = ft_atoi(rgb[0]);
-		cube->colors[1][1] = ft_atoi(rgb[1]);
-		cube->colors[1][2] = ft_atoi(rgb[2]);
+		cube->map->colors[1][0] = ft_atoi(rgb[0]);
+		cube->map->colors[1][1] = ft_atoi(rgb[1]);
+		cube->map->colors[1][2] = ft_atoi(rgb[2]);
 	}
 }
 
@@ -117,8 +112,8 @@ void	add_color(int type, char **tok, t_cube *cube)
 
 void	add_path(char **tok, int i, int type, t_cube *cube)
 {
-	cube->cardinal[i] = type;
-	cube->tex_path[i] = ft_strdup(tok[1]);
+	cube->map->cardinal[i] = type;
+	cube->map->tex_path[i] = ft_strdup(tok[1]);
 }
 
 void	add_element(char **tok, int *id, int type, t_cube *cube)
@@ -132,11 +127,11 @@ void	add_element(char **tok, int *id, int type, t_cube *cube)
 		return ;
 	}
 	i = 0;
-	while (cube->cardinal && cube->cardinal[i])
+	while (i < 4 && cube->map->cardinal[i])
 	{
-		if (cube->cardinal[i] == type)
+		if (cube->map->cardinal[i] == type)
 		{
-			free(cube->tex_path[i]);
+			free(cube->map->tex_path[i]);
 			add_path(tok, i, type, cube);
 			return ;
 		}

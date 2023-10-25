@@ -6,7 +6,7 @@
 /*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 16:49:27 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/10/19 18:57:06 by adi-nata         ###   ########.fr       */
+/*   Updated: 2023/10/25 19:19:37 by adi-nata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,17 @@
 
 # include "libft/include/ft_printf.h"
 # include "libft/include/libft.h"
-# include "minilibx-linux/mlx.h"
+# include "minilibx_opengl_20191021/mlx.h"
 
 # include <math.h>
 # include <stdbool.h>
 
-# define NORTH		1
-# define SOUTH		2
-# define WEST		3
-# define EAST		4
-# define FLOOR		5
-# define CEILING	6
+# define NORTH		2
+# define SOUTH		3
+# define WEST		4
+# define EAST		5
+# define FLOOR		6
+# define CEILING	7
 
 typedef struct s_img
 {
@@ -38,6 +38,10 @@ typedef struct s_img
 
 typedef struct s_map
 {
+	int		cardinal[4];
+	char	*tex_path[4];
+	int		colors[2][3];
+
 	int		x;
 	int		y;
 	int		**maprix;
@@ -52,10 +56,6 @@ typedef struct s_cube
 {
 	char	*mapath;
 	int		fd;
-
-	int		cardinal[4];
-	char	*tex_path[4];
-	int		colors[2][3];
 
 	t_map	*map;
 	void	*mlx;
@@ -93,7 +93,8 @@ int		is_orient(char **tok);
 int		is_mapstart(char *line, char **tok, t_cube *cube);
 void	free_next_line(char **tok);
 
-void	gotomap(char *line, int start, t_cube *cube);
+void	gotomap(char **line, int start, t_cube *cube);
+void	fill_map(char *line, t_cube *cube);
 
 
 #endif
