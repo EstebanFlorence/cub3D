@@ -6,7 +6,7 @@
 /*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 16:49:27 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/10/25 19:19:37 by adi-nata         ###   ########.fr       */
+/*   Updated: 2023/10/25 23:42:17 by adi-nata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ typedef struct s_cube
 
 int		check(int ac);
 int		innit(char **av, t_map *map, t_cube *cube);
-void	destroy(t_cube *cube);
+void	destroy_cube(t_cube *cube);
 void	add_element(char **tok, int *id, int type, t_cube *cube);
 void	add_path(char **tok, int i, int type, t_cube *cube);
 int		open_path(t_cube *cube);
@@ -72,6 +72,7 @@ int		open_path(t_cube *cube);
 //	Tools
 int		open_path(t_cube *cube);
 int		puterr(int n);
+void	get_next_close(char *line, t_cube *cube);
 
 //	Parsing
 void	parser(t_cube *cube);
@@ -95,6 +96,7 @@ void	free_next_line(char **tok);
 
 void	gotomap(char **line, int start, t_cube *cube);
 void	fill_map(char *line, t_cube *cube);
+int		coordinate(int i, char *line);
 
 
 #endif

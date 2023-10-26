@@ -6,11 +6,30 @@
 /*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 14:37:05 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/10/25 19:41:03 by adi-nata         ###   ########.fr       */
+/*   Updated: 2023/10/26 00:33:02 by adi-nata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
+
+int	coordinate(int i, char *line)
+{
+	if (line[i] == ' ' || line[i] == '\n')
+		return (-1);
+	else if (line[i] == '0')
+		return (0);
+	else if (line[i] == '1')
+		return (1);
+	else if (line[i] == 'N')
+		return (NORTH);
+	else if (line[i] == 'S')
+		return (SOUTH);
+	else if (line[i] == 'W')
+		return (WEST);
+	else if (line[i] == 'E')
+		return (EAST);
+	return (-2);
+}
 
 void	fill_map(char *line, t_cube *cube)
 {
@@ -21,35 +40,24 @@ void	fill_map(char *line, t_cube *cube)
 	x = 0;
 	y = 0;
 	i = 0;
-	while (line && y <= cube->map->y)
+	while (line && y < cube->map->y)
 	{
 		while (line[i])
 		{
-			if (line[i] == ' ' || line[i] == '\n')
-				cube->map->maprix[y][x] = -1;
-			else if (line[i] == '0')
-				cube->map->maprix[y][x] = 0;
-			else if (line[i] == '1')
-				cube->map->maprix[y][x] = 1;
-			else if (line[i] == 'N')
-				cube->map->maprix[y][x] = NORTH;
-			else if (line[i] == 'S')
-				cube->map->maprix[y][x] = SOUTH;
-			else if (line[i] == 'W')
-				cube->map->maprix[y][x] = WEST;
-			else if (line[i] == 'E')
-				cube->map->maprix[y][x] = EAST;
+			cube->map->maprix[y][x] = coordinate(i, line);
 			x++;
 			i++;
 		}
 		free(line);
 		line = get_next_line(cube->fd);
 		i = 0;
-		while (x <= cube->map->x)
+		while (x < cube->map->x)
 			cube->map->maprix[y][x++] = -1;
 		x = 0;
 		y++;
 	}
+	get_next_line(-42);
+	close(cube->fd);
 }
 
 void	gotomap(char **line, int start, t_cube *cube)
@@ -88,7 +96,6 @@ void	add_map(int start, t_cube *cube)
 		x = 0;
 		y++;
 	}
-
 }
 
 int	linecmp(int i, char *prev_line, char *line)
@@ -185,7 +192,6 @@ int	is_map(char *prev_line, char *line, t_cube *cube)
 
 		i++;
 	}
-
 	return (i);
 }
 
@@ -194,7 +200,6 @@ int	map_sizecheck(char *line, int *x, int *y, t_cube *cube)
 	int		len;
 	char	*prev_line;
 
-	len = 0;
 	prev_line = ft_strdup(line);
 	free(line);
 	while (42)
@@ -202,19 +207,14 @@ int	map_sizecheck(char *line, int *x, int *y, t_cube *cube)
 		line = get_next_line(cube->fd);
 		if (!line)
 		{
-			free(prev_line);
-			get_next_line(-42);
-			close(cube->fd);
+			get_next_close(prev_line, cube);
 			return (0);
 		}
 		len = is_map(prev_line, line, cube);
 		if (!len)
 		{
-			puterr(4);
-			//	Free + exit
-			free(line);
 			free(prev_line);
-			return (1);
+			return (puterr(4));
 		}
 		free(prev_line);
 		prev_line = ft_strdup(line);
@@ -237,7 +237,7 @@ int	mapalloc(char *line, t_cube *cube)
 	while (line[x] && line[x] != '\n')
 		x++;
 	y++;
-	if (map_sizecheck(line, &x, &y, cube))
+	if (map_sizecheck(line, &x, &y, cube) || y < 3)
 		return (1);
 	cube->map->x = x;
 	cube->map->y = y;

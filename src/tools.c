@@ -6,11 +6,19 @@
 /*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 16:00:03 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/10/12 23:10:10 by adi-nata         ###   ########.fr       */
+/*   Updated: 2023/10/25 23:05:02 by adi-nata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
+
+void	get_next_close(char *line, t_cube *cube)
+{
+	if (line)
+		free(line);
+	get_next_line(-42);
+	close(cube->fd);
+}
 
 int	open_path(t_cube *cube)
 {

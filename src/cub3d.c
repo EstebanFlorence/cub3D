@@ -6,7 +6,7 @@
 /*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 19:02:54 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/10/25 17:22:19 by adi-nata         ###   ########.fr       */
+/*   Updated: 2023/10/25 23:42:33 by adi-nata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,12 +60,11 @@ int	check(int ac)
 	return (0);
 }
 
-void	destroy(t_cube *cube)
+void	destroy_cube(t_cube *cube)
 {
 	int	i;
 
 	free(cube->mapath);
-	//close(cube->fd);
 	i = 0;
 	if (cube->map->tex_path[i])
 	{
@@ -93,7 +92,7 @@ int	main(int ac, char **av)
 
 	for (int i = 0; i < 4 && cube.map->cardinal[i]; i++)
 		printf("cardinal: %d\t%s\n", cube.map->cardinal[i], cube.map->tex_path[i]);
-	destroy(&cube);
+	destroy_cube(&cube);
 
 	return (0);
 }

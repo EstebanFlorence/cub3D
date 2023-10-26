@@ -6,7 +6,7 @@
 /*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 19:02:51 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/10/25 14:39:58 by adi-nata         ###   ########.fr       */
+/*   Updated: 2023/10/25 23:47:51 by adi-nata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,9 +95,8 @@ void	parser(t_cube *cube)
 		line = get_next_line(cube->fd);
 		if (check_next_line(line, &i, cube))
 		{
-			free(line);
-			get_next_line(-42);
-			destroy(cube);
+			get_next_close(line, cube);
+			destroy_cube(cube);
 			exit(EXIT_FAILURE);
 		}
 		else if (i == -1)
@@ -106,7 +105,7 @@ void	parser(t_cube *cube)
 			if (check_next_map(n, line, cube))
 			{
 				get_next_line(-42);
-				destroy(cube);
+				destroy_cube(cube);
 				exit(EXIT_FAILURE);
 			}
 			break ;
