@@ -6,7 +6,7 @@
 /*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 16:49:27 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/10/25 23:42:17 by adi-nata         ###   ########.fr       */
+/*   Updated: 2023/10/26 20:12:48 by adi-nata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "libft/include/ft_printf.h"
 # include "libft/include/libft.h"
-# include "minilibx_opengl_20191021/mlx.h"
+# include "minilibx-linux/mlx.h"
 
 # include <math.h>
 # include <stdbool.h>
@@ -64,6 +64,7 @@ typedef struct s_cube
 
 int		check(int ac);
 int		innit(char **av, t_map *map, t_cube *cube);
+void	map_innit(t_cube *cube, t_map *map);
 void	destroy_cube(t_cube *cube);
 void	add_element(char **tok, int *id, int type, t_cube *cube);
 void	add_path(char **tok, int i, int type, t_cube *cube);

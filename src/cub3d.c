@@ -6,29 +6,19 @@
 /*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 19:02:54 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/10/25 23:42:33 by adi-nata         ###   ########.fr       */
+/*   Updated: 2023/10/26 20:13:58 by adi-nata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-int	innit(char **av, t_map *map, t_cube *cube)
+void	map_innit(t_cube *cube, t_map *map)
 {
-	cube->mapath = ft_strjoin("./maps/", av[1]);
-	cube->fd = open(cube->mapath, O_RDONLY);
-	if (cube->fd == -1)
-	{
-		free(cube->mapath);
-		//free(cube);
-		return (puterr(1));
-	}
 	cube->map = map;
-
 	cube->map->tex_path[0] = NULL;
 	cube->map->tex_path[1] = NULL;
 	cube->map->tex_path[2] = NULL;
 	cube->map->tex_path[3] = NULL;
-
 	cube->map->cardinal[0] = 0;
 	cube->map->cardinal[1] = 0;
 	cube->map->cardinal[2] = 0;
@@ -39,13 +29,26 @@ int	innit(char **av, t_map *map, t_cube *cube)
 	cube->map->colors[1][0] = -1;
 	cube->map->colors[1][1] = -1;
 	cube->map->colors[1][2] = -1;
-
+	cube->map->x = 0;
+	cube->map->y = 0;
+	cube->map->maprix = NULL;
 	cube->map->oriented = false;
 	cube->map->n = false;
 	cube->map->s = false;
 	cube->map->e = false;
 	cube->map->w = false;
+}
 
+int	innit(char **av, t_map *map, t_cube *cube)
+{
+	cube->mapath = ft_strjoin("./maps/", av[1]);
+	cube->fd = open(cube->mapath, O_RDONLY);
+	if (cube->fd == -1)
+	{
+		free(cube->mapath);
+		return (puterr(1));
+	}
+	map_innit(cube, map);
 	return (0);
 }
 
@@ -66,15 +69,15 @@ void	destroy_cube(t_cube *cube)
 
 	free(cube->mapath);
 	i = 0;
-	if (cube->map->tex_path[i])
+	while (i < 4 && cube->map->tex_path[i])
+		free(cube->map->tex_path[i++]);
+	i = -1;
+	if (cube->map->maprix)
 	{
-		while(i < 4 && cube->map->tex_path[i])
-			free(cube->map->tex_path[i++]);		
+		while (++i < cube->map->y && cube->map->maprix[i])
+			free(cube->map->maprix[i]);
+		free(cube->map->maprix);
 	}
-	i = 0;
-	while(i < cube->map->y)
-		free(cube->map->maprix[i++]);
-	free(cube->map->maprix);
 }
 
 int	main(int ac, char **av)
@@ -84,15 +87,8 @@ int	main(int ac, char **av)
 
 	if (check(ac))
 		return (1);
-	//cube = malloc(sizeof(t_cube));
 	if (innit(av, &map, &cube))
 		return (1);
-	//	mlx_innit()
 	parser(&cube);
-
-	for (int i = 0; i < 4 && cube.map->cardinal[i]; i++)
-		printf("cardinal: %d\t%s\n", cube.map->cardinal[i], cube.map->tex_path[i]);
-	destroy_cube(&cube);
-
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 14:37:05 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/10/26 00:33:02 by adi-nata         ###   ########.fr       */
+/*   Updated: 2023/10/26 20:22:18 by adi-nata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,20 +82,6 @@ void	add_map(int start, t_cube *cube)
 	gotomap(&line, start, cube);
 	fill_map(line, cube);
 
-
-	int x = 0;
-	int	y = 0;
-	while(y < cube->map->y)
-	{
-		while(x < cube->map->x)
-		{
-			printf("%d", cube->map->maprix[y][x]);
-			x++;
-		}
-		printf("\n");
-		x = 0;
-		y++;
-	}
 }
 
 int	linecmp(int i, char *prev_line, char *line)
@@ -157,7 +143,8 @@ int	line_walls(int i, char *line, t_cube *cube)
 			if (line[i] != '1')
 				return (1);
 		}
-		if (line[i] == 'N' || line[i] == 'S' || line[i] == 'E' || line[i] == 'W')
+		if (line[i] == 'N' || line[i] == 'S'
+			|| line[i] == 'E' || line[i] == 'W')
 		{
 			if (add_orient(line[i], cube))
 				return (1);
@@ -189,7 +176,6 @@ int	is_map(char *prev_line, char *line, t_cube *cube)
 			return (0);
 		if (linecmp(i, prev_line, line))
 			return (0);
-
 		i++;
 	}
 	return (i);
@@ -213,6 +199,7 @@ int	map_sizecheck(char *line, int *x, int *y, t_cube *cube)
 		len = is_map(prev_line, line, cube);
 		if (!len)
 		{
+			free(line);
 			free(prev_line);
 			return (puterr(4));
 		}
@@ -241,9 +228,23 @@ int	mapalloc(char *line, t_cube *cube)
 		return (1);
 	cube->map->x = x;
 	cube->map->y = y;
-	cube->map->maprix = (int **)ft_calloc(y, sizeof(int *));
+	cube->map->maprix = (int **)ft_calloc(y + 1, sizeof(int *));
 	y = -1;
 	while (++y < cube->map->y)
-		cube->map->maprix[y] = (int *)ft_calloc(x, sizeof(int));
+		cube->map->maprix[y] = (int *)ft_calloc(x + 1, sizeof(int));
 	return (0);
 }
+
+/* 	int x = 0;
+	int	y = 0;
+	while(y < cube->map->y)
+	{
+		while(x < cube->map->x)
+		{
+			printf("%d", cube->map->maprix[y][x]);
+			x++;
+		}
+		printf("\n");
+		x = 0;
+		y++;
+	} */

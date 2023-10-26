@@ -6,7 +6,7 @@
 /*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 17:24:47 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/10/25 23:01:22 by adi-nata         ###   ########.fr       */
+/*   Updated: 2023/10/26 20:18:54 by adi-nata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ int	is_orient(char **tok)
 
 int	is_valid(char c)
 {
-	if (c != '1' && c != ' ' && c != '\n' && c != '0' &&
-		c != 'N' && c != 'S' && c != 'E' && c != 'W')
+	if (c != '1' && c != ' ' && c != '\n' && c != '0'
+		&& c != 'N' && c != 'S' && c != 'E' && c != 'W')
 		return (0);
 	return (1);
 }
@@ -59,7 +59,8 @@ int	is_mapstart(char *line, char **tok, t_cube *cube)
 		i = 0;
 		while (line[i])
 		{
-			if (line[i] != '1' && line[i] != ' ' && line[i] != '\t' && line[i] != '\n')
+			if (line[i] != '1' && line[i] != ' '
+				&& line[i] != '\t' && line[i] != '\n')
 			{
 				puterr(4);
 				return (0);
@@ -89,23 +90,21 @@ void	add_rgb(int type, char **rgb, t_cube *cube)
 
 void	add_color(int type, char **tok, t_cube *cube)
 {
-	//	ex. "x,y,z" split + atoi + add (no spaces allowed)
-	int	n;
+	int		n;
 	char	**rgb;
 
 	n = 0;
 	rgb = ft_split(tok[1], ',');
-	while(rgb[n])
+	while (rgb[n])
 		n++;
 	if (n > 3)
 	{
 		puterr(2);
 		//	Free + exit
 	}
-
 	add_rgb(type, rgb, cube);
 	n = -1;
-	while(rgb[++n])
+	while (rgb[++n])
 		free(rgb[n]);
 	free(rgb);
 }
@@ -118,7 +117,6 @@ void	add_path(char **tok, int i, int type, t_cube *cube)
 
 void	add_element(char **tok, int *id, int type, t_cube *cube)
 {
-	//	Check for duplicates n add
 	int	i;
 
 	if (type == FLOOR || type == CEILING)

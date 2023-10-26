@@ -6,7 +6,7 @@
 /*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 19:02:51 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/10/25 23:47:51 by adi-nata         ###   ########.fr       */
+/*   Updated: 2023/10/26 20:15:11 by adi-nata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	free_next_line(char **tok)
 	int	i;
 
 	i = -1;
-	while(tok[++i])
+	while (tok[++i])
 		free(tok[i]);
 	free(tok);
 
@@ -57,10 +57,6 @@ int	check_next_line(char *line, int *id, t_cube *cube)
 		n++;
 	if (n > 2)
 		return (puterr(2));
-
-	for (int i = 0; tok[i]; i++)
-		printf("tok: %s\n", tok[i]);
-
 	if (ft_strncmp(tok[0], "NO", ft_strlen(tok[0])) == 0)
 		add_element(tok, id, NORTH, cube);
 	else if (ft_strncmp(tok[0], "SO", ft_strlen(tok[0])) == 0)
