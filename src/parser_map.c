@@ -6,11 +6,19 @@
 /*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 14:37:05 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/10/26 20:22:18 by adi-nata         ###   ########.fr       */
+/*   Updated: 2023/10/30 16:03:30 by adi-nata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
+
+/* void	add_pos(int start, t_cube *cube)
+{
+	char	*line;
+
+	line = NULL;
+	
+} */
 
 int	coordinate(int i, char *line)
 {
@@ -45,6 +53,11 @@ void	fill_map(char *line, t_cube *cube)
 		while (line[i])
 		{
 			cube->map->maprix[y][x] = coordinate(i, line);
+			if (cube->map->maprix[y][x] > 1)
+			{
+				cube->map->posx = x;
+				cube->map->posy = y;
+			}
 			x++;
 			i++;
 		}
@@ -234,17 +247,3 @@ int	mapalloc(char *line, t_cube *cube)
 		cube->map->maprix[y] = (int *)ft_calloc(x + 1, sizeof(int));
 	return (0);
 }
-
-/* 	int x = 0;
-	int	y = 0;
-	while(y < cube->map->y)
-	{
-		while(x < cube->map->x)
-		{
-			printf("%d", cube->map->maprix[y][x]);
-			x++;
-		}
-		printf("\n");
-		x = 0;
-		y++;
-	} */

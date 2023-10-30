@@ -6,7 +6,7 @@
 /*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 19:02:54 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/10/26 20:13:58 by adi-nata         ###   ########.fr       */
+/*   Updated: 2023/10/30 16:10:50 by adi-nata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,5 +90,6 @@ int	main(int ac, char **av)
 	if (innit(av, &map, &cube))
 		return (1);
 	parser(&cube);
+	destroy_cube(&cube);
 	return (0);
 }
