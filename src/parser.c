@@ -6,7 +6,7 @@
 /*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 19:02:51 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/10/26 20:15:11 by adi-nata         ###   ########.fr       */
+/*   Updated: 2023/10/30 16:04:52 by adi-nata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,4 +109,20 @@ void	parser(t_cube *cube)
 		free(line);
 		n++;
 	}
+
+	int x = 0;
+	int	y = 0;
+	while(y < cube->map->y)
+	{
+		while(x < cube->map->x)
+		{
+			printf("%d", cube->map->maprix[y][x]);
+			x++;
+		}
+		printf("\n");
+		x = 0;
+		y++;
+	}
+	printf("Player's position: x = %d\ty = %d\n", cube->map->posx, cube->map->posy);
+
 }

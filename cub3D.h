@@ -6,7 +6,7 @@
 /*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 16:49:27 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/10/26 20:12:48 by adi-nata         ###   ########.fr       */
+/*   Updated: 2023/10/30 14:58:34 by adi-nata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ typedef struct s_map
 	char	*tex_path[4];
 	int		colors[2][3];
 
+	int		posx;
+	int		posy;
 	int		x;
 	int		y;
 	int		**maprix;
