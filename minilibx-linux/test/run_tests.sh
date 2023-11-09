@@ -30,7 +30,6 @@ PID=""
 # to properly kill child process executed in background on exit
 at_exit() {
 	status=$?
-	sleep 300
 	[ $status -eq 0 ] && log_info "Seem all went well" && exit 0
 	# Code for non-zero exit:
 	if ! kill -s TERM "$PID" 2>/dev/null || ! wait "$PID" ; then

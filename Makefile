@@ -6,7 +6,7 @@
 #    By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/07 16:36:29 by adi-nata          #+#    #+#              #
-#    Updated: 2023/10/26 15:54:17 by adi-nata         ###   ########.fr        #
+#    Updated: 2023/11/09 15:14:31 by adi-nata         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,7 @@ LIBFLAGS	=	-L./libft/include/ -lft
 
 LIB			=	libft
 
-LIBX		=	minilibx
+LIBX		=	minilibx-linux
 
 ARG			=	prova.cub
 
@@ -56,7 +56,7 @@ ${NAME}:		${OBJS}
 				@echo "${GREEN}${LIB} created[0m ✔️"
 
 				@echo "$(GREEN)Compilation ${CLR_RMV}of ${YELLOW}$(LIBX) ${CLR_RMV}..."
-				@make -sC ./minilibx-linux
+				@make -sC ./${LIBX}
 				@echo "$(GREEN)$(LIBX) created[0m ✔️"
 
 				@echo "${GREEN}Compilation ${CLR_RMV}of ${YELLOW}${NAME} ${CLR_RMV}..."
@@ -73,7 +73,7 @@ clean:
 				@make clean -C ./libft
 
 				@ echo "$(RED)fclean $(CYAN)$(LIBX) ✔️"
-				@make clean -C ./minilibx-linux
+				@make clean -C ./${LIBX}
 
 				@ echo "${RED}Deleting ${CYAN}${NAME} ${CLR_RMV}objs ✔️"
 				@${RM} ${OBJ_DIR}
