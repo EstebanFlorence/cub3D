@@ -6,7 +6,7 @@
 /*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 16:49:27 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/11/10 16:57:02 by adi-nata         ###   ########.fr       */
+/*   Updated: 2023/11/10 18:12:25 by adi-nata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "libft/include/ft_printf.h"
 # include "libft/include/libft.h"
 # include "minilibx-linux/mlx.h"
+# include "key.h"
 
 # include <math.h>
 # include <stdbool.h>
@@ -27,11 +28,14 @@
 # define FLOOR		6
 # define CEILING	7
 
+# define MAX_ITER		200
 # define WIN_WIDTH		1000
 # define WIN_HEIGHT		1000
+# define ZOOM_FACTOR	1.3
 
 typedef struct s_img
 {
+
 	void	*ptr;
 	char	*data;
 	int		bitsxpixel;
@@ -78,8 +82,14 @@ void	add_element(char **tok, int *id, int type, t_cube *cube);
 void	add_path(char **tok, int i, int type, t_cube *cube);
 int		open_path(t_cube *cube);
 
+//	Mlx
 void	mlx_innit(t_cube *cube);
 void	ft_destroy(t_cube *cube);
+int		ft_exit(t_cube *cube);
+int		key_hook(int key, t_cube *cube);
+void	ft_mlxhooks(t_cube *cube);
+void	ft_pixelput(t_img *img, int x, int y, int color);
+
 
 
 //	Tools
