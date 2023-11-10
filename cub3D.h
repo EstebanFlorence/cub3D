@@ -6,7 +6,7 @@
 /*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 16:49:27 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/11/10 18:12:25 by adi-nata         ###   ########.fr       */
+/*   Updated: 2023/11/10 20:54:25 by adi-nata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,20 +28,24 @@
 # define FLOOR		6
 # define CEILING	7
 
-# define MAX_ITER		200
 # define WIN_WIDTH		1000
 # define WIN_HEIGHT		1000
-# define ZOOM_FACTOR	1.3
 
-typedef struct s_img
+# define POS_SHIFT		1.1
+
+typedef struct s_key
 {
+	//	bool key;
+}	t_key;
 
+typedef struct s_image
+{
 	void	*ptr;
 	char	*data;
 	int		bitsxpixel;
 	int		size_line;
 	int		endian;
-}	t_img;
+}	t_image;
 
 typedef struct s_map
 {
@@ -68,34 +72,32 @@ typedef struct s_cube
 
 	void	*mlx;
 	void	*win;
-	t_img	*img;
+	t_image	*img;
 
 	t_map	*map;
 
 }	t_cube;
 
 int		check(int ac);
-int		innit(char **av, t_map *map, t_cube *cube);
+int		cube_innit(char **av, t_map *map, t_cube *cube);
 void	map_innit(t_cube *cube, t_map *map);
-void	destroy_cube(t_cube *cube);
+void	cube_destroy(t_cube *cube);
 void	add_element(char **tok, int *id, int type, t_cube *cube);
 void	add_path(char **tok, int i, int type, t_cube *cube);
 int		open_path(t_cube *cube);
-
-//	Mlx
-void	mlx_innit(t_cube *cube);
-void	ft_destroy(t_cube *cube);
-int		ft_exit(t_cube *cube);
-int		key_hook(int key, t_cube *cube);
-void	ft_mlxhooks(t_cube *cube);
-void	ft_pixelput(t_img *img, int x, int y, int color);
-
-
 
 //	Tools
 int		open_path(t_cube *cube);
 int		puterr(int n);
 void	get_next_close(char *line, t_cube *cube);
+
+//	Mlx
+void	mlx_innit(t_cube *cube);
+void	mlx_destroy(t_cube *cube);
+int		exit_hook(t_cube *cube);
+int		key_hook(int key, t_cube *cube);
+void	mlx_hooks(t_cube *cube);
+void	pixelput(t_image *img, int x, int y, int color);
 
 //	Parsing
 void	parser(t_cube *cube);

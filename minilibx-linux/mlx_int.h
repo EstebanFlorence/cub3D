@@ -82,7 +82,7 @@ typedef struct	s_win_list
 }				t_win_list;
 
 
-typedef struct	s_img
+typedef struct	s_image
 {
 	XImage			*image;
 	Pixmap			pix;
