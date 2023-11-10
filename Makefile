@@ -6,7 +6,7 @@
 #    By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/07 16:36:29 by adi-nata          #+#    #+#              #
-#    Updated: 2023/10/26 15:54:17 by adi-nata         ###   ########.fr        #
+#    Updated: 2023/11/10 16:58:51 by adi-nata         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,7 +60,7 @@ ${NAME}:		${OBJS}
 				@echo "$(GREEN)$(LIBX) created[0m ✔️"
 
 				@echo "${GREEN}Compilation ${CLR_RMV}of ${YELLOW}${NAME} ${CLR_RMV}..."
-				${CC} ${FLAGS} ${OBJS} ${LIBFLAGS} -o ${NAME}
+				${CC} ${FLAGS} ${OBJS} ${LIBFLAGS} -o ${NAME} -L minilibx-linux -lmlx -lXext -lX11 -lm -pthread
 				@echo "${GREEN}${NAME} created[0m ✔️"
 
 all:			${NAME}
@@ -87,6 +87,9 @@ fclean:			clean
 				@${RM} ${NAME}
 
 re:				fclean all
+
+run:			all
+				./${NAME} prova.cub
 
 mem:			all
 				export MallocStackLogging=1

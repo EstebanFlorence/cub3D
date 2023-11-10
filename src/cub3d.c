@@ -6,7 +6,7 @@
 /*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 19:02:54 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/10/30 16:10:50 by adi-nata         ###   ########.fr       */
+/*   Updated: 2023/11/10 17:31:58 by adi-nata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ void	map_innit(t_cube *cube, t_map *map)
 	cube->map->s = false;
 	cube->map->e = false;
 	cube->map->w = false;
+
+
 }
 
 int	innit(char **av, t_map *map, t_cube *cube)
@@ -80,6 +82,37 @@ void	destroy_cube(t_cube *cube)
 	}
 }
 
+
+void	ft_destroy(t_cube *cube)
+{
+	mlx_destroy_image(cube->mlx, cube->img->ptr);
+	mlx_destroy_window(cube->mlx, cube->win);
+	mlx_destroy_display(cube->mlx);
+	free(cube->img);
+	free(cube->mlx);
+}
+
+void	mlx_innit(t_cube *cube)
+{
+	cube->mlx = mlx_init();
+	if (!(cube->mlx))
+		puterr(5);
+	cube->win = mlx_new_window(cube->mlx, WIN_WIDTH, WIN_HEIGHT, \
+									"Cub3D");
+	if (!(cube->win))
+		puterr(5);
+	cube->img->ptr = mlx_new_image(cube->mlx, WIN_WIDTH, WIN_HEIGHT);
+	if (!(cube->img))
+		puterr(5);
+	cube->img->data = mlx_get_data_addr(cube->img->ptr, \
+						&cube->img->bitsxpixel, \
+						&cube->img->size_line, \
+						&cube->img->endian);
+	if (!(cube->img->data))
+		puterr(5);
+}
+
+
 int	main(int ac, char **av)
 {
 	t_cube	cube;
@@ -90,6 +123,11 @@ int	main(int ac, char **av)
 	if (innit(av, &map, &cube))
 		return (1);
 	parser(&cube);
+
+	cube.img = malloc(sizeof(t_img));
+	mlx_innit(&cube);
+	ft_destroy(&cube);
+
 	destroy_cube(&cube);
 	return (0);
 }

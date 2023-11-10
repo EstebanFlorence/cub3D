@@ -6,7 +6,7 @@
 /*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 16:49:27 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/10/30 14:58:34 by adi-nata         ###   ########.fr       */
+/*   Updated: 2023/11/10 16:57:02 by adi-nata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,9 @@
 # define EAST		5
 # define FLOOR		6
 # define CEILING	7
+
+# define WIN_WIDTH		1000
+# define WIN_HEIGHT		1000
 
 typedef struct s_img
 {
@@ -59,8 +62,11 @@ typedef struct s_cube
 	char	*mapath;
 	int		fd;
 
-	t_map	*map;
 	void	*mlx;
+	void	*win;
+	t_img	*img;
+
+	t_map	*map;
 
 }	t_cube;
 
@@ -71,6 +77,10 @@ void	destroy_cube(t_cube *cube);
 void	add_element(char **tok, int *id, int type, t_cube *cube);
 void	add_path(char **tok, int i, int type, t_cube *cube);
 int		open_path(t_cube *cube);
+
+void	mlx_innit(t_cube *cube);
+void	ft_destroy(t_cube *cube);
+
 
 //	Tools
 int		open_path(t_cube *cube);
