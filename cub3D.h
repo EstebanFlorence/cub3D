@@ -6,7 +6,7 @@
 /*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 16:49:27 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/11/10 20:54:25 by adi-nata         ###   ########.fr       */
+/*   Updated: 2023/11/10 21:09:12 by adi-nata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@
 # define WIN_WIDTH		1000
 # define WIN_HEIGHT		1000
 
-# define POS_SHIFT		1.1
+# define POS_SHIFT		5
 
 typedef struct s_key
 {

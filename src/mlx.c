@@ -6,7 +6,7 @@
 /*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 17:48:03 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/11/10 20:59:07 by adi-nata         ###   ########.fr       */
+/*   Updated: 2023/11/10 21:08:47 by adi-nata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,13 +64,13 @@ int	key_hook(int key, t_cube *cube)
 	if (key == B_ESC)
 		exit_hook(cube);
 	if (key == ARROW_UP)
-		cube->map->posy += 1.1;
+		cube->map->posy -= POS_SHIFT;
 	if (key == ARROW_DOWN)
-		cube->map->posy -= 1.1;
+		cube->map->posy += POS_SHIFT;
 	if (key == ARROW_LEFT)
-		cube->map->posx -= 1.1;
+		cube->map->posx -= POS_SHIFT;
 	if (key == ARROW_RIGHT)
-		cube->map->posx += 1.1;
+		cube->map->posx += POS_SHIFT;
 
 	render(cube);
 	return (0);
