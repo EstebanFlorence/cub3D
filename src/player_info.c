@@ -6,7 +6,7 @@
 /*   By: gcavanna <gcavanna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 08:44:09 by gcavanna          #+#    #+#             */
-/*   Updated: 2023/11/12 16:07:47 by gcavanna         ###   ########.fr       */
+/*   Updated: 2023/11/12 19:43:54 by gcavanna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	set_plr_pov(t_map *map, char dir)
  * Gets the player's position from the map and sets the player's point of view.
  * @param cube - The cube struct containing the map and player information.
  */
-void	ft_get_player_pos(t_cube *cube)
+void	ft_get_play_pos(t_cube *cube)
 {
 	int	i;
 	int	j;

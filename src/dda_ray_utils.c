@@ -6,11 +6,11 @@
 /*   By: gcavanna <gcavanna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 11:58:00 by  gcavanna         #+#    #+#             */
-/*   Updated: 2023/11/12 16:03:51 by gcavanna         ###   ########.fr       */
+/*   Updated: 2023/11/12 19:58:00 by gcavanna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cub3D.h"
 
 /**
  * Calculates the height of the wall to be rendered based on the perpendicular
@@ -42,9 +42,9 @@ void	ft_texture_coord(t_ray *ray, t_cube *cube)
 	int	tex_y;
 
 	if (ray->side == 0)
-		ray->wall_x = cube->map->posy + ray->perp_wall_dist * ray->dir_y;
+		ray->wall_x = cube->player->pos_y + ray->perp_wall_dist * ray->dir_y;
 	else
-		ray->wall_x = cube->map->posx + ray->perp_wall_dist * ray->dir_x;
+		ray->wall_x = cube->player->pos_y + ray->perp_wall_dist * ray->dir_x;
 	ray->wall_x -= floor(ray->wall_x);
 	tex_x = (int)(ray->wall_x * (double)(cube->img->size_line));
 	if (ray->side == 0 && ray->dir_x > 0)
@@ -52,9 +52,9 @@ void	ft_texture_coord(t_ray *ray, t_cube *cube)
 	if (ray->side == 1 && ray->dir_y < 0)
 		tex_x = cube->img->size_line - tex_x - 1;
 	ray->step = 1.0 * cube->img->size_line /
-		ft_wall_height(ray, cube->win_height);
-	ray->tex_pos = (ray->draw_start - cube->win_height / 2 +
-					ft_wall_height(ray, cube->win_height) / 2) *
+		ft_wall_height(ray, WIN_HEIGHT);
+	ray->tex_pos = (ray->draw_start - WIN_HEIGHT / 2 +
+					ft_wall_height(ray, WIN_HEIGHT) / 2) *
 		ray->step;
 	tex_y = (int)ray->tex_pos & (cube->img->size_line - 1);
 	while (ray->draw_start < ray->draw_end)
@@ -95,12 +95,12 @@ void	ft_draw_wall(t_ray *ray, t_cube *cube)
 {
 	int	wall_height;
 
-	wall_height = ft_wall_height(ray, cube->win_height);
-	ray->draw_start = -wall_height / 2 + cube->win_height / 2;
+	wall_height = ft_wall_height(ray, WIN_HEIGHT);
+	ray->draw_start = -wall_height / 2 + WIN_HEIGHT / 2;
 	if (ray->draw_start < 0)
 		ray->draw_start = 0;
-	ray->draw_end = wall_height / 2 + cube->win_height / 2;
-	if (ray->draw_end >= cube->win_height)
-		ray->draw_end = cube->win_height - 1;
+	ray->draw_end = wall_height / 2 + WIN_HEIGHT / 2;
+	if (ray->draw_end >= WIN_HEIGHT)
+		ray->draw_end = WIN_HEIGHT - 1;
 	ft_texture_coord(ray, cube);
 }

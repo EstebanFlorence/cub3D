@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: gcavanna <gcavanna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 17:48:03 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/11/10 21:08:47 by adi-nata         ###   ########.fr       */
+/*   Updated: 2023/11/12 19:57:11 by gcavanna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	mlx_hooks(t_cube *cube)
 
 void	set_coordinate(int x, int y, t_cube *cube)
 {
-	if (cube->map->posx == x && cube->map->posy == y)
+	if (cube->player->pos_x == x && cube->player->pos_y == y)
 		pixelput(cube->img, x, y, \
 					0x00FF0000);
 	else
@@ -64,13 +64,13 @@ int	key_hook(int key, t_cube *cube)
 	if (key == B_ESC)
 		exit_hook(cube);
 	if (key == ARROW_UP)
-		cube->map->posy -= POS_SHIFT;
+		cube->player->pos_y -= POS_SHIFT;
 	if (key == ARROW_DOWN)
-		cube->map->posy += POS_SHIFT;
+		cube->player->pos_y += POS_SHIFT;
 	if (key == ARROW_LEFT)
-		cube->map->posx -= POS_SHIFT;
+		cube->player->pos_x -= POS_SHIFT;
 	if (key == ARROW_RIGHT)
-		cube->map->posx += POS_SHIFT;
+		cube->player->pos_x += POS_SHIFT;
 
 	render(cube);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: gcavanna <gcavanna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 16:49:27 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/11/12 16:00:41 by gcavanna         ###   ########.fr       */
+/*   Updated: 2023/11/12 20:51:25 by gcavanna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,6 @@ typedef struct s_map
 	char	*tex_path[4];
 	int		colors[2][3];
 
-	int		posx;
-	int		posy;
 	int		x;
 	int		y;
 	int		**maprix;
@@ -83,14 +81,14 @@ typedef struct s_ray
 	float		tex_pos;
 	int			draw_end;
 	int			draw_start;
-	t_texture	texture;
+	//t_texture	texture;
 	int			step_x;
 	int			step_y;
 	int			hit;
 	int			side;
 }				t_ray;
 
-typedef struct s_player
+typedef struct s_play
 {
 	float		pos_x;
 	float		pos_y;
@@ -102,24 +100,26 @@ typedef struct s_player
 	float		rot_speed;
 	float		ray_dir_x;
 	float		ray_dir_y;
-}				t_player;
+}				t_play;
 
 typedef struct s_cube
 {
-	char	*mapath;
-	int		fd;
+	char		*mapath;
+	int			fd;
 
-	void	*mlx;
-	void	*win;
-	t_image	*img;
-
-	t_map	*map;
+	void		*mlx;
+	void		*win;
+	t_play		*player;	
+	t_image		*img;
+	t_ray		*ray;
+	t_map		*map;
 
 }	t_cube;
 
 int		check(int ac);
-int		cube_innit(char **av, t_map *map, t_cube *cube);
+int		cube_innit(char **av, t_cube *cube);
 void	map_innit(t_cube *cube, t_map *map);
+void	rayplay_innit(t_cube *cube, t_ray *ray, t_play *player);
 void	cube_destroy(t_cube *cube);
 void	add_element(char **tok, int *id, int type, t_cube *cube);
 void	add_path(char **tok, int i, int type, t_cube *cube);
@@ -162,5 +162,19 @@ void	gotomap(char **line, int start, t_cube *cube);
 void	fill_map(char *line, t_cube *cube);
 int		coordinate(int i, char *line);
 
+//raycasting
+int		ft_wall_height(t_ray *ray, int win_height);
+void	ft_texture_coord(t_ray *ray, t_cube *cube);
+void	ft_render(t_ray *ray, t_cube *cube, int y);
+void	ft_draw_wall(t_ray *ray, t_cube *cube);
+
+t_ray	ft_init_ray(float camera_x, t_cube *cube);
+t_ray	ft_init_side_distance(t_cube *cube);
+int		ft_wall_collision_detection(t_cube *cube);
+void	ft_raycasting(t_cube *cube);
+
+//player
+void	set_plr_pov(t_map *map, char dir);
+void	ft_get_play_pos(t_cube *cube);
 
 #endif

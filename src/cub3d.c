@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: gcavanna <gcavanna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 19:02:54 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/11/10 20:04:45 by adi-nata         ###   ########.fr       */
+/*   Updated: 2023/11/12 19:52:34 by gcavanna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,15 @@ int	main(int ac, char **av)
 {
 	t_cube	cube;
 	t_map	map;
+	t_ray	ray;
+	t_play	player;
 
 	if (check(ac))
 		return (1);
-	if (cube_innit(av, &map, &cube))
+	if (cube_innit(av, &cube))
 		return (1);
+	map_innit(&cube, &map);
+	rayplay_innit(&cube, &ray, &player);
 	parser(&cube);
 
 	cube.img = malloc(sizeof(t_image));
