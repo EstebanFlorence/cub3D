@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: gcavanna <gcavanna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 16:49:27 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/11/10 21:09:12 by adi-nata         ###   ########.fr       */
+/*   Updated: 2023/11/12 16:00:41 by gcavanna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,45 @@ typedef struct s_map
 	bool	e;
 	bool	w;
 }	t_map;
+
+typedef struct s_ray
+{
+	float		dir_x;
+	float		dir_y;
+	int			map_x;
+	int			map_y;
+	float		delta_dist_x;
+	float		delta_dist_y;
+	float		dist_x;
+	float		dist_y;
+	float		perp_wall_dist;
+	float		wall_x;
+	int			x;
+	int			color;
+	float		step;
+	float		tex_pos;
+	int			draw_end;
+	int			draw_start;
+	t_texture	texture;
+	int			step_x;
+	int			step_y;
+	int			hit;
+	int			side;
+}				t_ray;
+
+typedef struct s_player
+{
+	float		pos_x;
+	float		pos_y;
+	float		dir_x;
+	float		dir_y;
+	float		plane_x;
+	float		plane_y;
+	float		move_speed;
+	float		rot_speed;
+	float		ray_dir_x;
+	float		ray_dir_y;
+}				t_player;
 
 typedef struct s_cube
 {
