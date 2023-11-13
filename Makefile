@@ -6,7 +6,7 @@
 #    By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/07 16:36:29 by adi-nata          #+#    #+#              #
-#    Updated: 2023/11/12 16:15:19 by adi-nata         ###   ########.fr        #
+#    Updated: 2023/11/13 16:27:52 by adi-nata         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ SRCS		=   ${SRC_DIR}/cub3d.c			${SRC_DIR}/tools.c\
 				${SRC_DIR}/parser_map.c\
 \
 				${SRC_DIR}/mlx.c\
-				${SRC_DIR}/dda_ray.c\		${SRC_DIR}/dda_ray_utils.c\
+#				${SRC_DIR}/dda_ray.c\		${SRC_DIR}/dda_ray_utils.c\
 
 OBJS        =	${patsubst ${SRC_DIR}/%.c,${OBJ_DIR}/%.o,${SRCS}}
 

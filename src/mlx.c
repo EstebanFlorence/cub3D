@@ -6,7 +6,7 @@
 /*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 17:48:03 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/11/10 21:08:47 by adi-nata         ###   ########.fr       */
+/*   Updated: 2023/11/13 17:58:16 by adi-nata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,21 +22,18 @@ void	pixelput(t_image *img, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-void	mlx_hooks(t_cube *cube)
-{
-	mlx_hook(cube->win, 2, 1L << 0, key_hook, cube);
-	mlx_hook(cube->win, 17, 0, exit_hook, cube);
-	//mlx_mouse_hook(cube->win, zoom_hook, cube);	Bonus?
-	mlx_loop(cube->mlx);
-}
-
 void	set_coordinate(int x, int y, t_cube *cube)
 {
-	if (cube->map->posx == x && cube->map->posy == y)
-		pixelput(cube->img, x, y, \
-					0x00FF0000);
+//	if (cube->map->posx == x && cube->map->posy == y)
+//		pixelput(cube->img, x, y,
+//					0x00FF0000);
+
+
+	if (cube->map->maprix[x / TILE_SIZE][y / TILE_SIZE] == 1)
+		pixelput(cube->img, x, y, 0x00FFFFFF);
 	else
 		pixelput(cube->img, x, y, 0x00000000);
+
 }
 
 void	render(t_cube *cube)
@@ -74,6 +71,14 @@ int	key_hook(int key, t_cube *cube)
 
 	render(cube);
 	return (0);
+}
+
+void	mlx_hooks(t_cube *cube)
+{
+	mlx_hook(cube->win, 2, 1L << 0, key_hook, cube);
+	mlx_hook(cube->win, 17, 0, exit_hook, cube);
+	//mlx_mouse_hook(cube->win, zoom_hook, cube);	Bonus?
+	mlx_loop(cube->mlx);
 }
 
 void	mlx_innit(t_cube *cube)

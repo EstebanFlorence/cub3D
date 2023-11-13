@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gcavanna <gcavanna@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 16:49:27 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/11/12 16:00:41 by gcavanna         ###   ########.fr       */
+/*   Updated: 2023/11/13 18:04:46 by adi-nata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@
 
 # define WIN_WIDTH		1000
 # define WIN_HEIGHT		1000
+
+# define TILE_SIZE		100
 
 # define POS_SHIFT		5
 
@@ -83,7 +85,7 @@ typedef struct s_ray
 	float		tex_pos;
 	int			draw_end;
 	int			draw_start;
-	t_texture	texture;
+	//t_texture	texture;
 	int			step_x;
 	int			step_y;
 	int			hit;
