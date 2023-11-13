@@ -6,7 +6,7 @@
 /*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 14:37:05 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/11/13 18:14:29 by adi-nata         ###   ########.fr       */
+/*   Updated: 2023/11/13 23:51:26 by adi-nata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,8 +101,8 @@ int	linecmp(int i, char *prev_line, char *line)
 {
 	int	oldx;
 
-	oldx = ft_strlen(prev_line);
-	if (i > oldx)
+	oldx = ft_strlen(prev_line) - 1;
+	if (i >= oldx)
 	{
 		if (line[i] != '1')
 			return (1);

@@ -6,7 +6,7 @@
 /*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 16:49:27 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/11/13 18:14:16 by adi-nata         ###   ########.fr       */
+/*   Updated: 2023/11/13 22:46:58 by adi-nata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,6 @@ typedef struct s_ray
 	float		tex_pos;
 	int			draw_end;
 	int			draw_start;
-	//t_texture	texture;
 	//t_texture	texture;
 	int			step_x;
 	int			step_y;
