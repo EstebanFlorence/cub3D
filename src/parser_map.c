@@ -6,7 +6,7 @@
 /*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 14:37:05 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/11/13 18:08:37 by adi-nata         ###   ########.fr       */
+/*   Updated: 2023/11/13 18:14:29 by adi-nata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,8 @@ void	fill_map(char *line, t_cube *cube)
 			cube->map->maprix[y][x] = coordinate(i, line);
 			if (cube->map->maprix[y][x] > 1)
 			{
-				cube->map->posx = x;
-				cube->map->posy = y;
+				cube->player->pos_x = x;
+				cube->player->pos_y = y;
 			}
 			x++;
 			i++;

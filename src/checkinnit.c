@@ -3,14 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   checkinnit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: gcavanna <gcavanna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 20:01:14 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/11/10 20:04:58 by adi-nata         ###   ########.fr       */
+/*   Updated: 2023/11/12 19:49:17 by gcavanna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
+
+void	rayplay_innit(t_cube *cube, t_ray *ray, t_play *player)
+{
+	cube->ray = ray;
+	cube->player = player;
+}
+
 
 void	map_innit(t_cube *cube, t_map *map)
 {
@@ -41,7 +48,7 @@ void	map_innit(t_cube *cube, t_map *map)
 
 }
 
-int	cube_innit(char **av, t_map *map, t_cube *cube)
+int		cube_innit(char **av, t_cube *cube)
 {
 	cube->mapath = ft_strjoin("./maps/", av[1]);
 	cube->fd = open(cube->mapath, O_RDONLY);
@@ -50,7 +57,8 @@ int	cube_innit(char **av, t_map *map, t_cube *cube)
 		free(cube->mapath);
 		return (puterr(1));
 	}
-	map_innit(cube, map);
+	//map_innit(cube);
+	//ray_innit(cube);
 	return (0);
 }
 

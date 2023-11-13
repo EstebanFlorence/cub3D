@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: gcavanna <gcavanna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 19:02:51 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/11/10 18:20:23 by adi-nata         ###   ########.fr       */
+/*   Updated: 2023/11/12 19:53:34 by gcavanna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,4 @@ void	parser(t_cube *cube)
 		x = 0;
 		y++;
 	}
-	printf("Player's position: x = %d\ty = %d\n", cube->map->posx, cube->map->posy);
-
 }
