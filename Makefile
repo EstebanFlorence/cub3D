@@ -6,7 +6,7 @@
 #    By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/07 16:36:29 by adi-nata          #+#    #+#              #
-#    Updated: 2023/11/13 18:13:39 by adi-nata         ###   ########.fr        #
+#    Updated: 2023/11/14 00:00:20 by adi-nata         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,9 +31,13 @@ CC			=	gcc
 
 RM			=	rm -rf
 
-FLAGS		=	-g -I./ -Ilibft/include/ -Wall -Wextra -Werror
+MAC_CFLAGS	=	-g -Wall -Wextra -Werror -I./ -Ilibft/include/ -Imlx
 
-MAKEFLAGS	+=	--silent
+LIBXFLAGS	=	-Lmlx -lmlx -framework OpenGL -framework AppKit -lX11
+
+X11FLAGS	=	-L/usr/X11/lib -lXext -lX11
+
+FLAGS		=	-g -I./ -Ilibft/include/ -Wall -Wextra -Werror
 
 LIBFLAGS	=	-L./libft/include/ -lft
 
@@ -42,6 +46,8 @@ LIB			=	libft
 LIBX		=	minilibx-linux
 
 ARG			=	prova.cub
+
+MAKEFLAGS	+=	--silent
 
 CLR_RMV		=	\033[0m
 RED		    =	\033[1;31m
@@ -95,6 +101,19 @@ re:				fclean all
 
 run:			all
 				./${NAME} prova.cub
+
+mac:			${OBJS}
+				@echo "${GREEN}Compilation ${CLR_RMV}of ${YELLOW}${LIB} ${CLR_RMV}..."
+				@make -C ./libft
+				@echo "${GREEN}${LIB} created[0m ✔️"
+
+				@echo "$(GREEN)Compilation ${CLR_RMV}of ${YELLOW}$(LIBX) ${CLR_RMV}..."
+				@make -sC ./${LIBX}
+				@echo "$(GREEN)$(LIBX) created[0m ✔️"
+
+				@echo "${GREEN}Compilation ${CLR_RMV}of ${YELLOW}${NAME} ${CLR_RMV}..."
+				${CC} ${MAC_CFLAGS} ${OBJS} ${LIBXFLAGS} ${X11FLAGS} ${LIBFLAGS} -o ${NAME}
+				@echo "${GREEN}${NAME} created[0m ✔️"
 
 mem:			all
 				export MallocStackLogging=1
