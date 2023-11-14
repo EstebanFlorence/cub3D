@@ -6,7 +6,7 @@
 /*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 17:48:03 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/11/13 18:14:48 by adi-nata         ###   ########.fr       */
+/*   Updated: 2023/11/15 00:19:43 by adi-nata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,19 +24,28 @@ void	pixelput(t_image *img, int x, int y, int color)
 
 void	set_coordinate(int x, int y, t_cube *cube)
 {
-//	if (cube->map->posx == x && cube->map->posy == y)
+//	if (cube->player->pos_x == x && cube->player->pos_y == y)
 //		pixelput(cube->img, x, y,
-//					0x00FF0000);
+//				0x00FF0000);
 
+//	if (cube->map->maprix[x / TILE_SIZE_X][y / TILE_SIZE_Y] == 1)
+//		pixelput(cube->img, x, y, 0x00FFFFFF);
 
-	if (cube->map->maprix[x / TILE_SIZE][y / TILE_SIZE] == 1)
+	int	map_x;
+	int	map_y;
+
+	map_x = x / (WIN_WIDTH / cube->map->x);
+	map_y = y / (WIN_WIDTH / cube->map->y);
+
+	if (cube->map->maprix[map_y][map_x] == 1)
 		pixelput(cube->img, x, y, 0x00FFFFFF);
+
 	else
 		pixelput(cube->img, x, y, 0x00000000);
 
 }
 
-void	render(t_cube *cube)
+void	drawmap(t_cube *cube)
 {
 	int	x;
 	int	y;
@@ -56,6 +65,26 @@ void	render(t_cube *cube)
 		cube->win, cube->img->ptr, 0, 0);
 }
 
+void	render(t_cube *cube)
+{
+	int	x;
+	int	y;
+
+	y = 0;
+	while (y < WIN_HEIGHT)
+	{
+		x = 0;
+		while (x < WIN_WIDTH)
+		{
+			set_coordinate(x, y, cube);
+			x += TILE_SIZE_X;
+		}
+		y += TILE_SIZE_Y;
+	}
+	mlx_put_image_to_window(cube->mlx, \
+		cube->win, cube->img->ptr, 0, 0);
+}
+
 int	key_hook(int key, t_cube *cube)
 {
 	if (key == B_ESC)
@@ -69,7 +98,8 @@ int	key_hook(int key, t_cube *cube)
 	if (key == ARROW_RIGHT)
 		cube->player->pos_x += POS_SHIFT;
 
-	render(cube);
+	//render(cube);
+	drawmap(cube);
 	return (0);
 }
 

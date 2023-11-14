@@ -6,7 +6,7 @@
 #    By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/07 16:36:29 by adi-nata          #+#    #+#              #
-#    Updated: 2023/11/14 00:00:20 by adi-nata         ###   ########.fr        #
+#    Updated: 2023/11/14 00:11:13 by adi-nata         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,12 +31,6 @@ CC			=	gcc
 
 RM			=	rm -rf
 
-MAC_CFLAGS	=	-g -Wall -Wextra -Werror -I./ -Ilibft/include/ -Imlx
-
-LIBXFLAGS	=	-Lmlx -lmlx -framework OpenGL -framework AppKit -lX11
-
-X11FLAGS	=	-L/usr/X11/lib -lXext -lX11
-
 FLAGS		=	-g -I./ -Ilibft/include/ -Wall -Wextra -Werror
 
 LIBFLAGS	=	-L./libft/include/ -lft
@@ -44,6 +38,17 @@ LIBFLAGS	=	-L./libft/include/ -lft
 LIB			=	libft
 
 LIBX		=	minilibx-linux
+
+
+#	Flags for Mac
+
+MAC_CFLAGS	=	-g -Wall -Wextra -Werror -I./ -Ilibft/include/ -I${LIBX}
+
+LIBXFLAGS	=	-L${LIBX} -lmlx -framework OpenGL -framework AppKit -lX11
+
+X11FLAGS	=	-L/usr/X11/lib -lXext -lX11
+
+
 
 ARG			=	prova.cub
 

@@ -6,7 +6,7 @@
 /*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 16:49:27 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/11/13 22:46:58 by adi-nata         ###   ########.fr       */
+/*   Updated: 2023/11/14 23:42:27 by adi-nata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,21 @@
 # include <math.h>
 # include <stdbool.h>
 
-# define NORTH		2
-# define SOUTH		3
-# define WEST		4
-# define EAST		5
-# define FLOOR		6
-# define CEILING	7
+# define NORTH			2
+# define SOUTH			3
+# define WEST			4
+# define EAST			5
+# define FLOOR			6
+# define CEILING		7
 
-# define WIN_WIDTH		1000
-# define WIN_HEIGHT		1000
+# define WIN_WIDTH		800
+# define WIN_HEIGHT		600
 
-# define TILE_SIZE		100
+# define NUM_TILES_X	16
+# define NUM_TILES_Y	10
+
+# define TILE_SIZE_X	(WIN_WIDTH / NUM_TILES_X)
+# define TILE_SIZE_Y	(WIN_HEIGHT / NUM_TILES_Y)
 
 # define POS_SHIFT		5
 
