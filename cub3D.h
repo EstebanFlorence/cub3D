@@ -6,7 +6,7 @@
 /*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 16:49:27 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/11/14 23:42:27 by adi-nata         ###   ########.fr       */
+/*   Updated: 2023/11/15 19:58:04 by adi-nata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,14 @@
 # define WIN_WIDTH		800
 # define WIN_HEIGHT		600
 
-# define NUM_TILES_X	16
-# define NUM_TILES_Y	10
+# define MAP_WIDTH		150
+# define MAP_HEIGHT		200
 
-# define TILE_SIZE_X	(WIN_WIDTH / NUM_TILES_X)
-# define TILE_SIZE_Y	(WIN_HEIGHT / NUM_TILES_Y)
+# define NUM_TILES_X	15
+# define NUM_TILES_Y	20
+
+# define TILE_SIZE_X	(MAP_WIDTH / NUM_TILES_X)
+# define TILE_SIZE_Y	(MAP_HEIGHT / NUM_TILES_Y)
 
 # define POS_SHIFT		5
 

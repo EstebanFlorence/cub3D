@@ -6,7 +6,7 @@
 /*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 17:48:03 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/11/15 01:02:56 by adi-nata         ###   ########.fr       */
+/*   Updated: 2023/11/15 22:36:24 by adi-nata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,15 @@ void	pixelput(t_image *img, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-void	set_coordinate(int x, int y, t_cube *cube)
+void	set_win_coord(int x, int y, t_cube *cube)
+{
+	if (x % 100 == 0 || y % 100 == 0)
+		pixelput(cube->img, x, y, 0x00FFFFFF);
+	else
+		pixelput(cube->img, x, y, 0x00000000);
+}
+
+void	set_map_coord(int x, int y, t_cube *cube)
 {
 //	if (cube->player->pos_x == x && cube->player->pos_y == y)
 //		pixelput(cube->img, x, y,
@@ -31,21 +39,36 @@ void	set_coordinate(int x, int y, t_cube *cube)
 //	if (cube->map->maprix[x / TILE_SIZE_X][y / TILE_SIZE_Y] == 1)
 //		pixelput(cube->img, x, y, 0x00FFFFFF);
 
+/* 	int	render_x;
+	int	render_y;
+
 	int	map_x;
 	int	map_y;
 
-    map_x = (x * cube->map->x) / WIN_WIDTH;
-    map_y = (y * cube->map->y) / WIN_HEIGHT;
-    if (map_x >= 0 && map_x < cube->map->x && map_y >= 0 && map_y < cube->map->y)
+	render_x = x - (WIN_WIDTH - cube->map->x * TILE_SIZE_X);
+	render_y = y - (WIN_HEIGHT - cube->map->y * TILE_SIZE_Y);
+
+    if (render_x >= 0 && render_x < cube->map->x * TILE_SIZE_X
+		&& render_y >= 0 && render_y < cube->map->y * TILE_SIZE_Y)
 	{
+		//map_x = (x * cube->map->x) / WIN_WIDTH;
+		//map_y = (y * cube->map->y) / WIN_HEIGHT;
+
+		map_x = render_x / TILE_SIZE_X;
+		map_y = render_y / TILE_SIZE_Y;
+
 		if (cube->map->maprix[map_y][map_x] == 1)
 			pixelput(cube->img, x, y, 0x00FF0000);
 
 		else
 			pixelput(cube->img, x, y, 0x00000000);
-	}
-	else
+	} */
+
+	if (x % TILE_SIZE_X == 0 || y % TILE_SIZE_Y == 0)
 		pixelput(cube->img, x, y, 0x00FFFFFF);
+
+	else
+		pixelput(cube->img, x, y, 0x00000000);
 
 }
 
@@ -54,19 +77,24 @@ void	drawmap(t_cube *cube)
 	int	x;
 	int	y;
 
-	y = 0;
-	while (y < WIN_HEIGHT)
+	x = WIN_WIDTH - 50;
+	while (x >= WIN_WIDTH - 50 - MAP_WIDTH)
 	{
-		x = 0;
-		while (x < WIN_WIDTH)
+		y = 50;
+		while (y <= WIN_HEIGHT - 50 - MAP_HEIGHT)
 		{
-			set_coordinate(x, y, cube);
-			x++;
+			set_map_coord(x, y, cube);
+			y++;
 		}
-		y++;
+		x--;
 	}
 	mlx_put_image_to_window(cube->mlx, \
 		cube->win, cube->img->ptr, 0, 0);
+
+/* 	mlx_put_image_to_window(cube->mlx, \
+		cube->win, cube->img->ptr,
+		WIN_WIDTH - cube->map->x * TILE_SIZE_X,
+		WIN_HEIGHT - cube->map->y * TILE_SIZE_Y);*/
 }
 
 void	render(t_cube *cube)
@@ -80,10 +108,10 @@ void	render(t_cube *cube)
 		x = 0;
 		while (x < WIN_WIDTH)
 		{
-			set_coordinate(x, y, cube);
-			x += TILE_SIZE_X;
+			set_win_coord(x, y, cube);
+			x++;
 		}
-		y += TILE_SIZE_Y;
+		y++;
 	}
 	mlx_put_image_to_window(cube->mlx, \
 		cube->win, cube->img->ptr, 0, 0);
@@ -101,9 +129,10 @@ int	key_hook(int key, t_cube *cube)
 		cube->player->pos_x -= POS_SHIFT;
 	if (key == ARROW_RIGHT)
 		cube->player->pos_x += POS_SHIFT;
+	if (key == M_KEY || key == TAB_KEY)
+		drawmap(cube);
 
 	//render(cube);
-	drawmap(cube);
 	return (0);
 }
 

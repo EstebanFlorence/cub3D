@@ -6,7 +6,7 @@
 #    By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/07 16:36:29 by adi-nata          #+#    #+#              #
-#    Updated: 2023/11/15 14:44:58 by adi-nata         ###   ########.fr        #
+#    Updated: 2023/11/15 19:04:09 by adi-nata         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,16 +34,20 @@ CC			=	gcc
 
 RM			=	rm -rf
 
-FLAGS		=	-g -I./ -Ilibft/include/ -Wall -Wextra -Werror
-
-LIBFLAGS	=	-L./libft/include/ -lft
-
 LIB			=	libft
 
 LIBX		=	minilibx-linux
 
+FLAGS		=	-g -I./ -Ilibft/include/ -Wall -Wextra -Werror
 
-#	Flags for Mac
+LIBFLAGS	=	-L./libft/include/ -lft
+
+ARG			=	prova.cub
+
+MAKEFLAGS	+=	--silent
+
+
+#	Flags for Macs
 
 MAC_CFLAGS	=	-g -Wall -Wextra -Werror -I./ -Ilibft/include/ -I${LIBX}
 
@@ -51,11 +55,6 @@ LIBXFLAGS	=	-L${LIBX} -lmlx -framework OpenGL -framework AppKit -lX11
 
 X11FLAGS	=	-L/usr/X11/lib -lXext -lX11
 
-
-
-ARG			=	prova.cub
-
-MAKEFLAGS	+=	--silent
 
 CLR_RMV		=	\033[0m
 RED		    =	\033[1;31m
@@ -108,7 +107,7 @@ fclean:			clean
 re:				fclean all
 
 run:			all
-				./${NAME} prova.cub
+				./${NAME} ${ARG}
 
 mac:			${OBJS}
 				@echo "${GREEN}Compilation ${CLR_RMV}of ${YELLOW}${LIB} ${CLR_RMV}..."
@@ -123,7 +122,12 @@ mac:			${OBJS}
 				${CC} ${MAC_CFLAGS} ${OBJS} ${LIBXFLAGS} ${X11FLAGS} ${LIBFLAGS} -o ${NAME}
 				@echo "${GREEN}${NAME} created[0m ✔️"
 
-mem:			all
+remac:			fclean mac
+
+runmac:			mac
+				./${NAME} ${ARG}
+
+memac:			all
 				export MallocStackLogging=1
 				leaks --atExit --list -- ./${NAME} ${ARG}
 

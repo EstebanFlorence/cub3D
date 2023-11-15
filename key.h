@@ -6,34 +6,37 @@
 /*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 17:50:42 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/11/10 17:45:28 by adi-nata         ###   ########.fr       */
+/*   Updated: 2023/11/15 19:38:10 by adi-nata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef KEY_H
 # define KEY_H
 
-# define B_ESC 65307
-# define MIN_KEY 45
-# define MAG_KEY 61
+# define B_ESC			65307
+# define TAB_KEY		65289
+# define MIN_KEY		45
+# define MAG_KEY		61
 
-# define ARROW_LEFT 65361
-# define ARROW_UP 65362
-# define ARROW_RIGHT 65363
-# define ARROW_DOWN 65364
+# define ARROW_LEFT		65361
+# define ARROW_UP		65362
+# define ARROW_RIGHT	65363
+# define ARROW_DOWN		65364
 
-# define W_KEY 119
-# define A_KEY 97
-# define S_KEY 115
-# define D_KEY 100
+# define M_KEY	109
 
-# define Q_KEY 113
-# define E_KEY 101
-# define R_KEY 114
-# define T_KEY 116
-# define Y_KEY 121
-# define Z_KEY 122
-# define X_KEY 120
+# define W_KEY	119
+# define A_KEY	97
+# define S_KEY	115
+# define D_KEY	100
+
+# define Q_KEY	113
+# define E_KEY	101
+# define R_KEY	114
+# define T_KEY	116
+# define Y_KEY	121
+# define Z_KEY	122
+# define X_KEY	120
 # define C_KEY	99
 
 # define KZERO	48
