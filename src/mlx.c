@@ -6,7 +6,7 @@
 /*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 17:48:03 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/11/15 00:19:43 by adi-nata         ###   ########.fr       */
+/*   Updated: 2023/11/15 01:02:56 by adi-nata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,18 @@ void	set_coordinate(int x, int y, t_cube *cube)
 	int	map_x;
 	int	map_y;
 
-	map_x = x / (WIN_WIDTH / cube->map->x);
-	map_y = y / (WIN_WIDTH / cube->map->y);
+    map_x = (x * cube->map->x) / WIN_WIDTH;
+    map_y = (y * cube->map->y) / WIN_HEIGHT;
+    if (map_x >= 0 && map_x < cube->map->x && map_y >= 0 && map_y < cube->map->y)
+	{
+		if (cube->map->maprix[map_y][map_x] == 1)
+			pixelput(cube->img, x, y, 0x00FF0000);
 
-	if (cube->map->maprix[map_y][map_x] == 1)
-		pixelput(cube->img, x, y, 0x00FFFFFF);
-
+		else
+			pixelput(cube->img, x, y, 0x00000000);
+	}
 	else
-		pixelput(cube->img, x, y, 0x00000000);
+		pixelput(cube->img, x, y, 0x00FFFFFF);
 
 }
 
