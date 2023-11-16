@@ -6,7 +6,7 @@
 /*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 16:49:27 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/11/15 19:58:04 by adi-nata         ###   ########.fr       */
+/*   Updated: 2023/11/16 16:43:50 by adi-nata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,17 @@
 
 # define POS_SHIFT		5
 
-typedef struct s_key
+typedef struct	s_var
+{
+
+}	t_var;
+
+typedef struct	s_key
 {
 	//	bool key;
 }	t_key;
 
-typedef struct s_image
+typedef struct	s_image
 {
 	void	*ptr;
 	char	*data;
@@ -56,7 +61,7 @@ typedef struct s_image
 	int		endian;
 }	t_image;
 
-typedef struct s_map
+typedef struct	s_map
 {
 	int		cardinal[4];
 	char	*tex_path[4];
@@ -72,7 +77,7 @@ typedef struct s_map
 	bool	w;
 }	t_map;
 
-typedef struct s_ray
+typedef struct	s_ray
 {
 	float		dir_x;
 	float		dir_y;
@@ -97,7 +102,7 @@ typedef struct s_ray
 	int			side;
 }				t_ray;
 
-typedef struct s_play
+typedef struct	s_play
 {
 	float		pos_x;
 	float		pos_y;
@@ -111,7 +116,7 @@ typedef struct s_play
 	float		ray_dir_y;
 }				t_play;
 
-typedef struct s_cube
+typedef struct	s_cube
 {
 	char		*mapath;
 	int			fd;
