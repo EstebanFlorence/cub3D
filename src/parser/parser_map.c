@@ -6,7 +6,7 @@
 /*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 14:37:05 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/11/13 23:51:26 by adi-nata         ###   ########.fr       */
+/*   Updated: 2023/11/17 20:21:40 by adi-nata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,27 +118,32 @@ int	linecmp(int i, char *prev_line, char *line)
 
 int	add_orient(char c, t_cube *cube)
 {
-	if (cube->map->oriented == true)
+	//if (cube->map->oriented == true)
+	if (cube->map->orient)
 		return (1);
 	if (c == 'N')
 	{
-		cube->map->oriented = true;
-		cube->map->n = true;
+		//cube->map->oriented = true;
+		cube->map->orient = NORTH;
+		//cube->map->n = true;
 	}
 	else if (c == 'S')
 	{
-		cube->map->oriented = true;
-		cube->map->s = true;
+		//cube->map->oriented = true;
+		cube->map->orient = SOUTH;
+		//cube->map->s = true;
 	}
 	else if (c == 'E')
 	{
-		cube->map->oriented = true;
-		cube->map->e = true;
+		//cube->map->oriented = true;
+		cube->map->orient = EAST;
+		//cube->map->e = true;
 	}
 	else if (c == 'W')
 	{
-		cube->map->oriented = true;
-		cube->map->w = true;
+		//cube->map->oriented = true;
+		cube->map->orient = WEST;
+		//cube->map->w = true;
 	}
 	return (0);
 }

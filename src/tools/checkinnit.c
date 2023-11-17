@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checkinnit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gcavanna <gcavanna@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 20:01:14 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/11/12 19:49:17 by gcavanna         ###   ########.fr       */
+/*   Updated: 2023/11/17 20:21:26 by adi-nata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void	map_innit(t_cube *cube, t_map *map)
 	cube->map->colors[1][2] = -1;
 	cube->map->x = 0;
 	cube->map->y = 0;
+	cube->map->orient = 0;
 	cube->map->maprix = NULL;
 	cube->map->oriented = false;
 	cube->map->n = false;

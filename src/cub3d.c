@@ -6,7 +6,7 @@
 /*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 19:02:54 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/11/15 14:52:17 by adi-nata         ###   ########.fr       */
+/*   Updated: 2023/11/17 20:44:35 by adi-nata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,37 @@ void	cube_destroy(t_cube *cube)
 	}
 }
 
+void	setdir(t_cube *cube)
+{
+	if (cube->map->orient == NORTH)
+	{
+		cube->player->dir_x = 0;
+		cube->player->dir_y = -1;
+	}
+	if (cube->map->orient == SOUTH)
+	{
+		cube->player->dir_x = 0;
+		cube->player->dir_y = 1;
+	}
+	if (cube->map->orient == EAST)
+	{
+		cube->player->dir_x = 1;
+		cube->player->dir_y = 0;
+	}
+	if (cube->map->orient == WEST)
+	{
+		cube->player->dir_x = -1;
+		cube->player->dir_y = 0;
+	}
+}
+
+void	starter(t_cube *cube)
+{
+	setdir(cube);
+	cube->player->plane_x = 0;
+	cube->player->plane_y = 0;
+}
+
 int	main(int ac, char **av)
 {
 	t_cube	cube;
@@ -43,6 +74,8 @@ int	main(int ac, char **av)
 	map_innit(&cube, &map);
 	rayplay_innit(&cube, &ray, &player);
 	parser(&cube);
+
+	starter(&cube);
 
 	cube.img = malloc(sizeof(t_image));
 	mlx_innit(&cube);

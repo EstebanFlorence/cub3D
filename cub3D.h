@@ -6,7 +6,7 @@
 /*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 16:49:27 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/11/16 16:43:50 by adi-nata         ###   ########.fr       */
+/*   Updated: 2023/11/17 20:36:24 by adi-nata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,50 @@
 
 # define POS_SHIFT		5
 
-typedef struct	s_var
+/* typedef struct	s_var
 {
+	double	pos_x;
+	double	pos_y;
+
+	double	dir_x;
+	double	dir_y;
+
+	double	raydir_x;
+	double	raydir_y;
+
+	double	firstdist_x;
+	double	firstdist_y;
+
+	double	deltadist_x;
+	double	deltadist_y;
+
+	double	plane_x;
+	double	plane_y;
+
+	double	camera_x;
+
+	double	step_x;
+	double	step_y;
+
+	double	map_x;	// = pos_x
+	double	map_y;	// = pos_y
+
+	double	perpwalldist;
+
+
 
 }	t_var;
 
+typedef struct	s_ray
+{
+
+}	t_ray;
+
+typedef struct	s_play
+{
+
+}	t_play;
+ */
 typedef struct	s_key
 {
 	//	bool key;
@@ -69,6 +108,7 @@ typedef struct	s_map
 
 	int		x;
 	int		y;
+	int		orient;
 	int		**maprix;
 	bool	oriented;
 	bool	n;
@@ -151,6 +191,11 @@ int		exit_hook(t_cube *cube);
 int		key_hook(int key, t_cube *cube);
 void	mlx_hooks(t_cube *cube);
 void	pixelput(t_image *img, int x, int y, int color);
+
+//	Try
+void	starter(t_cube *cube);
+void	setdir(t_cube *cube);
+
 
 //	Parsing
 void	parser(t_cube *cube);
