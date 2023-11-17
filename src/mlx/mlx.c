@@ -6,7 +6,7 @@
 /*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 17:48:03 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/11/16 14:55:54 by adi-nata         ###   ########.fr       */
+/*   Updated: 2023/11/17 21:05:44 by adi-nata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,7 @@ int	key_hook(int key, t_cube *cube)
 	if (key == M_KEY || key == TAB_KEY)
 		drawmap(cube);
 
+	raycaster(cube);
 	//render(cube);
 	return (0);
 }

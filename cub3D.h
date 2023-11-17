@@ -6,7 +6,7 @@
 /*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 16:49:27 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/11/17 20:36:24 by adi-nata         ###   ########.fr       */
+/*   Updated: 2023/11/17 21:14:21 by adi-nata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,6 +140,8 @@ typedef struct	s_ray
 	int			step_y;
 	int			hit;
 	int			side;
+
+	float		camera_x;
 }				t_ray;
 
 typedef struct	s_play

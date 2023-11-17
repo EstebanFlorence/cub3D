@@ -6,50 +6,23 @@
 /*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 19:02:54 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/11/17 20:44:35 by adi-nata         ###   ########.fr       */
+/*   Updated: 2023/11/17 21:21:10 by adi-nata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void	cube_destroy(t_cube *cube)
+void	raycaster(t_cube *cube)
 {
-	int	i;
+	int	x;
 
-	free(cube->mapath);
-	i = 0;
-	while (i < 4 && cube->map->tex_path[i])
-		free(cube->map->tex_path[i++]);
-	i = -1;
-	if (cube->map->maprix)
+	x = 0;
+	while (x < WIN_WIDTH)
 	{
-		while (++i < cube->map->y && cube->map->maprix[i])
-			free(cube->map->maprix[i]);
-		free(cube->map->maprix);
-	}
-}
+		cube->ray->camera_x = 2 * x / (float)WIN_WIDTH - 1;
+		//cube->player->ray_dir_x = ;
 
-void	setdir(t_cube *cube)
-{
-	if (cube->map->orient == NORTH)
-	{
-		cube->player->dir_x = 0;
-		cube->player->dir_y = -1;
-	}
-	if (cube->map->orient == SOUTH)
-	{
-		cube->player->dir_x = 0;
-		cube->player->dir_y = 1;
-	}
-	if (cube->map->orient == EAST)
-	{
-		cube->player->dir_x = 1;
-		cube->player->dir_y = 0;
-	}
-	if (cube->map->orient == WEST)
-	{
-		cube->player->dir_x = -1;
-		cube->player->dir_y = 0;
+		x++;
 	}
 }
 

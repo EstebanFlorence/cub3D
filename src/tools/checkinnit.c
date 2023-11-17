@@ -6,11 +6,35 @@
 /*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 20:01:14 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/11/17 20:21:26 by adi-nata         ###   ########.fr       */
+/*   Updated: 2023/11/17 21:05:21 by adi-nata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
+
+void	setdir(t_cube *cube)
+{
+	if (cube->map->orient == NORTH)
+	{
+		cube->player->dir_x = 0;
+		cube->player->dir_y = -1;
+	}
+	if (cube->map->orient == SOUTH)
+	{
+		cube->player->dir_x = 0;
+		cube->player->dir_y = 1;
+	}
+	if (cube->map->orient == EAST)
+	{
+		cube->player->dir_x = 1;
+		cube->player->dir_y = 0;
+	}
+	if (cube->map->orient == WEST)
+	{
+		cube->player->dir_x = -1;
+		cube->player->dir_y = 0;
+	}
+}
 
 void	rayplay_innit(t_cube *cube, t_ray *ray, t_play *player)
 {
