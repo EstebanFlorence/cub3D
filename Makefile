@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: gcavanna <gcavanna@student.42firenze.it    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/07 16:36:29 by adi-nata          #+#    #+#              #
-#    Updated: 2023/11/15 19:04:09 by adi-nata         ###   ########.fr        #
+#    Updated: 2023/11/19 17:09:52 by gcavanna         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ SRCS		=   ${SRC_DIR}/cub3d.c\
 				${SRC_DIR}/parser/parser_map.c\
 \
 				${SRC_DIR}/mlx/mlx.c\
-#\
+\
 				${SRC_DIR}/algo/dda_ray.c			${SRC_DIR}/algo/dda_ray_utils.c\
 				${SRC_DIR}/algo/player_info.c		${SRC_DIR}/algo/window_loop.c\
 

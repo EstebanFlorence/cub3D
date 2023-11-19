@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: gcavanna <gcavanna@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 16:49:27 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/11/17 21:14:21 by adi-nata         ###   ########.fr       */
+/*   Updated: 2023/11/19 17:58:56 by gcavanna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -233,9 +233,10 @@ t_ray	ft_init_ray(float camera_x, t_cube *cube);
 t_ray	ft_init_side_distance(t_cube *cube);
 int		ft_wall_collision_detection(t_cube *cube);
 void	ft_raycasting(t_cube *cube);
+void	next_frame_rendering(t_cube *cube);
 
 //player
-void	set_plr_pov(t_map *map, char dir);
+void	set_plr_pov(t_play *player, char dir);
 void	ft_get_play_pos(t_cube *cube);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: gcavanna <gcavanna@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 17:48:03 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/11/17 21:05:44 by adi-nata         ###   ########.fr       */
+/*   Updated: 2023/11/19 17:59:41 by gcavanna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ int	key_hook(int key, t_cube *cube)
 	if (key == M_KEY || key == TAB_KEY)
 		drawmap(cube);
 
-	raycaster(cube);
+	//raycaster(cube);
 	//render(cube);
 	return (0);
 }
