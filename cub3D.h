@@ -6,7 +6,7 @@
 /*   By: gcavanna <gcavanna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 16:49:27 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/11/20 14:52:14 by gcavanna         ###   ########.fr       */
+/*   Updated: 2023/11/20 16:50:16 by gcavanna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,10 @@ typedef struct s_texturer
 {
 	int			sky[3];
 	int			floor[3];
+	t_image		north;
+	t_image		south;
+	t_image		east;
+	t_image		west;
 }				t_textures;
 
 typedef struct s_map
@@ -253,7 +257,7 @@ void			ft_init_side_distance(t_cube *cube);
 void			ft_wall_collision_detection(t_cube *cube);
 void			ft_raycasting(t_cube *cube);
 void			next_frame_rendering(t_cube *cube);
-int				extract_pixel_from_image(t_cube *cube, t_image *img,
+int				extract_pixel_from_image(t_image *img,
 					int point_x, int point_y);
 uint32_t		get_color(t_cube *cube, t_ray *ray);
 

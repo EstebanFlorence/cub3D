@@ -6,7 +6,7 @@
 /*   By: gcavanna <gcavanna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 11:58:00 by  gcavanna         #+#    #+#             */
-/*   Updated: 2023/11/20 15:04:12 by gcavanna         ###   ########.fr       */
+/*   Updated: 2023/11/20 15:28:52 by gcavanna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@
 	wall_height = (int)(win_height / ray->perp_wall_dist);
 	return (wall_height);
 }
-
-
 
 void	ft_texture_coord(t_ray *ray, t_cube *cube)
 {
