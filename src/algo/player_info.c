@@ -3,20 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   player_info.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gcavanna <gcavanna@student.42firenze.it    +#+  +:+       +#+        */
+/*   By: gcavanna <gcavanna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 08:44:09 by gcavanna          #+#    #+#             */
-/*   Updated: 2023/11/19 17:39:37 by gcavanna         ###   ########.fr       */
+/*   Updated: 2023/11/20 11:05:50 by gcavanna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-/**
- * Sets the player's point of view based on the given direction.
- * @param map - The map struct containing the player's position.
- * @param dir - The direction the player is facing (N, S, E, W).
- */
 void	set_plr_pov(t_play *player, char dir)
 {
 	player->pos_x = 0;
@@ -43,10 +38,6 @@ void	set_plr_pov(t_play *player, char dir)
 	}
 }
 
-/**
- * Gets the player's position from the player and sets the player's point of view.
- * @param cube - The cube struct containing the player and player information.
- */
 void	ft_get_play_pos(t_cube *cube)
 {
 	int	i;
