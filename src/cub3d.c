@@ -6,7 +6,7 @@
 /*   By: gcavanna <gcavanna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 19:02:54 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/11/20 14:35:04 by gcavanna         ###   ########.fr       */
+/*   Updated: 2023/11/22 18:11:54 by gcavanna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,17 @@ int	main(int ac, char **av)
 	map_innit(&cube, &map);
 	rayplay_innit(&cube, &ray, &player);
 	parser(&cube);
+	printf("prova %s", map.tex_path[0] );
+	printf("prova %s", map.tex_path[1] );
+	printf("prova %s", map.tex_path[2] );
+	printf("prova %s", map.tex_path[3] );
 
 	starter(&cube);
 
-	next_frame_rendering(&cube);
-	//cube.img = malloc(sizeof(t_image));
+	
+	cube.img = malloc(sizeof(t_image));
 	mlx_innit(&cube);
+	next_frame_rendering(&cube);
 	mlx_hooks(&cube);
 	mlx_destroy(&cube);
 
