@@ -6,7 +6,7 @@
 /*   By: gcavanna <gcavanna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 19:02:54 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/11/22 18:11:54 by gcavanna         ###   ########.fr       */
+/*   Updated: 2023/11/23 15:46:27 by gcavanna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,14 @@ int	main(int ac, char **av)
 	t_map	map;
 	t_ray	ray;
 	t_play	player;
+	t_textures	textures;
 
 	if (check(ac))
 		return (1);
 	if (cube_innit(av, &cube))
 		return (1);
 	map_innit(&cube, &map);
-	rayplay_innit(&cube, &ray, &player);
+	rayplay_innit(&cube, &ray, &player, &textures);
 	parser(&cube);
 	printf("prova %s", map.tex_path[0] );
 	printf("prova %s", map.tex_path[1] );

@@ -6,7 +6,7 @@
 /*   By: gcavanna <gcavanna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 16:49:27 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/11/22 18:12:06 by gcavanna         ###   ########.fr       */
+/*   Updated: 2023/11/23 15:45:06 by gcavanna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -192,7 +192,7 @@ typedef struct s_cube
 int				check(int ac);
 int				cube_innit(char **av, t_cube *cube);
 void			map_innit(t_cube *cube, t_map *map);
-void			rayplay_innit(t_cube *cube, t_ray *ray, t_play *player);
+void			rayplay_innit(t_cube *cube, t_ray *ray, t_play *player, t_textures *textures);
 void			cube_destroy(t_cube *cube);
 void			add_element(char **tok, int *id, int type, t_cube *cube);
 void			add_path(char **tok, int i, int type, t_cube *cube);

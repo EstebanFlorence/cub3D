@@ -6,7 +6,7 @@
 /*   By: gcavanna <gcavanna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 11:58:00 by  gcavanna         #+#    #+#             */
-/*   Updated: 2023/11/20 15:28:52 by gcavanna         ###   ########.fr       */
+/*   Updated: 2023/11/23 16:00:31 by gcavanna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,6 +141,14 @@ void	put_pixel_in_image(t_image *img, int x, int y, uint32_t color)
 void	draw_wall(t_cube *cube, t_ray *ray, int x)
 {
 	int	y;
+	cube->textures->sky[0] = 0;
+	cube->textures->sky[1] = 0;
+	cube->textures->sky[2] = 0;
+
+	cube->textures->floor[0] = 255;
+	cube->textures->floor[1] = 255;
+	cube->textures->floor[2] = 255;
+
 
 	y = -1;
 	while (++y < ray->draw_start)
@@ -157,11 +165,11 @@ void	draw_wall(t_cube *cube, t_ray *ray, int x)
 		put_pixel_in_image(cube->img, x, y, get_color(cube, ray));
 		y += 1;
 	}
-	while (y < WIN_HEIGHT)
+	while (y < WIN_HEIGHT / 2)
 	{
 		put_pixel_in_image(cube->img, x, y,
 				color_convert(cube->textures->floor[0],
 				cube->textures->floor[1], cube->textures->floor[2]));
 		y += 1;
-	}
+	} 
 }

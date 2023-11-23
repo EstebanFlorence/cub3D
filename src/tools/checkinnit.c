@@ -6,7 +6,7 @@
 /*   By: gcavanna <gcavanna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 20:01:14 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/11/20 11:39:58 by gcavanna         ###   ########.fr       */
+/*   Updated: 2023/11/23 15:45:17 by gcavanna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,11 @@ void	setdir(t_cube *cube)
 	}
 }
 
-void	rayplay_innit(t_cube *cube, t_ray *ray, t_play *player)
+void	rayplay_innit(t_cube *cube, t_ray *ray, t_play *player, t_textures *textures)
 {
 	cube->ray = ray;
 	cube->player = player;
+	cube->textures = textures;
 }
 
 

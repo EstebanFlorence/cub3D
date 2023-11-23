@@ -6,7 +6,7 @@
 /*   By: gcavanna <gcavanna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 11:37:01 by  gcavanna         #+#    #+#             */
-/*   Updated: 2023/11/22 18:05:52 by gcavanna         ###   ########.fr       */
+/*   Updated: 2023/11/23 16:01:10 by gcavanna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,7 +172,9 @@ void	ft_wall_collision_detection(t_cube *cube)
 			cube->ray->map_y += cube->ray->step_y;
 			cube->ray->side = 1;
 		}
-		if (cube->map->maprix[cube->ray->map_x][cube->ray->map_y] == '1')
+		// printf("Y %d\n", cube->ray->map_y);
+		// printf("X %d\n", cube->ray->map_x);
+		if (cube->map->maprix[cube->ray->map_y][cube->ray->map_x] == 1)
 			cube->ray->hit = 1;
 	}
 }
@@ -182,7 +184,9 @@ void	ft_raycasting(t_cube *cube)
 	int			x;
 	t_ray		ray;
 
+	printf("azz\n");
 	cube->img = new_img(cube->mlx);
+	printf("azz\n");
 	x = 0;
 	while (x < WIN_WIDTH)
 	{
