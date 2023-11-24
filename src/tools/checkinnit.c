@@ -6,72 +6,49 @@
 /*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 20:01:14 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/11/24 17:05:05 by adi-nata         ###   ########.fr       */
+/*   Updated: 2023/11/24 23:25:31 by adi-nata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void	setdir(t_cube *cube)
+void	player_innit(t_cube *cube, t_cam *player)
 {
+	cube->player = player;
 	if (cube->map->orient == NORTH)
 	{
-		cube->player->dir_x = 0;
-		cube->player->dir_y = -1;
+		cube->player->dir.x = 0;
+		cube->player->dir.y = -1;
 	}
 	if (cube->map->orient == SOUTH)
 	{
-		cube->player->dir_x = 0;
-		cube->player->dir_y = 1;
+		cube->player->dir.x = 0;
+		cube->player->dir.y = 1;
 	}
 	if (cube->map->orient == EAST)
 	{
-		cube->player->dir_x = 1;
-		cube->player->dir_y = 0;
+		cube->player->dir.x = 1;
+		cube->player->dir.y = 0;
 	}
 	if (cube->map->orient == WEST)
 	{
-		cube->player->dir_x = -1;
-		cube->player->dir_y = 0;
+		cube->player->dir.x = -1;
+		cube->player->dir.y = 0;
 	}
+	cube->player->plane.x = 0;
+	cube->player->plane.y = 0;
 }
-
-void	rayplay_innit(t_cube *cube, t_ray *ray, t_play *player, t_textures *textures)
-{
-	cube->ray = ray;
-	cube->player = player;
-	cube->textures = textures;
-	cube->img = NULL;
-}
-
 
 void	map_innit(t_cube *cube, t_map *map)
 {
 	cube->map = map;
-	cube->map->tex_path[0] = NULL;
-	cube->map->tex_path[1] = NULL;
-	cube->map->tex_path[2] = NULL;
-	cube->map->tex_path[3] = NULL;
-	cube->map->cardinal[0] = 0;
-	cube->map->cardinal[1] = 0;
-	cube->map->cardinal[2] = 0;
-	cube->map->cardinal[3] = 0;
-	cube->map->colors[0][0] = -1;
-	cube->map->colors[0][1] = -1;
-	cube->map->colors[0][2] = -1;
-	cube->map->colors[1][0] = -1;
-	cube->map->colors[1][1] = -1;
-	cube->map->colors[1][2] = -1;
-	cube->map->x = 0;
-	cube->map->y = 0;
+
+//	cube->map->width = 0;
+//	cube->map->height = 0;
+	cube->map->size.x = 0;
+	cube->map->size.y = 0;
 	cube->map->orient = 0;
 	cube->map->maprix = NULL;
-	cube->map->oriented = false;
-	cube->map->n = false;
-	cube->map->s = false;
-	cube->map->e = false;
-	cube->map->w = false;
-
 
 }
 

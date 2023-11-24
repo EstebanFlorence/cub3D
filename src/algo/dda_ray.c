@@ -6,7 +6,7 @@
 /*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 11:37:01 by  gcavanna         #+#    #+#             */
-/*   Updated: 2023/11/24 17:18:41 by adi-nata         ###   ########.fr       */
+/*   Updated: 2023/11/24 22:31:13 by adi-nata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,67 +14,67 @@
 
 /* t_ray	ft_init_ray(float camera_x, t_cube *cube)
 {
-	cube->ray->dir_x = cube->ray->dir_x + cube->player->plane_x * camera_x;
-	cube->ray->dir_y = cube->ray->dir_y + cube->player->plane_y * camera_x;
-	cube->ray->map_x = (int)cube->player->pos_x;
-	cube->ray->map_y = (int)cube->player->pos_y;
-	cube->ray->delta_dist_x = fabsf(1 / cube->ray->dir_x);
-	cube->ray->delta_dist_y = fabsf(1 / cube->ray->dir_y);
-	cube->ray->hit = 0;
-	return (*cube->ray);
+	ray->dir.x = ray->dir.x + cube->player->plane.x * camera_x;
+	ray->dir.y = ray->dir.y + cube->player->plane.y * camera_x;
+	ray->map.x = (int)cube->player->pos.x;
+	ray->map.y = (int)cube->player->pos.y;
+	ray->delta_dist.x = fabsf(1 / ray->dir.x);
+	ray->delta_dist.y = fabsf(1 / ray->dir.y);
+	ray->hit = 0;
+	return (*ray);
 }
 
 t_ray	ft_init_side_distance(t_cube *cube)
 {
 	t_ray	side_dist;
 
-	if (cube->ray->dir_x < 0)
+	if (ray->dir.x < 0)
 	{
 		side_dist.step_x = -1;
-		side_dist.dist_x = (cube->player->pos_x - cube->ray->map_x)
-			* cube->ray->delta_dist_x;
+		side_dist.dist_x = (cube->player->pos.x - ray->map.x)
+			* ray->delta_dist.x;
 	}
 	else
 	{
 		side_dist.step_x = 1;
-		side_dist.dist_x = (cube->ray->map_x + 1.0 - cube->player->pos_x)
-			* cube->ray->delta_dist_x;
+		side_dist.dist_x = (ray->map.x + 1.0 - cube->player->pos.x)
+			* ray->delta_dist.x;
 	}
-	if (cube->ray->dir_y < 0)
+	if (ray->dir.y < 0)
 	{
 		side_dist.step_y = -1;
-		side_dist.dist_y = (cube->player->pos_y - cube->ray->map_y)
-			* cube->ray->delta_dist_y;
+		side_dist.dist_y = (cube->player->pos.y - ray->map.y)
+			* ray->delta_dist.y;
 	}
 	else
 	{
 		side_dist.step_y = 1;
-		side_dist.dist_y = (cube->ray->map_y + 1.0 - cube->player->pos_y)
-			* cube->ray->delta_dist_y;
+		side_dist.dist_y = (ray->map.y + 1.0 - cube->player->pos.y)
+			* ray->delta_dist.y;
 	}
 	return (side_dist);
 }
 
 int	ft_wall_collision_detection(t_cube *cube)
 {
-	while (cube->ray->hit == 0)
+	while (ray->hit == 0)
 	{
-		if (cube->ray->dist_x < cube->ray->dist_y)
+		if (ray->dist_x < ray->dist_y)
 		{
-			cube->ray->dist_x += cube->ray->delta_dist_x;
-			cube->ray->map_x += cube->ray->step_x;
-			cube->ray->side = 0;
+			ray->dist_x += ray->delta_dist.x;
+			ray->map.x += ray->step_x;
+			ray->side = 0;
 		}
 		else
 		{
-			cube->ray->dist_y += cube->ray->delta_dist_y;
-			cube->ray->map_y += cube->ray->step_y;
-			cube->ray->side = 1;
+			ray->dist_y += ray->delta_dist.y;
+			ray->map.y += ray->step_y;
+			ray->side = 1;
 		}
-		if (cube->map->maprix[cube->ray->map_x][cube->ray->map_y] == 1)
-			cube->ray->hit = 1;
+		if (cube->map->maprix[ray->map.x][ray->map.y] == 1)
+			ray->hit = 1;
 	}
-	return (cube->ray->side);
+	return (ray->side);
 }
 
 void	ft_raycasting(t_cube *cube)
@@ -91,18 +91,18 @@ void	ft_raycasting(t_cube *cube)
 		camera_x = 2 * x / (float)WIN_HEIGHT - 1;
 		ray = ft_init_ray(camera_x, cube);
 		//side_dist = ft_init_side_distance(cube);
-		cube->ray->side = ft_wall_collision_detection(cube);
-		if (cube->ray->side == 0)
-			cube->ray->perp_wall_dist = (cube->ray->map_x - cube->player->pos_x
+		ray->side = ft_wall_collision_detection(cube);
+		if (ray->side == 0)
+			ray->perp_wall_dist = (ray->map.x - cube->player->pos.x
 					+
-									(1 - cube->ray->step_x) / 2) /
-				cube->ray->dir_x;
+									(1 - ray->step_x) / 2) /
+				ray->dir.x;
 		else
-			cube->ray->perp_wall_dist = (cube->ray->map_y - cube->player->pos_y
+			ray->perp_wall_dist = (ray->map.y - cube->player->pos.y
 					+
-									(1 - cube->ray->step_y) / 2) /
-				cube->ray->dir_y;
-		//cube->z_buffer[x] = cube->ray->perp_wall_dist;
+									(1 - ray->step_y) / 2) /
+				ray->dir.y;
+		//cube->z_buffer[x] = ray->perp_wall_dist;
 		ft_draw_wall(&ray, cube);
 		x++;
 	}
@@ -114,68 +114,68 @@ unsigned int	color_convert(int r, int g, int b)
 	return (r << 16 | g << 8 | b);
 }
 
-void	ft_init_ray(int x, t_cube *cube)
+void	ft_init_ray(int x, t_cube *cube, t_ray *ray)
 {
-	cube->ray->camera_x = 2 * x / (double)WIN_WIDTH - 1;
-	cube->ray->dir_x = cube->player->dir_x + cube->player->plane_x
-		* cube->ray->camera_x;
-	cube->ray->dir_y = cube->player->dir_y + cube->player->plane_y
-		* cube->ray->camera_x;
-	cube->ray->map_x = (int)cube->player->pos_x;
-	cube->ray->map_y = (int)cube->player->pos_y;
-	cube->ray->delta_dist_x = fabs(1 / cube->ray->dir_x);
-	cube->ray->delta_dist_y = fabs(1 / cube->ray->dir_y);
-	cube->ray->hit = 0;
+	ray->camera_x = 2 * x / (double)WIN_WIDTH - 1;
+	ray->dir.x = cube->player->dir.x + cube->player->plane.x
+		* ray->camera_x;
+	ray->dir.y = cube->player->dir.y + cube->player->plane.y
+		* ray->camera_x;
+	ray->map.x = (int)cube->player->pos.x;
+	ray->map.y = (int)cube->player->pos.y;
+	ray->delta_dist.x = fabs(1 / ray->dir.x);
+	ray->delta_dist.y = fabs(1 / ray->dir.y);
+	ray->hit = 0;
 }
 
-void	ft_init_side_distance(t_cube *cube)
+void	ft_init_side_distance(t_cube *cube, t_ray *ray)
 {
-	if (cube->ray->dir_x < 0)
+	if (ray->dir.x < 0)
 	{
-		cube->ray->step_x = -1;
-		cube->ray->side_dist_x = (cube->player->pos_x - cube->ray->map_x)
-			* cube->ray->delta_dist_x;
+		ray->step_x = -1;
+		ray->side_dist.x = (cube->player->pos.x - ray->map.x)
+			* ray->delta_dist.x;
 	}
 	else
 	{
-		cube->ray->step_x = 1;
-		cube->ray->side_dist_x = (cube->ray->map_x + 1.0f - cube->player->pos_x)
-			* cube->ray->delta_dist_x;
+		ray->step_x = 1;
+		ray->side_dist.x = (ray->map.x + 1.0f - cube->player->pos.x)
+			* ray->delta_dist.x;
 	}
-	if (cube->ray->dir_y < 0)
+	if (ray->dir.y < 0)
 	{
-		cube->ray->step_y = -1;
-		cube->ray->side_dist_y = (cube->player->pos_y - cube->ray->map_y)
-			* cube->ray->delta_dist_y;
+		ray->step_y = -1;
+		ray->side_dist.y = (cube->player->pos.y - ray->map.y)
+			* ray->delta_dist.y;
 	}
 	else
 	{
-		cube->ray->step_y = 1;
-		cube->ray->side_dist_y = (cube->ray->map_y + 1.0f - cube->player->pos_y)
-			* cube->ray->delta_dist_y;
+		ray->step_y = 1;
+		ray->side_dist.y = (ray->map.y + 1.0f - cube->player->pos.y)
+			* ray->delta_dist.y;
 	}
 }
 
-void	ft_wall_collision_detection(t_cube *cube)
+void	ft_wall_collision_detection(t_cube *cube, t_ray *ray)
 {
-	while (!cube->ray->hit)
+	while (!ray->hit)
 	{
-		if (cube->ray->side_dist_x < cube->ray->side_dist_y)
+		if (ray->side_dist.x < ray->side_dist.y)
 		{
-			cube->ray->side_dist_x += cube->ray->delta_dist_x;
-			cube->ray->map_x += cube->ray->step_x;
-			cube->ray->side = 1;
+			ray->side_dist.x += ray->delta_dist.x;
+			ray->map.x += ray->step_x;
+			ray->side = 1;
 		}
 		else
 		{
-			cube->ray->side_dist_y += cube->ray->delta_dist_y;
-			cube->ray->map_y += cube->ray->step_y;
-			cube->ray->side = 1;
+			ray->side_dist.y += ray->delta_dist.y;
+			ray->map.y += ray->step_y;
+			ray->side = 1;
 		}
-		//printf("Y %d\n", cube->ray->map_y);
-		//printf("X %d\n", cube->ray->map_x);
-		if (cube->map->maprix[cube->ray->map_y][cube->ray->map_x] == 1)
-			cube->ray->hit = 1;
+		//printf("Y %d\n", ray->map.y);
+		//printf("X %d\n", ray->map.x);
+		if (cube->map->maprix[(int)ray->map.y][(int)ray->map.x] == 1)
+			ray->hit = true;
 	}
 }
 
@@ -184,16 +184,16 @@ void	ft_raycasting(t_cube *cube)
 	int			x;
 	t_ray		ray;
 
-	cube->img = new_img(cube->mlx);
+//	cube->img = new_img(cube->mlx);	Già allocato in main(), se qui free()?
 	x = 0;
 	while (x < WIN_WIDTH)
 	{
-		ft_init_ray(x, cube);
-		ft_init_side_distance(cube);
-		ft_wall_collision_detection(cube);
-		ft_wall_height(cube);
-		ft_texture_coord(cube);
-		draw_wall(cube, x);
+		ft_init_ray(x, cube, &ray);
+		ft_init_side_distance(cube, &ray);
+		ft_wall_collision_detection(cube, &ray);
+		ft_wall_height(&ray);
+		ft_texture_coord(cube, &ray);
+		draw_wall(x, cube, &ray);
 		x += 1;
 	}
 }

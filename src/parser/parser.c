@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gcavanna <gcavanna@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 19:02:51 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/11/12 19:53:34 by gcavanna         ###   ########.fr       */
+/*   Updated: 2023/11/24 18:28:17 by adi-nata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,9 +112,9 @@ void	parser(t_cube *cube)
 
 	int x = 0;
 	int	y = 0;
-	while(y < cube->map->y)
+	while(y < cube->map->size.y)
 	{
-		while(x < cube->map->x)
+		while(x < cube->map->size.x)
 		{
 			printf("%d", cube->map->maprix[y][x]);
 			x++;

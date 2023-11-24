@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dda_ray_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gcavanna <gcavanna@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 11:58:00 by  gcavanna         #+#    #+#             */
-/*   Updated: 2023/11/24 14:29:51 by gcavanna         ###   ########.fr       */
+/*   Updated: 2023/11/24 23:06:51 by adi-nata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,14 @@ void	ft_texture_coord(t_ray *ray, t_cube *cube)
 	int	tex_y;
 
 	if (ray->side == 0)
-		ray->wall_x = cube->player->pos_y + ray->perp_wall_dist * ray->dir_y;
+		ray->wall_x = cube->player->pos.y + ray->perp_wall_dist * ray->dir.y;
 	else
-		ray->wall_x = cube->player->pos_y + ray->perp_wall_dist * ray->dir_x;
+		ray->wall_x = cube->player->pos.y + ray->perp_wall_dist * ray->dir.x;
 	ray->wall_x -= floor(ray->wall_x);
 	tex_x = (int)(ray->wall_x * (double)(cube->img->size_line));
-	if (ray->side == 0 && ray->dir_x > 0)
+	if (ray->side == 0 && ray->dir.x > 0)
 		tex_x = cube->img->size_line - tex_x - 1;
-	if (ray->side == 1 && ray->dir_y < 0)
+	if (ray->side == 1 && ray->dir.y < 0)
 		tex_x = cube->img->size_line - tex_x - 1;
 	ray->step = 1.0 * cube->img->size_line /
 		ft_wall_height(ray, WIN_HEIGHT);
@@ -77,46 +77,46 @@ void	ft_draw_wall(t_ray *ray, t_cube *cube)
 }
   */
 
-void	ft_wall_height(t_cube *cube)
+void	ft_wall_height(t_ray *ray)
 {
-	if (!cube->ray->side)
-		cube->ray->perp_wall_dist = cube->ray->side_dist_x
-			- cube->ray->delta_dist_x;
+	if (!ray->side)
+		ray->perp_wall_dist = ray->side_dist.x
+			- ray->delta_dist.x;
 	else
-		cube->ray->perp_wall_dist = cube->ray->side_dist_y
-			- cube->ray->delta_dist_y;
-	cube->ray->line_height = (int)(WIN_HEIGHT / cube->ray->perp_wall_dist);
-	cube->ray->draw_start = -cube->ray->line_height / 2 + WIN_HEIGHT / 2;
-	if (cube->ray->draw_start < 0)
-		cube->ray->draw_start = 0;
-	cube->ray->draw_end = cube->ray->line_height / 2 + WIN_HEIGHT / 2;
-	if (cube->ray->draw_end >= WIN_HEIGHT)
-		cube->ray->draw_end = WIN_HEIGHT - 1;
+		ray->perp_wall_dist = ray->side_dist.y
+			- ray->delta_dist.y;
+	ray->line_height = (int)(WIN_HEIGHT / ray->perp_wall_dist);
+	ray->draw_start = -ray->line_height / 2 + WIN_HEIGHT / 2;
+	if (ray->draw_start < 0)
+		ray->draw_start = 0;
+	ray->draw_end = ray->line_height / 2 + WIN_HEIGHT / 2;
+	if (ray->draw_end >= WIN_HEIGHT)
+		ray->draw_end = WIN_HEIGHT - 1;
 }
 
-void	ft_texture_coord(t_cube *cube)
+void	ft_texture_coord(t_cube *cube, t_ray *ray)
 {
-	if (!cube->ray->side)
+	if (!ray->side)
 	{
-		cube->ray->wall_x = cube->player->pos_y + cube->ray->perp_wall_dist
-			* cube->ray->dir_y;
+		ray->wall_x = cube->player->pos.y + ray->perp_wall_dist
+			* ray->dir.y;
 	}
 	else
 	{
-		cube->ray->wall_x = cube->player->pos_x + cube->ray->perp_wall_dist
-			* cube->ray->dir_x;
+		ray->wall_x = cube->player->pos.x + ray->perp_wall_dist
+			* ray->dir.x;
 	}
-	cube->ray->wall_x -= floor(cube->ray->wall_x);
-	cube->ray->tex_x = (int)(cube->ray->wall_x * (double)TEXTURE_WIDTH);
-	if ((!cube->ray->side && cube->ray->dir_x > 0) || (cube->ray->side
-			&& cube->ray->dir_y < 0))
+	ray->wall_x -= floor(ray->wall_x);
+	ray->tex.x = (int)(ray->wall_x * (double)TEXTURE_WIDTH);
+	if ((!ray->side && ray->dir.x > 0) || (ray->side
+			&& ray->dir.y < 0))
 	{
-		cube->ray->tex_x = TEXTURE_WIDTH - cube->ray->tex_x - 1;
+		ray->tex.x = TEXTURE_WIDTH - ray->tex.x - 1;
 	}
-	cube->ray->tex_x = abs(cube->ray->tex_x);
-	cube->ray->step = 1.0 * TEXTURE_HEIGHT / cube->ray->line_height;
-	cube->ray->tex_pos = (cube->ray->draw_start - (WIN_HEIGHT / 2)
-			+ cube->ray->line_height / 2) * cube->ray->step;
+	ray->tex.x = abs((int)ray->tex.x);	//	Or fabs()?
+	ray->step = 1.0 * TEXTURE_HEIGHT / ray->line_height;
+	ray->tex_pos = (ray->draw_start - (WIN_HEIGHT / 2)
+			+ ray->line_height / 2) * ray->step;
 }
 
 t_image	*new_img(void *mlx_ptr)
@@ -141,38 +141,38 @@ void	put_pixel_in_image(t_image *img, int x, int y, uint32_t color)
 	*(uint32_t *)dst = color;
 }
 
-void	draw_wall(t_cube *cube, int x)
+void	draw_wall(int x, t_cube *cube, t_ray *ray)
 {
 	int	y;
 
-	cube->textures->sky[0] = 0;
-	cube->textures->sky[1] = 0;
-	cube->textures->sky[2] = 0;
-	cube->textures->floor[0] = 255;
-	cube->textures->floor[1] = 255;
-	cube->textures->floor[2] = 255;
+	cube->texture->sky[0] = 0;
+	cube->texture->sky[1] = 0;
+	cube->texture->sky[2] = 0;
+	cube->texture->floor[0] = 255;
+	cube->texture->floor[1] = 255;
+	cube->texture->floor[2] = 255;
 	y = -1;
-	while (++y < cube->ray->draw_start)
+	while (++y < ray->draw_start)
 	{
 		put_pixel_in_image(cube->img, x, y,
-				color_convert(cube->textures->sky[0], cube->textures->sky[1],
-					cube->textures->sky[2]));
+				color_convert(cube->texture->sky[0], cube->texture->sky[1],
+					cube->texture->sky[2]));
 	}
-	y = cube->ray->draw_start;
-	while (y < cube->ray->draw_end)
+	y = ray->draw_start;
+	while (y < ray->draw_end)
 	{
-		cube->ray->tex_y = (int)cube->ray->tex_pos & (TEXTURE_HEIGHT - 1);
-		cube->ray->tex_pos += cube->ray->step;
-		printf("%d %d\n", cube->ray->draw_end, cube->ray->draw_start);
-		put_pixel_in_image(cube->img, x, y, get_color(cube));
+		ray->tex.y = (int)ray->tex_pos & (TEXTURE_HEIGHT - 1);
+		ray->tex_pos += ray->step;
+		printf("%d %d\n", ray->draw_end, ray->draw_start);
+		put_pixel_in_image(cube->img, x, y, get_color(cube, ray));
 		y += 1;
 	}
 	printf("caio\n");
 	while (y < WIN_HEIGHT / 2)
 	{
 		put_pixel_in_image(cube->img, x, y,
-				color_convert(cube->textures->floor[0],
-					cube->textures->floor[1], cube->textures->floor[2]));
+				color_convert(cube->texture->floor[0],
+					cube->texture->floor[1], cube->texture->floor[2]));
 		y += 1;
 	}
 }

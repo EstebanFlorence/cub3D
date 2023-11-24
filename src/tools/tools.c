@@ -6,7 +6,7 @@
 /*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 16:00:03 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/11/17 21:04:55 by adi-nata         ###   ########.fr       */
+/*   Updated: 2023/11/24 23:22:43 by adi-nata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,12 +75,12 @@ void	cube_destroy(t_cube *cube)
 
 	free(cube->mapath);
 	i = 0;
-	while (i < 4 && cube->map->tex_path[i])
-		free(cube->map->tex_path[i++]);
+	while (i < 4 && cube->texture->path[i])
+		free(cube->texture->path[i++]);
 	i = -1;
 	if (cube->map->maprix)
 	{
-		while (++i < cube->map->y && cube->map->maprix[i])
+		while (++i < cube->map->size.y && cube->map->maprix[i])
 			free(cube->map->maprix[i]);
 		free(cube->map->maprix);
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gcavanna <gcavanna@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 16:49:27 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/11/24 14:44:46 by gcavanna         ###   ########.fr       */
+/*   Updated: 2023/11/24 23:21:28 by adi-nata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,56 +45,59 @@
 
 # define POS_SHIFT 5
 
-/* typedef struct	s_var
-{
-	double	pos_x;
-	double	pos_y;
-
-	double	dir_x;
-	double	dir_y;
-
-	double	raydir_x;
-	double	raydir_y;
-
-	double	firstdist_x;
-	double	firstdist_y;
-
-	double	deltadist_x;
-	double	deltadist_y;
-
-	double	plane_x;
-	double	plane_y;
-
-	double	camera_x;
-
-	double	step_x;
-	double	step_y;
-
-	double	map_x;	// = pos_x
-	double	map_y;	// = pos_y
-
-	double	perpwalldist;
-
-
-
-}				t_var;
-
-typedef struct	s_ray
-{
-
-}				t_ray;
-
-typedef struct	s_play
-{
-
-}				t_play;
- */
-typedef struct s_key
+typedef struct	s_key
 {
 	//	bool key;
 }				t_key;
 
-typedef struct s_image
+typedef struct	s_coord
+{
+	double		x;
+	double		y;
+}				t_coord;
+
+typedef struct	s_ray
+{
+	t_coord		dir;
+//	int			map_x;
+//	int			map_y;
+	t_coord		map;
+	t_coord		delta_dist;
+	t_coord		side_dist;
+	double		perp_wall_dist;
+	double		wall_x;
+	int			line_height;
+	int			x;
+	int			color;
+	double		step;
+	double		tex_pos;
+	int			draw_end;
+	int			draw_start;
+	int			step_x;
+	int			step_y;
+//	t_coord		step;
+	bool		hit;
+	int			side;
+//	int			tex_x;
+//	int			tex_y;
+	t_coord		tex;
+//	t_texture	texture;
+
+	double		camera_x;
+}				t_ray;
+
+typedef struct	s_cam
+{
+	t_coord		pos;
+	t_coord		dir;
+	t_coord		plane;
+	t_coord		ray_dir;
+
+//	double		move_speed;
+//	double		rot_speed;	Macros?
+}				t_cam;
+
+typedef struct	s_image
 {
 	void		*ptr;
 	char		*data;
@@ -105,100 +108,61 @@ typedef struct s_image
 	int			endian;
 }				t_image;
 
-typedef struct s_texturer
+typedef struct	s_tex
 {
+	int			cardinal[4];
+	char		*path[4];
+	int			skyground[2][3];
+
 	int			sky[3];
 	int			floor[3];
+
 	t_image		north;
 	t_image		south;
 	t_image		east;
 	t_image		west;
-}				t_textures;
 
-typedef struct s_map
+}				t_tex;
+
+typedef struct	s_map
 {
-	int			cardinal[4];
-	char		*tex_path[4];
-	int			colors[2][3];
+//	int			cardinal[4];
+//	char		*path[4];
+//	int			skyground[2][3];
 
-	int			x;
-	int			y;
+//	int			width;
+//	int			height;
+	t_coord		size;
 	int			orient;
 	int			**maprix;
-	bool		oriented;
-	bool		n;
-	bool		s;
-	bool		e;
-	bool		w;
+
 }				t_map;
 
-typedef struct s_ray
-{
-	float		dir_x;
-	float		dir_y;
-	int			map_x;
-	int			map_y;
-	float		delta_dist_x;
-	float		delta_dist_y;
-	float		side_dist_x;
-	float		side_dist_y;
-	float		perp_wall_dist;
-	float		wall_x;
-	int			line_height;
-	int			x;
-	int			color;
-	float		step;
-	float		tex_pos;
-	int			draw_end;
-	int			draw_start;
-	//t_texture	texture;
-	int			step_x;
-	int			step_y;
-	int			hit;
-	int			side;
-	int			tex_x;
-	int			tex_y;
-
-	double		camera_x;
-}				t_ray;
-
-typedef struct s_play
-{
-	float		pos_x;
-	float		pos_y;
-	float		dir_x;
-	float		dir_y;
-	float		plane_x;
-	float		plane_y;
-	float		move_speed;
-	float		rot_speed;
-	float		ray_dir_x;
-	float		ray_dir_y;
-}				t_play;
-
-typedef struct s_cube
+typedef struct	s_cube
 {
 	char		*mapath;
 	int			fd;
 
+	t_map		*map;
+	t_tex		*texture;
+	t_cam		*player;
+	t_image		*img;
+//	t_ray		*ray;
+
 	void		*mlx;
 	void		*win;
-	t_textures	*textures;
-	t_play		*player;
-	t_image		*img;
-	t_ray		*ray;
-	t_map		*map;
-
 }				t_cube;
 
 int				check(int ac);
 int				cube_innit(char **av, t_cube *cube);
+void			else_innit(t_cube *cube, t_map *map, t_tex *texture, t_cam *player);
 void			map_innit(t_cube *cube, t_map *map);
-void			rayplay_innit(t_cube *cube, t_ray *ray, t_play *player, t_textures *textures);
+void			player_innit(t_cube *cube, t_cam *player);
 void			cube_destroy(t_cube *cube);
 void			add_element(char **tok, int *id, int type, t_cube *cube);
 void			add_path(char **tok, int i, int type, t_cube *cube);
 int				open_path(t_cube *cube);
+void			start(t_cube *cube);
 
 //	Tools
 int				open_path(t_cube *cube);
@@ -212,10 +176,6 @@ int				exit_hook(t_cube *cube);
 int				key_hook(int key, t_cube *cube);
 void			mlx_hooks(t_cube *cube);
 void			pixelput(t_image *img, int x, int y, int color);
-
-//	Try
-void			starter(t_cube *cube);
-void			setdir(t_cube *cube);
 
 //	Parsing
 void			parser(t_cube *cube);
@@ -243,28 +203,29 @@ int				coordinate(int i, char *line);
 
 //raycasting
 //int		ft_wall_height(t_ray *ray, int win_height);
-void			ft_wall_height(t_cube *cube);
-void			ft_texture_coord(t_cube *cube);
+void			ft_wall_height(t_ray *ray);
+void			ft_texture_coord(t_cube *cube, t_ray *ray);
 //void		ft_render(t_ray *ray, t_cube *cube, int y);
 t_image			*new_img(void *mlx_ptr);
 void			put_pixel_in_image(t_image *img, int x, int y, uint32_t color);
 //void			ft_draw_wall(t_ray *ray, t_cube *cube);
-void			draw_wall(t_cube *cube, int x);
+void			draw_wall(int x, t_cube *cube, t_ray *ray);
 
-//t_ray	ft_init_ray(float camera_x, t_cube *cube);
-void			ft_init_ray(int x, t_cube *cube);
+//t_ray	ft_init_ray(double camera_x, t_cube *cube);
+void			ft_init_ray(int x, t_cube *cube, t_ray *ray);
 //t_ray	ft_init_side_distance(t_cube *cube);
 unsigned int	color_convert(int r, int g, int b);
-void			ft_init_side_distance(t_cube *cube);
-void			ft_wall_collision_detection(t_cube *cube);
+void			ft_init_side_distance(t_cube *cube, t_ray *ray);
+void			ft_wall_collision_detection(t_cube *cube, t_ray *ray);
 void			ft_raycasting(t_cube *cube);
 void			next_frame_rendering(t_cube *cube);
+int				window_loop(t_cube *cube);
 int				extract_pixel_from_image(t_image *img,
 					int point_x, int point_y);
-uint32_t		get_color(t_cube *cube);
+uint32_t		get_color(t_cube *cube, t_ray *ray);
 
 //player
-void			set_plr_pov(t_play *player, char dir);
-void			ft_get_play_pos(t_cube *cube);
+void			set_plr_pov(t_cam *player, char dir);
+void			ft_get_cam_pos(t_cube *cube);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 14:37:05 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/11/17 20:21:40 by adi-nata         ###   ########.fr       */
+/*   Updated: 2023/11/24 23:20:12 by adi-nata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,15 +48,15 @@ void	fill_map(char *line, t_cube *cube)
 	x = 0;
 	y = 0;
 	i = 0;
-	while (line && y < cube->map->y)
+	while (line && y < cube->map->size.y)
 	{
 		while (line[i])
 		{
 			cube->map->maprix[y][x] = coordinate(i, line);
 			if (cube->map->maprix[y][x] > 1)
 			{
-				cube->player->pos_x = x;
-				cube->player->pos_y = y;
+				cube->player->pos.x = x;
+				cube->player->pos.y = y;
 			}
 			x++;
 			i++;
@@ -64,7 +64,7 @@ void	fill_map(char *line, t_cube *cube)
 		free(line);
 		line = get_next_line(cube->fd);
 		i = 0;
-		while (x < cube->map->x)
+		while (x < cube->map->size.x)
 			cube->map->maprix[y][x++] = -1;
 		x = 0;
 		y++;
@@ -118,33 +118,16 @@ int	linecmp(int i, char *prev_line, char *line)
 
 int	add_orient(char c, t_cube *cube)
 {
-	//if (cube->map->oriented == true)
 	if (cube->map->orient)
 		return (1);
 	if (c == 'N')
-	{
-		//cube->map->oriented = true;
 		cube->map->orient = NORTH;
-		//cube->map->n = true;
-	}
 	else if (c == 'S')
-	{
-		//cube->map->oriented = true;
 		cube->map->orient = SOUTH;
-		//cube->map->s = true;
-	}
 	else if (c == 'E')
-	{
-		//cube->map->oriented = true;
 		cube->map->orient = EAST;
-		//cube->map->e = true;
-	}
 	else if (c == 'W')
-	{
-		//cube->map->oriented = true;
 		cube->map->orient = WEST;
-		//cube->map->w = true;
-	}
 	return (0);
 }
 
@@ -244,11 +227,11 @@ int	mapalloc(char *line, t_cube *cube)
 	y++;
 	if (map_sizecheck(line, &x, &y, cube) || y < 3)
 		return (1);
-	cube->map->x = x;
-	cube->map->y = y;
+	cube->map->size.x = x;
+	cube->map->size.y = y;
 	cube->map->maprix = (int **)ft_calloc(y + 1, sizeof(int *));
 	y = -1;
-	while (++y < cube->map->y)
+	while (++y < cube->map->size.y)
 		cube->map->maprix[y] = (int *)ft_calloc(x + 1, sizeof(int));
 	return (0);
 }
