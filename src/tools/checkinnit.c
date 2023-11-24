@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checkinnit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gcavanna <gcavanna@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 20:01:14 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/11/23 15:45:17 by gcavanna         ###   ########.fr       */
+/*   Updated: 2023/11/24 17:05:05 by adi-nata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void	rayplay_innit(t_cube *cube, t_ray *ray, t_play *player, t_textures *texture
 	cube->ray = ray;
 	cube->player = player;
 	cube->textures = textures;
+	cube->img = NULL;
 }
 
 

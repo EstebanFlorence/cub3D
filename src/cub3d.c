@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gcavanna <gcavanna@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 19:02:54 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/11/23 15:46:27 by gcavanna         ###   ########.fr       */
+/*   Updated: 2023/11/24 17:13:41 by adi-nata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	main(int ac, char **av)
 {
 	t_cube	cube;
 	t_map	map;
-	t_ray	ray;
+//	t_ray	ray;
 	t_play	player;
 	t_textures	textures;
 
@@ -46,22 +46,16 @@ int	main(int ac, char **av)
 	if (cube_innit(av, &cube))
 		return (1);
 	map_innit(&cube, &map);
-	rayplay_innit(&cube, &ray, &player, &textures);
+//	rayplay_innit(&cube, &ray, &player, &textures);
 	parser(&cube);
-	printf("prova %s", map.tex_path[0] );
-	printf("prova %s", map.tex_path[1] );
-	printf("prova %s", map.tex_path[2] );
-	printf("prova %s", map.tex_path[3] );
 
 	starter(&cube);
-
 	
-	cube.img = malloc(sizeof(t_image));
+	//cube.img = malloc(sizeof(t_image));
 	mlx_innit(&cube);
 	next_frame_rendering(&cube);
 	mlx_hooks(&cube);
 	mlx_destroy(&cube);
-
 
 	cube_destroy(&cube);
 	return (0);

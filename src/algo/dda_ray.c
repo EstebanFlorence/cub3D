@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dda_ray.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gcavanna <gcavanna@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 11:37:01 by  gcavanna         #+#    #+#             */
-/*   Updated: 2023/11/24 14:21:16 by gcavanna         ###   ########.fr       */
+/*   Updated: 2023/11/24 17:18:41 by adi-nata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,7 +182,7 @@ void	ft_wall_collision_detection(t_cube *cube)
 void	ft_raycasting(t_cube *cube)
 {
 	int			x;
-	//t_ray		ray;
+	t_ray		ray;
 
 	cube->img = new_img(cube->mlx);
 	x = 0;
