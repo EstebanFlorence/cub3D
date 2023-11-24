@@ -6,7 +6,7 @@
 /*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 20:01:14 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/11/24 23:25:31 by adi-nata         ###   ########.fr       */
+/*   Updated: 2023/11/24 23:31:07 by adi-nata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,26 @@ void	player_innit(t_cube *cube, t_cam *player)
 	}
 	cube->player->plane.x = 0;
 	cube->player->plane.y = 0;
+}
+
+void	texture_innit(t_cube *cube, t_tex *texture)
+{
+	cube->texture = texture;
+	cube->texture->cardinal[0] = 0;
+	cube->texture->cardinal[1] = 0;
+	cube->texture->cardinal[2] = 0;
+	cube->texture->cardinal[3] = 0;
+	cube->texture->path[0] = NULL;
+	cube->texture->path[1] = NULL;
+	cube->texture->path[2] = NULL;
+	cube->texture->path[3] = NULL;
+	cube->texture->skyground[0][0] = -1;
+	cube->texture->skyground[0][1] = -1;
+	cube->texture->skyground[0][2] = -1;
+	cube->texture->skyground[1][0] = -1;
+	cube->texture->skyground[1][1] = -1;
+	cube->texture->skyground[1][2] = -1;
+
 }
 
 void	map_innit(t_cube *cube, t_map *map)

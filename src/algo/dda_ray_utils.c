@@ -6,7 +6,7 @@
 /*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 11:58:00 by  gcavanna         #+#    #+#             */
-/*   Updated: 2023/11/24 23:06:51 by adi-nata         ###   ########.fr       */
+/*   Updated: 2023/11/24 23:33:40 by adi-nata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,12 +145,6 @@ void	draw_wall(int x, t_cube *cube, t_ray *ray)
 {
 	int	y;
 
-	cube->texture->sky[0] = 0;
-	cube->texture->sky[1] = 0;
-	cube->texture->sky[2] = 0;
-	cube->texture->floor[0] = 255;
-	cube->texture->floor[1] = 255;
-	cube->texture->floor[2] = 255;
 	y = -1;
 	while (++y < ray->draw_start)
 	{
