@@ -6,7 +6,7 @@
 /*   By: gcavanna <gcavanna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 16:49:27 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/11/23 15:45:06 by gcavanna         ###   ########.fr       */
+/*   Updated: 2023/11/24 14:44:46 by gcavanna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,8 @@ typedef struct s_image
 {
 	void		*ptr;
 	char		*data;
+	int			width;
+	int			height;
 	int			bitsxpixel;
 	int			size_line;
 	int			endian;
@@ -242,12 +244,12 @@ int				coordinate(int i, char *line);
 //raycasting
 //int		ft_wall_height(t_ray *ray, int win_height);
 void			ft_wall_height(t_cube *cube);
-void			ft_texture_coord(t_ray *ray, t_cube *cube);
+void			ft_texture_coord(t_cube *cube);
 //void		ft_render(t_ray *ray, t_cube *cube, int y);
 t_image			*new_img(void *mlx_ptr);
 void			put_pixel_in_image(t_image *img, int x, int y, uint32_t color);
 //void			ft_draw_wall(t_ray *ray, t_cube *cube);
-void			draw_wall(t_cube *cube, t_ray *ray, int x);
+void			draw_wall(t_cube *cube, int x);
 
 //t_ray	ft_init_ray(float camera_x, t_cube *cube);
 void			ft_init_ray(int x, t_cube *cube);
@@ -259,7 +261,7 @@ void			ft_raycasting(t_cube *cube);
 void			next_frame_rendering(t_cube *cube);
 int				extract_pixel_from_image(t_image *img,
 					int point_x, int point_y);
-uint32_t		get_color(t_cube *cube, t_ray *ray);
+uint32_t		get_color(t_cube *cube);
 
 //player
 void			set_plr_pov(t_play *player, char dir);

@@ -6,7 +6,7 @@
 /*   By: gcavanna <gcavanna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 11:58:00 by  gcavanna         #+#    #+#             */
-/*   Updated: 2023/11/23 16:00:31 by gcavanna         ###   ########.fr       */
+/*   Updated: 2023/11/24 14:29:51 by gcavanna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,26 +94,29 @@ void	ft_wall_height(t_cube *cube)
 		cube->ray->draw_end = WIN_HEIGHT - 1;
 }
 
-void	ft_texture_coord(t_ray *ray, t_cube *cube)
+void	ft_texture_coord(t_cube *cube)
 {
-	if (!ray->side)
+	if (!cube->ray->side)
 	{
-		ray->wall_x = cube->player->pos_y + ray->perp_wall_dist * ray->dir_y;
+		cube->ray->wall_x = cube->player->pos_y + cube->ray->perp_wall_dist
+			* cube->ray->dir_y;
 	}
 	else
 	{
-		ray->wall_x = cube->player->pos_x + ray->perp_wall_dist * ray->dir_x;
+		cube->ray->wall_x = cube->player->pos_x + cube->ray->perp_wall_dist
+			* cube->ray->dir_x;
 	}
-	ray->wall_x -= floor(ray->wall_x);
-	ray->tex_x = (int)(ray->wall_x * (double)TEXTURE_WIDTH);
-	if ((!ray->side && ray->dir_x > 0) || (ray->side && ray->dir_y < 0))
+	cube->ray->wall_x -= floor(cube->ray->wall_x);
+	cube->ray->tex_x = (int)(cube->ray->wall_x * (double)TEXTURE_WIDTH);
+	if ((!cube->ray->side && cube->ray->dir_x > 0) || (cube->ray->side
+			&& cube->ray->dir_y < 0))
 	{
-		ray->tex_x = TEXTURE_WIDTH - ray->tex_x - 1;
+		cube->ray->tex_x = TEXTURE_WIDTH - cube->ray->tex_x - 1;
 	}
-	ray->tex_x = abs(ray->tex_x);
-	ray->step = 1.0 * TEXTURE_HEIGHT / ray->line_height;
-	ray->tex_pos = (ray->draw_start - (WIN_HEIGHT / 2) + ray->line_height / 2)
-		* ray->step;
+	cube->ray->tex_x = abs(cube->ray->tex_x);
+	cube->ray->step = 1.0 * TEXTURE_HEIGHT / cube->ray->line_height;
+	cube->ray->tex_pos = (cube->ray->draw_start - (WIN_HEIGHT / 2)
+			+ cube->ray->line_height / 2) * cube->ray->step;
 }
 
 t_image	*new_img(void *mlx_ptr)
@@ -138,38 +141,38 @@ void	put_pixel_in_image(t_image *img, int x, int y, uint32_t color)
 	*(uint32_t *)dst = color;
 }
 
-void	draw_wall(t_cube *cube, t_ray *ray, int x)
+void	draw_wall(t_cube *cube, int x)
 {
 	int	y;
+
 	cube->textures->sky[0] = 0;
 	cube->textures->sky[1] = 0;
 	cube->textures->sky[2] = 0;
-
 	cube->textures->floor[0] = 255;
 	cube->textures->floor[1] = 255;
 	cube->textures->floor[2] = 255;
-
-
 	y = -1;
-	while (++y < ray->draw_start)
+	while (++y < cube->ray->draw_start)
 	{
 		put_pixel_in_image(cube->img, x, y,
 				color_convert(cube->textures->sky[0], cube->textures->sky[1],
 					cube->textures->sky[2]));
 	}
-	y = ray->draw_start;
-	while (y < ray->draw_end)
+	y = cube->ray->draw_start;
+	while (y < cube->ray->draw_end)
 	{
-		ray->tex_y = (int)ray->tex_pos & (TEXTURE_HEIGHT - 1);
-		ray->tex_pos += ray->step;
-		put_pixel_in_image(cube->img, x, y, get_color(cube, ray));
+		cube->ray->tex_y = (int)cube->ray->tex_pos & (TEXTURE_HEIGHT - 1);
+		cube->ray->tex_pos += cube->ray->step;
+		printf("%d %d\n", cube->ray->draw_end, cube->ray->draw_start);
+		put_pixel_in_image(cube->img, x, y, get_color(cube));
 		y += 1;
 	}
+	printf("caio\n");
 	while (y < WIN_HEIGHT / 2)
 	{
 		put_pixel_in_image(cube->img, x, y,
 				color_convert(cube->textures->floor[0],
-				cube->textures->floor[1], cube->textures->floor[2]));
+					cube->textures->floor[1], cube->textures->floor[2]));
 		y += 1;
-	} 
+	}
 }
