@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dda_ray_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: gcavanna <gcavanna@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 11:58:00 by  gcavanna         #+#    #+#             */
-/*   Updated: 2023/11/24 23:33:40 by adi-nata         ###   ########.fr       */
+/*   Updated: 2023/11/26 14:18:14 by gcavanna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,8 +149,8 @@ void	draw_wall(int x, t_cube *cube, t_ray *ray)
 	while (++y < ray->draw_start)
 	{
 		put_pixel_in_image(cube->img, x, y,
-				color_convert(cube->texture->sky[0], cube->texture->sky[1],
-					cube->texture->sky[2]));
+				color_convert(cube->texture->skyground[0][0], cube->texture->skyground[0][1],
+					cube->texture->skyground[0][2]));
 	}
 	y = ray->draw_start;
 	while (y < ray->draw_end)
@@ -165,8 +165,8 @@ void	draw_wall(int x, t_cube *cube, t_ray *ray)
 	while (y < WIN_HEIGHT / 2)
 	{
 		put_pixel_in_image(cube->img, x, y,
-				color_convert(cube->texture->floor[0],
-					cube->texture->floor[1], cube->texture->floor[2]));
+				color_convert(cube->texture->skyground[1][0],
+					cube->texture->skyground[1][1], cube->texture->skyground[1][2]));
 		y += 1;
 	}
 }
