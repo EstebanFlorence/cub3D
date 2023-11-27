@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: gcavanna <gcavanna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 17:48:03 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/11/24 23:47:57 by adi-nata         ###   ########.fr       */
+/*   Updated: 2023/11/27 16:11:15 by gcavanna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,13 @@ int	key_hook(int key, t_cube *cube)
 	if (key == B_ESC)
 		exit_hook(cube);
 	if (key == ARROW_UP)
-		cube->player->pos.y -= POS_SHIFT;
+		cube->player.pos.y -= POS_SHIFT;
 	if (key == ARROW_DOWN)
-		cube->player->pos.y += POS_SHIFT;
+		cube->player.pos.y += POS_SHIFT;
 	if (key == ARROW_LEFT)
-		cube->player->pos.x -= POS_SHIFT;
+		cube->player.pos.x -= POS_SHIFT;
 	if (key == ARROW_RIGHT)
-		cube->player->pos.x += POS_SHIFT;
+		cube->player.pos.x += POS_SHIFT;
 //	if (key == M_KEY || key == TAB_KEY)
 
 	next_frame_rendering(cube);

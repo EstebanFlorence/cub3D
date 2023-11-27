@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   window_loop.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gcavanna <gcavanna@student.42firenze.it    +#+  +:+       +#+        */
+/*   By: gcavanna <gcavanna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 16:40:55 by gcavanna          #+#    #+#             */
-/*   Updated: 2023/11/26 14:19:42 by gcavanna         ###   ########.fr       */
+/*   Updated: 2023/11/27 16:25:55 by gcavanna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,12 @@
 
 int	extract_pixel_from_image(t_image *img, int point_x, int point_y)
 {
-	printf("%p", img->data);
-	printf("%d", point_x);
-	printf("%d", point_y);
 	return (*(uint32_t *)(img->data + (point_y * img->size_line) + (point_x
 				* img->bitsxpixel / 8)));
 }
 
 uint32_t	get_color(t_cube *cube, t_ray *ray)
 {
-	t_map		*map;
-	t_tex	*textures;
-
-	map = cube->map;
-	textures = cube->texture;
 	if (!ray->side)
 	{
 		if (map->orient == WEST)
@@ -46,21 +38,20 @@ uint32_t	get_color(t_cube *cube, t_ray *ray)
 			return (extract_pixel_from_image(&textures->south, ray->tex.x,
 					ray->tex.y));
 	}
-	return (0); // Default color if no texture is found
+	return (0);
 }
-
 
 void	next_frame_rendering(t_cube *cube)
 {
 	ft_raycasting(cube);
 	mlx_clear_window(cube->mlx, cube->win);
-	mlx_put_image_to_window(cube->mlx, cube->win, cube->img->ptr, 0, 0);
+	mlx_put_image_to_window(cube->mlx, cube->win, cube->img.ptr, 0, 0);
 }
 
 int	window_loop(t_cube *cube)
 {
 	next_frame_rendering(cube);
-	mlx_destroy_image(cube->mlx, cube->img->ptr);
-	cube->img->data = NULL;
+	mlx_destroy_image(cube->mlx, cube->img.ptr);
+	//cube->img.data = NULL;
 	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_tools.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: gcavanna <gcavanna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 17:24:47 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/11/24 23:23:23 by adi-nata         ###   ########.fr       */
+/*   Updated: 2023/11/27 16:04:37 by gcavanna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,11 @@ int	is_mapstart(char *line, char **tok, t_cube *cube)
 	i = 0;
 	f = 0;
 	c = 0;
-	while (i < 4 && cube->texture->cardinal[i])
+	while (i < 4 && cube->texture.cardinal[i])
 		i++;
-	while (f < 3 && cube->texture->skyground[0][f] >= 0)
+	while (f < 3 && cube->texture.skyground[0][f] >= 0)
 		f++;
-	while (c < 3 && cube->texture->skyground[1][c] >= 0)
+	while (c < 3 && cube->texture.skyground[1][c] >= 0)
 		c++;
 	if (i == 4 && f == 3 && c == 3)
 	{
@@ -76,15 +76,13 @@ void	add_rgb(int type, char **rgb, t_cube *cube)
 {
 	if (type == FLOOR)
 	{
-		cube->texture->skyground[0][0] = ft_atoi(rgb[0]);
-		cube->texture->skyground[0][1] = ft_atoi(rgb[1]);
-		cube->texture->skyground[0][2] = ft_atoi(rgb[2]);
+		cube->texture.skyground[0] = 
+			color_convert(ft_atoi(rgb[0]), ft_atoi(rgb[1]), ft_atoi(rgb[2]));
 	}
 	if (type == CEILING)
 	{
-		cube->texture->skyground[1][0] = ft_atoi(rgb[0]);
-		cube->texture->skyground[1][1] = ft_atoi(rgb[1]);
-		cube->texture->skyground[1][2] = ft_atoi(rgb[2]);
+		cube->texture.skyground[1] = 
+			color_convert(ft_atoi(rgb[0]), ft_atoi(rgb[1]), ft_atoi(rgb[2]));
 	}
 }
 
@@ -111,8 +109,8 @@ void	add_color(int type, char **tok, t_cube *cube)
 
 void	add_path(char **tok, int i, int type, t_cube *cube)
 {
-	cube->texture->cardinal[i] = type;
-	cube->texture->path[i] = ft_strdup(tok[1]);
+	cube->texture.cardinal[i] = type;
+	cube->texture.path[i] = ft_strdup(tok[1]);
 }
 
 void	add_element(char **tok, int *id, int type, t_cube *cube)
@@ -125,11 +123,11 @@ void	add_element(char **tok, int *id, int type, t_cube *cube)
 		return ;
 	}
 	i = 0;
-	while (i < 4 && cube->texture->cardinal[i])
+	while (i < 4 && cube->texture.cardinal[i])
 	{
-		if (cube->texture->cardinal[i] == type)
+		if (cube->texture.cardinal[i] == type)
 		{
-			free(cube->texture->path[i]);
+			free(cube->texture.path[i]);
 			add_path(tok, i, type, cube);
 			return ;
 		}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: gcavanna <gcavanna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 16:49:27 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/11/24 23:38:35 by adi-nata         ###   ########.fr       */
+/*   Updated: 2023/11/27 16:28:18 by gcavanna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,10 +112,7 @@ typedef struct	s_tex
 {
 	int			cardinal[4];
 	char		*path[4];
-	int			skyground[2][3];
-
-	int			sky[3];
-	int			floor[3];
+	int			skyground[2];
 
 	t_image		north;
 	t_image		south;
@@ -143,10 +140,10 @@ typedef struct	s_cube
 	char		*mapath;
 	int			fd;
 
-	t_map		*map;
-	t_tex		*texture;
-	t_cam		*player;
-	t_image		*img;
+	t_map		map;
+	t_tex		texture;
+	t_cam		player;
+	t_image		img;
 //	t_ray		*ray;
 
 	void		*mlx;
@@ -202,18 +199,13 @@ int				is_mapstart(char *line, char **tok, t_cube *cube);
 int				coordinate(int i, char *line);
 
 //raycasting
-//int		ft_wall_height(t_ray *ray, int win_height);
 void			ft_wall_height(t_ray *ray);
 void			ft_texture_coord(t_cube *cube, t_ray *ray);
-//void		ft_render(t_ray *ray, t_cube *cube, int y);
 t_image			*new_img(void *mlx_ptr);
 void			put_pixel_in_image(t_image *img, int x, int y, uint32_t color);
-//void			ft_draw_wall(t_ray *ray, t_cube *cube);
 void			draw_wall(int x, t_cube *cube, t_ray *ray);
 
-//t_ray	ft_init_ray(double camera_x, t_cube *cube);
 void			ft_init_ray(int x, t_cube *cube, t_ray *ray);
-//t_ray	ft_init_side_distance(t_cube *cube);
 unsigned int	color_convert(int r, int g, int b);
 void			ft_init_side_distance(t_cube *cube, t_ray *ray);
 void			ft_wall_collision_detection(t_cube *cube, t_ray *ray);
@@ -227,5 +219,12 @@ uint32_t		get_color(t_cube *cube, t_ray *ray);
 //player
 void			set_plr_pov(t_cam *player, char dir);
 void			ft_get_cam_pos(t_cube *cube);
+
+//xpm
+void			load_north_texture(t_cube *cube);
+void			load_south_texture(t_cube *cube);
+void			load_west_texture(t_cube *cube);
+void			load_east_texture(t_cube *cube);
+void			ft_convert_image(t_cube *cube);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_info.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: gcavanna <gcavanna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 08:44:09 by gcavanna          #+#    #+#             */
-/*   Updated: 2023/11/24 22:47:10 by adi-nata         ###   ########.fr       */
+/*   Updated: 2023/11/27 16:11:15 by gcavanna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,17 +44,17 @@ void	ft_get_cam_pos(t_cube *cube)
 	int	j;
 
 	i = 0;
-	while (i < cube->map->size.y)
+	while (i < cube->map.size.y)
 	{
 		j = 0;
-		while (j < cube->map->size.x)
+		while (j < cube->map.size.x)
 		{
-			if (ft_strchr("NEWS", cube->map->maprix[i][j]))
+			if (ft_strchr("NEWS", cube->map.maprix[i][j]))
 			{
-				cube->player->pos.x = i + 0.5;
-				cube->player->pos.y = j + 0.5;
-				set_plr_pov(cube->player, cube->map->maprix[i][j]);
-				cube->map->maprix[i][j] = '0';
+				cube->player.pos.x = i + 0.5;
+				cube->player.pos.y = j + 0.5;
+				set_plr_pov(cube->player, cube->map.maprix[i][j]);
+				cube->map.maprix[i][j] = '0';
 				return ;
 			}
 			j++;

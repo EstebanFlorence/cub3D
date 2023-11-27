@@ -3,59 +3,59 @@
 /*                                                        :::      ::::::::   */
 /*   checkinnit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gcavanna <gcavanna@student.42firenze.it    +#+  +:+       +#+        */
+/*   By: gcavanna <gcavanna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 20:01:14 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/11/26 14:33:31 by gcavanna         ###   ########.fr       */
+/*   Updated: 2023/11/27 16:11:15 by gcavanna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void	player_innit(t_cube *cube, t_cam *player)
+/* void	player_innit(t_cube *cube, t_cam *player)
 {
 	cube->player = player;
-	if (cube->map->orient == NORTH)
+	if (cube->map.orient == NORTH)
 	{
-		cube->player->dir.x = 0;
-		cube->player->dir.y = -1;
+		cube->player.dir.x = 0;
+		cube->player.dir.y = -1;
 	}
-	if (cube->map->orient == SOUTH)
+	if (cube->map.orient == SOUTH)
 	{
-		cube->player->dir.x = 0;
-		cube->player->dir.y = 1;
+		cube->player.dir.x = 0;
+		cube->player.dir.y = 1;
 	}
-	if (cube->map->orient == EAST)
+	if (cube->map.orient == EAST)
 	{
-		cube->player->dir.x = 1;
-		cube->player->dir.y = 0;
+		cube->player.dir.x = 1;
+		cube->player.dir.y = 0;
 	}
-	if (cube->map->orient == WEST)
+	if (cube->map.orient == WEST)
 	{
-		cube->player->dir.x = -1;
-		cube->player->dir.y = 0;
+		cube->player.dir.x = -1;
+		cube->player.dir.y = 0;
 	}
-	cube->player->plane.x = 0;
-	cube->player->plane.y = 0;
-}
+	cube->player.plane.x = 0;
+	cube->player.plane.y = 0;
+} */
 
-void	texture_innit(t_cube *cube, t_tex *texture)
+/* void	texture_innit(t_cube *cube, t_tex *texture)
 {
 	cube->texture = texture;
-	cube->texture->cardinal[0] = 0;
-	cube->texture->cardinal[1] = 0;
-	cube->texture->cardinal[2] = 0;
-	cube->texture->cardinal[3] = 0;
-	cube->texture->path[0] = NULL;
-	cube->texture->path[1] = NULL;
-	cube->texture->path[2] = NULL;
-	cube->texture->path[3] = NULL;
-	cube->texture->skyground[0][0] = -1;
-	cube->texture->skyground[0][1] = -1;
-	cube->texture->skyground[0][2] = -1;
-	cube->texture->skyground[1][0] = -1;
-	cube->texture->skyground[1][1] = -1;
-	cube->texture->skyground[1][2] = -1;
+	cube->texture.cardinal[0] = 0;
+	cube->texture.cardinal[1] = 0;
+	cube->texture.cardinal[2] = 0;
+	cube->texture.cardinal[3] = 0;
+	cube->texture.path[0] = NULL;
+	cube->texture.path[1] = NULL;
+	cube->texture.path[2] = NULL;
+	cube->texture.path[3] = NULL;
+	cube->texture.skyground[0][0] = -1;
+	cube->texture.skyground[0][1] = -1;
+	cube->texture.skyground[0][2] = -1;
+	cube->texture.skyground[1][0] = -1;
+	cube->texture.skyground[1][1] = -1;
+	cube->texture.skyground[1][2] = -1;
 
 }
 
@@ -63,14 +63,14 @@ void	map_innit(t_cube *cube, t_map *map)
 {
 	cube->map = map;
 
-//	cube->map->width = 0;
-//	cube->map->height = 0;
-	cube->map->size.x = 0;
-	cube->map->size.y = 0;
-	cube->map->orient = 0;
-	cube->map->maprix = NULL;
+//	cube->map.width = 0;
+//	cube->map.height = 0;
+	cube->map.size.x = 0;
+	cube->map.size.y = 0;
+	cube->map.orient = 0;
+	cube->map.maprix = NULL;
 
-}
+} */
 
 int		cube_innit(char **av, t_cube *cube)
 {

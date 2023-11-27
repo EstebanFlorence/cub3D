@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: gcavanna <gcavanna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 19:02:51 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/11/24 18:28:17 by adi-nata         ###   ########.fr       */
+/*   Updated: 2023/11/27 15:30:13 by gcavanna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ int	check_next_map(int start, char *line, t_cube *cube)
 	if (open_path(cube))
 		return (1);
 	add_map(start, cube);
-
 	return (0);
 }
 
@@ -31,7 +30,6 @@ void	free_next_line(char **tok)
 	while (tok[++i])
 		free(tok[i]);
 	free(tok);
-
 }
 
 int	check_next_line(char *line, int *id, t_cube *cube)
@@ -83,6 +81,8 @@ void	parser(t_cube *cube)
 	int		i;
 	int		n;
 	char	*line;
+	int		x;
+	int		y;
 
 	i = 0;
 	n = 0;
@@ -109,14 +109,13 @@ void	parser(t_cube *cube)
 		free(line);
 		n++;
 	}
-
-	int x = 0;
-	int	y = 0;
-	while(y < cube->map->size.y)
+	x = 0;
+	y = 0;
+	while (y < cube->map.size.y)
 	{
-		while(x < cube->map->size.x)
+		while (x < cube->map.size.x)
 		{
-			printf("%d", cube->map->maprix[y][x]);
+			printf("%d", cube->map.maprix[y][x]);
 			x++;
 		}
 		printf("\n");
