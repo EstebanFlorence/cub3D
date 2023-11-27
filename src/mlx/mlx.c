@@ -6,7 +6,7 @@
 /*   By: gcavanna <gcavanna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 17:48:03 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/11/27 16:11:15 by gcavanna         ###   ########.fr       */
+/*   Updated: 2023/11/27 17:38:47 by gcavanna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,15 +60,15 @@ void	mlx_innit(t_cube *cube)
 									"Cub3D");
 	if (!(cube->win))
 		puterr(5);
-	cube->img->ptr = mlx_new_image(cube->mlx, WIN_WIDTH, WIN_HEIGHT);
+	/* cube->img->ptr = mlx_new_image(cube->mlx, WIN_WIDTH, WIN_HEIGHT);
 	if (!(cube->img))
-		puterr(5);
-	cube->img->data = mlx_get_data_addr(cube->img->ptr, \
+		puterr(5); */
+	/* cube->img->data = mlx_get_data_addr(cube->img->ptr, \
 						&cube->img->bitsxpixel, \
 						&cube->img->size_line, \
-						&cube->img->endian);
-	if (!(cube->img->data))
-		puterr(5);
+						&cube->img->endian); */
+	/* if (!(cube->img->data))
+		puterr(5); */
 }
 
 int	exit_hook(t_cube *cube)

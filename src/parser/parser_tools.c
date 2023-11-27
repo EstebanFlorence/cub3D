@@ -6,7 +6,7 @@
 /*   By: gcavanna <gcavanna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 17:24:47 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/11/27 16:04:37 by gcavanna         ###   ########.fr       */
+/*   Updated: 2023/11/27 17:16:47 by gcavanna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,11 @@ int	is_mapstart(char *line, char **tok, t_cube *cube)
 	c = 0;
 	while (i < 4 && cube->texture.cardinal[i])
 		i++;
-	while (f < 3 && cube->texture.skyground[0][f] >= 0)
+	while (f < 1 && cube->texture.skyground[0] >= 0)
 		f++;
-	while (c < 3 && cube->texture.skyground[1][c] >= 0)
+	while (c < 1 && cube->texture.skyground[1] >= 0)
 		c++;
-	if (i == 4 && f == 3 && c == 3)
+	if (i == 4 && f == 1 && c == 1)
 	{
 		i = 0;
 		while (line[i])

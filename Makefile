@@ -6,7 +6,7 @@
 #    By: gcavanna <gcavanna@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/07 16:36:29 by adi-nata          #+#    #+#              #
-#    Updated: 2023/11/27 16:29:06 by gcavanna         ###   ########.fr        #
+#    Updated: 2023/11/27 17:17:36 by gcavanna         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ SRCS		=   ${SRC_DIR}/cub3d.c\
 				${SRC_DIR}/parser/parser.c			${SRC_DIR}/parser/parser_tools.c\
 				${SRC_DIR}/parser/parser_map.c\
 \
-				${SRC_DIR}/mlx/mlx.c				${SRC_DIR}/mlx/xmp.c\
+				${SRC_DIR}/mlx/mlx.c				${SRC_DIR}/mlx/xpm.c\
 \
 				${SRC_DIR}/algo/dda_ray.c			${SRC_DIR}/algo/dda_ray_utils.c\
 				${SRC_DIR}/algo/player_info.c		${SRC_DIR}/algo/window_loop.c\

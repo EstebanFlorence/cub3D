@@ -6,7 +6,7 @@
 /*   By: gcavanna <gcavanna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 16:49:27 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/11/27 16:28:18 by gcavanna         ###   ########.fr       */
+/*   Updated: 2023/11/27 17:15:50 by gcavanna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,7 +143,7 @@ typedef struct	s_cube
 	t_map		map;
 	t_tex		texture;
 	t_cam		player;
-	t_image		img;
+	t_image		*img;
 //	t_ray		*ray;
 
 	void		*mlx;
@@ -154,7 +154,7 @@ int				check(int ac);
 int				cube_innit(char **av, t_cube *cube);
 void			else_innit(t_cube *cube, t_map *map, t_tex *texture, t_cam *player);
 void			map_innit(t_cube *cube, t_map *map);
-void			texture_innit(t_cube *cube, t_tex *texture);
+void			texture_innit(t_cube *cube);
 void			player_innit(t_cube *cube, t_cam *player);
 void			cube_destroy(t_cube *cube);
 void			add_element(char **tok, int *id, int type, t_cube *cube);

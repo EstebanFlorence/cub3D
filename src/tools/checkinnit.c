@@ -6,7 +6,7 @@
 /*   By: gcavanna <gcavanna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 20:01:14 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/11/27 16:11:15 by gcavanna         ###   ########.fr       */
+/*   Updated: 2023/11/27 17:15:21 by gcavanna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,8 @@
 	cube->player.plane.y = 0;
 } */
 
-/* void	texture_innit(t_cube *cube, t_tex *texture)
+ void	texture_innit(t_cube *cube)
 {
-	cube->texture = texture;
 	cube->texture.cardinal[0] = 0;
 	cube->texture.cardinal[1] = 0;
 	cube->texture.cardinal[2] = 0;
@@ -50,15 +49,10 @@
 	cube->texture.path[1] = NULL;
 	cube->texture.path[2] = NULL;
 	cube->texture.path[3] = NULL;
-	cube->texture.skyground[0][0] = -1;
-	cube->texture.skyground[0][1] = -1;
-	cube->texture.skyground[0][2] = -1;
-	cube->texture.skyground[1][0] = -1;
-	cube->texture.skyground[1][1] = -1;
-	cube->texture.skyground[1][2] = -1;
-
+	cube->texture.skyground[0] = -1;
+	cube->texture.skyground[1] = -1;
 }
-
+/*
 void	map_innit(t_cube *cube, t_map *map)
 {
 	cube->map = map;
@@ -81,6 +75,7 @@ int		cube_innit(char **av, t_cube *cube)
 		free(cube->mapath);
 		return (puterr(1));
 	}
+	texture_innit(cube);
 	//map_innit(cube);
 	//ray_innit(cube);
 	return (0);

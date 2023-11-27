@@ -1,15 +1,12 @@
-NO ./path_to_the_north_texture
-SO ./path_to_the_south_texture
-WE ./path_to_the_west_texture
-EA ./path_to_the_east_texture
+NO ./img/north.xmp
+SO ./img/south.xmp
+WE ./img/west.xmp
+EA ./img/east.xmp
+
 F 220,100,0
 
-NO ./path_to_the_north_texture2
-NO ./path_to_the_north_texture3
 
 C 225,30,0
-
-WE ./path_to_the_west_texture2
 
         1111111111111111111111111
         10000000001100000000000001

@@ -6,7 +6,7 @@
 /*   By: gcavanna <gcavanna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 11:58:00 by  gcavanna         #+#    #+#             */
-/*   Updated: 2023/11/27 16:13:46 by gcavanna         ###   ########.fr       */
+/*   Updated: 2023/11/27 18:02:01 by gcavanna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,9 @@ void	ft_wall_height(t_ray *ray)
 	else
 		ray->perp_wall_dist = ray->side_dist.y
 			- ray->delta_dist.y;
+	/* if (ray->perp_wall_dist <= 0.00001)
+		ray->perp_wall_dist = 0.00001; */
+	printf("lh = %d", ray->line_height);
 	ray->line_height = (int)(WIN_HEIGHT / ray->perp_wall_dist);
 	ray->draw_start = -ray->line_height / 2 + WIN_HEIGHT / 2;
 	if (ray->draw_start < 0)
@@ -81,9 +84,12 @@ void	draw_wall(int x, t_cube *cube, t_ray *ray)
 	int	y;
 
 	y = -1;
+	/* printf("ale draw start = %d\n", ray->draw_start);
+	if (ray->draw_start >= WIN_HEIGHT)
+		return ; */
 	while (++y < ray->draw_start)
 	{
-		put_pixel_in_image(&cube->img, x, y, cube->texture.skyground[0]);
+		put_pixel_in_image(cube->img, x, y, cube->texture.skyground[0]);
 	}
 	y = ray->draw_start;
 	while (y < ray->draw_end)
@@ -91,13 +97,13 @@ void	draw_wall(int x, t_cube *cube, t_ray *ray)
 		ray->tex.y = (int)ray->tex_pos & (TEXTURE_HEIGHT - 1);
 		ray->tex_pos += ray->step;
 		printf("%d %d\n", ray->draw_end, ray->draw_start);
-		put_pixel_in_image(&cube->img, x, y, get_color(cube, ray));
+		put_pixel_in_image(cube->img, x, y, get_color(cube, ray));
 		y += 1;
 	}
 	printf("caio\n");
 	while (y < WIN_HEIGHT / 2)
 	{
-		put_pixel_in_image(&cube->img, x, y, cube->texture.skyground[1]);
+		put_pixel_in_image(cube->img, x, y, cube->texture.skyground[1]);
 		y += 1;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: gcavanna <gcavanna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 08:44:09 by gcavanna          #+#    #+#             */
-/*   Updated: 2023/11/27 16:11:15 by gcavanna         ###   ########.fr       */
+/*   Updated: 2023/11/27 17:20:00 by gcavanna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	ft_get_cam_pos(t_cube *cube)
 			{
 				cube->player.pos.x = i + 0.5;
 				cube->player.pos.y = j + 0.5;
-				set_plr_pov(cube->player, cube->map.maprix[i][j]);
+				set_plr_pov(&cube->player, cube->map.maprix[i][j]);
 				cube->map.maprix[i][j] = '0';
 				return ;
 			}

@@ -6,7 +6,7 @@
 /*   By: gcavanna <gcavanna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 16:40:55 by gcavanna          #+#    #+#             */
-/*   Updated: 2023/11/27 16:25:55 by gcavanna         ###   ########.fr       */
+/*   Updated: 2023/11/27 17:58:50 by gcavanna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,20 +22,20 @@ uint32_t	get_color(t_cube *cube, t_ray *ray)
 {
 	if (!ray->side)
 	{
-		if (map->orient == WEST)
-			return (extract_pixel_from_image(&textures->west, ray->tex.x,
+		if (cube->map.orient == WEST)
+			return (extract_pixel_from_image(&cube->texture.west, ray->tex.x,
 					ray->tex.y));
-		else if (map->orient == EAST)
-			return (extract_pixel_from_image(&textures->east, ray->tex.x,
+		else if (cube->map.orient == EAST)
+			return (extract_pixel_from_image(&cube->texture.east, ray->tex.x,
 					ray->tex.y));
 	}
 	else
 	{
-		if (map->orient == NORTH)
-			return (extract_pixel_from_image(&textures->north, ray->tex.x,
+		if (cube->map.orient == NORTH)
+			return (extract_pixel_from_image(&cube->texture.north, ray->tex.x,
 					ray->tex.y));
-		else if (map->orient == SOUTH)
-			return (extract_pixel_from_image(&textures->south, ray->tex.x,
+		else if (cube->map.orient == SOUTH)
+			return (extract_pixel_from_image(&cube->texture.south, ray->tex.x,
 					ray->tex.y));
 	}
 	return (0);
@@ -44,14 +44,14 @@ uint32_t	get_color(t_cube *cube, t_ray *ray)
 void	next_frame_rendering(t_cube *cube)
 {
 	ft_raycasting(cube);
-	mlx_clear_window(cube->mlx, cube->win);
-	mlx_put_image_to_window(cube->mlx, cube->win, cube->img.ptr, 0, 0);
+	//mlx_clear_window(cube->mlx, cube->win);
+	mlx_put_image_to_window(cube->mlx, cube->win, cube->img->ptr, 0, 0);
 }
 
 int	window_loop(t_cube *cube)
 {
 	next_frame_rendering(cube);
-	mlx_destroy_image(cube->mlx, cube->img.ptr);
+	mlx_destroy_image(cube->mlx, cube->img->ptr);
 	//cube->img.data = NULL;
 	return (0);
 }
