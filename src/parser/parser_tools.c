@@ -6,7 +6,7 @@
 /*   By: gcavanna <gcavanna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 17:24:47 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/11/27 17:16:47 by gcavanna         ###   ########.fr       */
+/*   Updated: 2023/11/27 19:07:24 by gcavanna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,15 +107,16 @@ void	add_color(int type, char **tok, t_cube *cube)
 	free(rgb);
 }
 
-void	add_path(char **tok, int i, int type, t_cube *cube)
+void	add_path(char *path, int i, int type, t_cube *cube)
 {
 	cube->texture.cardinal[i] = type;
-	cube->texture.path[i] = ft_strdup(tok[1]);
+	cube->texture.path[i] = ft_strdup(path);
 }
 
 void	add_element(char **tok, int *id, int type, t_cube *cube)
 {
-	int	i;
+	int		i;
+	char	*path;
 
 	if (type == FLOOR || type == CEILING)
 	{
@@ -123,16 +124,19 @@ void	add_element(char **tok, int *id, int type, t_cube *cube)
 		return ;
 	}
 	i = 0;
+	path = ft_strtrim(tok[1], "\n");
 	while (i < 4 && cube->texture.cardinal[i])
 	{
 		if (cube->texture.cardinal[i] == type)
 		{
 			free(cube->texture.path[i]);
-			add_path(tok, i, type, cube);
+			add_path(path, i, type, cube);
+			free(path);
 			return ;
 		}
 		i++;
 	}
-	add_path(tok, *id, type, cube);
+	add_path(path, *id, type, cube);
+	free(path);
 	(*id)++;
 }

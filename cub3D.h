@@ -6,7 +6,7 @@
 /*   By: gcavanna <gcavanna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 16:49:27 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/11/27 17:15:50 by gcavanna         ###   ########.fr       */
+/*   Updated: 2023/11/27 19:07:08 by gcavanna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,7 +158,6 @@ void			texture_innit(t_cube *cube);
 void			player_innit(t_cube *cube, t_cam *player);
 void			cube_destroy(t_cube *cube);
 void			add_element(char **tok, int *id, int type, t_cube *cube);
-void			add_path(char **tok, int i, int type, t_cube *cube);
 int				open_path(t_cube *cube);
 void			start(t_cube *cube);
 
@@ -182,7 +181,7 @@ void			gotomap(char **line, int start, t_cube *cube);
 void			fill_map(char *line, t_cube *cube);
 void			add_map(int start, t_cube *cube);
 void			add_element(char **tok, int *id, int type, t_cube *cube);
-void			add_path(char **tok, int i, int type, t_cube *cube);
+void			add_path(char *path, int i, int type, t_cube *cube);
 void			add_color(int type, char **tok, t_cube *cube);
 void			add_rgb(int type, char **rgb, t_cube *cube);
 int				check_next_line(char *line, int *id, t_cube *cube);
