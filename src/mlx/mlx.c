@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gcavanna <gcavanna@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 17:48:03 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/11/27 17:38:47 by gcavanna         ###   ########.fr       */
+/*   Updated: 2023/11/28 18:48:13 by adi-nata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,13 @@ int	key_hook(int key, t_cube *cube)
 {
 	if (key == B_ESC)
 		exit_hook(cube);
-	if (key == ARROW_UP)
+	if (key == ARROW_UP && cube->player.pos.y > cube->map.size.y)
 		cube->player.pos.y -= POS_SHIFT;
-	if (key == ARROW_DOWN)
+	if (key == ARROW_DOWN && cube->player.pos.y < cube->map.size.y)
 		cube->player.pos.y += POS_SHIFT;
-	if (key == ARROW_LEFT)
+	if (key == ARROW_LEFT && cube->player.pos.x > cube->map.size.x)
 		cube->player.pos.x -= POS_SHIFT;
-	if (key == ARROW_RIGHT)
+	if (key == ARROW_RIGHT && cube->player.pos.x < cube->map.size.x)
 		cube->player.pos.x += POS_SHIFT;
 //	if (key == M_KEY || key == TAB_KEY)
 

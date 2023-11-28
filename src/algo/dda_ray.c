@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dda_ray.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gcavanna <gcavanna@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 11:37:01 by  gcavanna         #+#    #+#             */
-/*   Updated: 2023/11/28 16:37:39 by gcavanna         ###   ########.fr       */
+/*   Updated: 2023/11/28 19:46:11 by adi-nata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,11 @@ void	ft_wall_collision_detection(t_cube *cube, t_ray *ray)
 			ray->side_dist.y += ray->delta_dist.y;
 			ray->map.y += ray->step_y;
 			ray->side = 1;
+		}
+		if (ray->map.x < 0 || ray->map.y < 0 || ray->map.x >= cube->map.size.x || ray->map.y >= cube->map.size.y)
+		{
+			printf("ray coordinates are out of bounds\n");
+			return;
 		}
 		if (cube->map.maprix[(int)ray->map.x][(int)ray->map.y] == 1)
 			ray->hit = true;
