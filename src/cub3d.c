@@ -6,7 +6,7 @@
 /*   By: gcavanna <gcavanna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 19:02:54 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/11/27 17:50:21 by gcavanna         ###   ########.fr       */
+/*   Updated: 2023/11/28 15:37:56 by gcavanna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	start(t_cube *cube)
 {
 	mlx_innit(cube);
 	ft_convert_image(cube);
+	ft_get_cam_pos(cube);
 	mlx_loop_hook(cube->mlx, window_loop, cube);
 	mlx_hooks(cube);
 	mlx_destroy(cube);

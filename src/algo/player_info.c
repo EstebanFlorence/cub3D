@@ -6,7 +6,7 @@
 /*   By: gcavanna <gcavanna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 08:44:09 by gcavanna          #+#    #+#             */
-/*   Updated: 2023/11/27 17:20:00 by gcavanna         ###   ########.fr       */
+/*   Updated: 2023/11/28 15:35:10 by gcavanna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,35 @@
 
 void	set_plr_pov(t_cam *player, char dir)
 {
-	player->pos.x = 0;
-	player->pos.y = 0;
+	player->plane.x = 0;
+	player->plane.y = 0;
 	if (dir == 'N')
 	{
-		player->pos.y = -1;
-		player->pos.x = 0.66;
+		player->dir.y = -1;
+		player->dir.x = 0;
+		player->plane.y = 0;
+		player->plane.x = -0.66;
 	}
 	else if (dir == 'S')
 	{
-		player->pos.y = 1;
-		player->pos.x = -0.66;
+		player->dir.y = 1;
+		player->dir.x = 0;
+		player->plane.y = 0;
+		player->plane.x = 0.66;
 	}
 	else if (dir == 'E')
 	{
-		player->pos.x = 1;
-		player->pos.y = 0.66;
+		player->dir.y = 0;
+		player->dir.x = -1;
+		player->plane.x = 0;
+		player->plane.y = 0.66;
 	}
 	else if (dir == 'W')
 	{
-		player->pos.x = -1;
-		player->pos.y = -0.66;
+		player->dir.y = 0;
+		player->dir.x = 1;
+		player->plane.x = 0;
+		player->plane.y = -0.66;
 	}
 }
 
