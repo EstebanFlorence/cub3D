@@ -6,7 +6,7 @@
 /*   By: gcavanna <gcavanna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 20:01:14 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/11/27 17:15:21 by gcavanna         ###   ########.fr       */
+/*   Updated: 2023/11/28 16:00:00 by gcavanna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,9 @@
 	cube->texture.skyground[0] = -1;
 	cube->texture.skyground[1] = -1;
 }
-/*
-void	map_innit(t_cube *cube, t_map *map)
-{
-	cube->map = map;
 
+void	map_innit(t_cube *cube)
+{
 //	cube->map.width = 0;
 //	cube->map.height = 0;
 	cube->map.size.x = 0;
@@ -64,7 +62,7 @@ void	map_innit(t_cube *cube, t_map *map)
 	cube->map.orient = 0;
 	cube->map.maprix = NULL;
 
-} */
+} 
 
 int		cube_innit(char **av, t_cube *cube)
 {
@@ -76,7 +74,7 @@ int		cube_innit(char **av, t_cube *cube)
 		return (puterr(1));
 	}
 	texture_innit(cube);
-	//map_innit(cube);
+	map_innit(cube);
 	//ray_innit(cube);
 	return (0);
 }

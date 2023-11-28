@@ -6,7 +6,7 @@
 /*   By: gcavanna <gcavanna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 16:49:27 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/11/27 19:07:08 by gcavanna         ###   ########.fr       */
+/*   Updated: 2023/11/28 16:26:32 by gcavanna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,7 +153,7 @@ typedef struct	s_cube
 int				check(int ac);
 int				cube_innit(char **av, t_cube *cube);
 void			else_innit(t_cube *cube, t_map *map, t_tex *texture, t_cam *player);
-void			map_innit(t_cube *cube, t_map *map);
+void			map_innit(t_cube *cube);
 void			texture_innit(t_cube *cube);
 void			player_innit(t_cube *cube, t_cam *player);
 void			cube_destroy(t_cube *cube);
@@ -216,7 +216,7 @@ int				extract_pixel_from_image(t_image *img,
 uint32_t		get_color(t_cube *cube, t_ray *ray);
 
 //player
-void			set_plr_pov(t_cam *player, char dir);
+void			set_plr_pov(t_cam *player, int dir);
 void			ft_get_cam_pos(t_cube *cube);
 
 //xpm

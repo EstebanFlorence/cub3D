@@ -6,7 +6,7 @@
 /*   By: gcavanna <gcavanna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 15:03:47 by gcavanna          #+#    #+#             */
-/*   Updated: 2023/11/27 17:49:06 by gcavanna         ###   ########.fr       */
+/*   Updated: 2023/11/28 16:11:28 by gcavanna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void	load_texture(t_cube *cube, int i, t_image *image)
 {
-	printf("prova ale, path = %s", cube->texture.path[i]);
-	image->ptr = mlx_xpm_file_to_image(cube->mlx, "./img/north.xpm" /* cube->texture.path[i] */, &image->width, &image->height);
+	//printf("prova ale, path = %s - ", cube->texture.path[i]);
+	image->ptr = mlx_xpm_file_to_image(cube->mlx, cube->texture.path[i], &image->width, &image->height);
 	if (!image->ptr)
-		printf("boh\n");
+		printf("gestire caso immagine inesistente\n");
 	image->data = mlx_get_data_addr(image->ptr,
 			&image->bitsxpixel,
 			&image->size_line, &image->endian);	
