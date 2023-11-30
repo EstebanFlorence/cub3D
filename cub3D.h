@@ -6,7 +6,7 @@
 /*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 16:49:27 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/11/30 18:43:54 by adi-nata         ###   ########.fr       */
+/*   Updated: 2023/11/30 19:46:59 by adi-nata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@
 # define TILE_SIZE_X (MAP_WIDTH / NUM_TILES_X)
 # define TILE_SIZE_Y (MAP_HEIGHT / NUM_TILES_Y)
 
-# define MOV_SPEED 0.022f
+# define MOV_SPEED 0.8
 # define ROT_SPEED 0.05
 # define MARGIN	0.05f
 

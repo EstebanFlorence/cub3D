@@ -6,7 +6,7 @@
 /*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 11:37:01 by  gcavanna         #+#    #+#             */
-/*   Updated: 2023/11/30 19:42:39 by adi-nata         ###   ########.fr       */
+/*   Updated: 2023/11/30 20:03:45 by adi-nata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ void	ft_init_ray(int x, t_cube *cube, t_ray *ray)
 		* ray->camera_x;
 	ray->dir.y = cube->player.dir.y + cube->player.plane.y
 		* ray->camera_x;
-	ray->map.x = (int)cube->player.pos.x - 10;
-	ray->map.y = (int)cube->player.pos.y - 10;
+	ray->map.x = (int)cube->player.pos.x;
+	ray->map.y = (int)cube->player.pos.y;
 	ray->delta_dist.x = fabs(1 / ray->dir.x);
 	ray->delta_dist.y = fabs(1 / ray->dir.y);
 	ray->hit = 0;
@@ -61,7 +61,7 @@ void	ft_init_side_distance(t_cube *cube, t_ray *ray)
 
 void	ft_wall_collision_detection(t_cube *cube, t_ray *ray)
 {
-	while (!ray->hit)
+	while (ray->hit == 0)
 	{
 		if (ray->side_dist.x < ray->side_dist.y)
 		{
