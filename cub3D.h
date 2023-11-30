@@ -6,7 +6,7 @@
 /*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 16:49:27 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/11/28 17:22:29 by adi-nata         ###   ########.fr       */
+/*   Updated: 2023/11/30 18:43:54 by adi-nata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,16 @@
 # define MAP_WIDTH 150
 # define MAP_HEIGHT 200
 
-# define NUM_TILES_X 15
-# define NUM_TILES_Y 20
+# define TILES_X 15
+# define TILES_Y 20
 
 # define TILE_SIZE_X (MAP_WIDTH / NUM_TILES_X)
 # define TILE_SIZE_Y (MAP_HEIGHT / NUM_TILES_Y)
 
-# define POS_SHIFT 5
+# define MOV_SPEED 0.022f
+# define ROT_SPEED 0.05
+# define MARGIN	0.05f
+
 
 typedef struct	s_key
 {
@@ -92,9 +95,9 @@ typedef struct	s_cam
 	t_coord		dir;
 	t_coord		plane;
 	t_coord		ray_dir;
-
-//	double		move_speed;
-//	double		rot_speed;	Macros?
+//	Macros?
+	double		speed;
+//	double		rot_speed;
 }				t_cam;
 
 typedef struct	s_image
@@ -172,6 +175,13 @@ void			mlx_hooks(t_cube *cube);
 void			pixelput(t_image *img, int x, int y, int color);
 int				exit_hook(t_cube *cube);
 int				key_hook(int key, t_cube *cube);
+
+//				Movements
+void		move_left(t_cube *cube);
+void		move_right(t_cube *cube);
+void		move_up(t_cube *cube);
+void		move_down(t_cube *cube);
+
 
 //				Parsing
 void			parser(t_cube *cube);

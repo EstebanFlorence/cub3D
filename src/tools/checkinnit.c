@@ -6,7 +6,7 @@
 /*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 20:01:14 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/11/28 17:05:51 by adi-nata         ###   ########.fr       */
+/*   Updated: 2023/11/30 17:07:42 by adi-nata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,11 @@
 	cube->texture.path[3] = NULL;
 	cube->texture.skyground[0] = -1;
 	cube->texture.skyground[1] = -1;
+
+	cube->texture.north.ptr = NULL;
+	cube->texture.south.ptr = NULL;
+	cube->texture.east.ptr = NULL;
+	cube->texture.west.ptr = NULL;
 }
 
 void	map_innit(t_cube *cube)

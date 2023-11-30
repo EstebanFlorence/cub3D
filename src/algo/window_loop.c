@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   window_loop.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gcavanna <gcavanna@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 16:40:55 by gcavanna          #+#    #+#             */
-/*   Updated: 2023/11/27 17:58:50 by gcavanna         ###   ########.fr       */
+/*   Updated: 2023/11/30 18:55:57 by adi-nata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,17 +41,20 @@ uint32_t	get_color(t_cube *cube, t_ray *ray)
 	return (0);
 }
 
-void	next_frame_rendering(t_cube *cube)
-{
-	ft_raycasting(cube);
-	//mlx_clear_window(cube->mlx, cube->win);
-	mlx_put_image_to_window(cube->mlx, cube->win, cube->img->ptr, 0, 0);
-}
+// void	next_frame_rendering(t_cube *cube)
+// {
+// 	// if (cube->img->ptr)
+// 	// 	mlx_destroy_image(cube->mlx, cube->img->ptr);
+// 	// mlx_destroy_(cube->mlx, cube->win);
+// }
 
 int	window_loop(t_cube *cube)
 {
-	next_frame_rendering(cube);
-	mlx_destroy_image(cube->mlx, cube->img->ptr);
+	// next_frame_rendering(cube);
+	if (cube->img->ptr)
+		mlx_destroy_image(cube->mlx, cube->img->ptr);
+	ft_raycasting(cube);
+	mlx_put_image_to_window(cube->mlx, cube->win, cube->img->ptr, 0, 0);
 	//cube->img.data = NULL;
 	return (0);
 }

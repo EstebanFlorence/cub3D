@@ -1,41 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.c                                            :+:      :+:    :+:   */
+/*   engine.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/08 19:02:54 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/11/29 18:13:16 by adi-nata         ###   ########.fr       */
+/*   Created: 2023/11/29 17:32:57 by adi-nata          #+#    #+#             */
+/*   Updated: 2023/11/29 17:49:10 by adi-nata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void	start(t_cube *cube)
+void	ray_innit(int x, double *camerax, t_ray *ray, t_cube *cube)
 {
-	mlx_innit(cube);
-
-	//raycaster(cube);
-
-
-	ft_convert_image(cube);
-	ft_get_cam_pos(cube);
-	mlx_loop_hook(cube->mlx, window_loop, cube);
-	mlx_hooks(cube);
-	mlx_destroy(cube);
+	ray->map.x = cube->player.pos.x;
+	ray->map.y = cube->player.pos.y;
+//	camerax = 2 * 
 }
 
-int	main(int ac, char **av)
+void	raycaster(t_cube *cube)
 {
-	t_cube cube;
+	int		x;
+	double	camerax;
+	t_ray	ray;
 
-	if (check(ac))
-		return (1);
-	if (cube_innit(av, &cube))
-		return (1);
-	parser(&cube);
-	start(&cube);
-	cube_destroy(&cube);
-	return (0);
+	x = 0;
+	//put_skyground(cube);
+	while (x < WIN_WIDTH)
+	{
+		ray_innit(x, &camerax, &ray, cube);
+		
+		x++;
+	}
+
+
 }

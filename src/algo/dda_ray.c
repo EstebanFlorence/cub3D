@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dda_ray.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gcavanna <gcavanna@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 11:37:01 by  gcavanna         #+#    #+#             */
-/*   Updated: 2023/11/28 20:22:29 by gcavanna         ###   ########.fr       */
+/*   Updated: 2023/11/30 19:42:39 by adi-nata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ void	ft_init_ray(int x, t_cube *cube, t_ray *ray)
 		* ray->camera_x;
 	ray->dir.y = cube->player.dir.y + cube->player.plane.y
 		* ray->camera_x;
-	ray->map.x = (int)cube->player.pos.x;
-	ray->map.y = (int)cube->player.pos.y;
+	ray->map.x = (int)cube->player.pos.x - 10;
+	ray->map.y = (int)cube->player.pos.y - 10;
 	ray->delta_dist.x = fabs(1 / ray->dir.x);
 	ray->delta_dist.y = fabs(1 / ray->dir.y);
 	ray->hit = 0;
@@ -75,7 +75,7 @@ void	ft_wall_collision_detection(t_cube *cube, t_ray *ray)
 			ray->map.y += ray->step_y;
 			ray->side = 1;
 		}
-		if (ray->map.x < 0 || ray->map.y < 0 || ray->map.x >= cube->map.size.x || ray->map.y >= cube->map.size.y)
+		if (ray->map.x < 0 || ray->map.y < 0 || ray->map.y >= cube->map.size.x || ray->map.x >= cube->map.size.y)
 		{
 			printf("ray->map.y = %f ", ray->map.y);
 			printf("cube->map.y = %f ", cube->map.size.y);
