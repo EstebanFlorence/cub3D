@@ -6,7 +6,7 @@
 /*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 17:51:46 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/11/30 20:11:07 by adi-nata         ###   ########.fr       */
+/*   Updated: 2023/12/01 20:02:50 by adi-nata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,11 @@ void	move_right(t_cube *cube)
 
 void	move_up(t_cube *cube)
 {
-	if (cube->map.maprix[(int)(cube->player.pos.x + cube->player.dir.x * MARGIN)]
-		[(int)(cube->player.pos.y)] != 1)
+	if (cube->map.maprix[(int)(cube->player.pos.y)]
+		[(int)(cube->player.pos.x + cube->player.dir.x * MARGIN) + 10] != 1)
 		cube->player.pos.x += cube->player.dir.x * MOV_SPEED;
-	if (cube->map.maprix[(int)(cube->player.pos.x)]
-		[(int)(cube->player.pos.y + cube->player.dir.y * MARGIN)] != 1)
+	if (cube->map.maprix[(int)(cube->player.pos.y + cube->player.dir.y * MARGIN)]
+		[(int)(cube->player.pos.x)] != 1)
 		cube->player.pos.y += cube->player.dir.y * MOV_SPEED;
 }
 

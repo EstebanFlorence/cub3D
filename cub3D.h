@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gcavanna <gcavanna@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 16:49:27 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/12/01 16:53:38 by gcavanna         ###   ########.fr       */
+/*   Updated: 2023/12/01 19:59:31 by adi-nata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@
 # define TILE_SIZE_X (MAP_WIDTH / NUM_TILES_X)
 # define TILE_SIZE_Y (MAP_HEIGHT / NUM_TILES_Y)
 
-# define MOV_SPEED 0.8
+# define MOV_SPEED 0.022f
 # define ROT_SPEED 0.05
 # define MARGIN	0.05f
 

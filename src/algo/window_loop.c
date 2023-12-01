@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   window_loop.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gcavanna <gcavanna@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 16:40:55 by gcavanna          #+#    #+#             */
-/*   Updated: 2023/12/01 16:52:09 by gcavanna         ###   ########.fr       */
+/*   Updated: 2023/12/01 19:40:56 by adi-nata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,23 +20,38 @@ int	extract_pixel_from_image(t_image *img, int point_x, int point_y)
 
 uint32_t	get_color(t_cube *cube, t_ray *ray)
 {
+
+	// if (!rc->side)
+	// {
+	// 	if (box->player.x > rc->map_x)
+	// 		return (extract_pixel_from_image(&box->textures.west,
+	// 				rc->tex_x, rc->tex_y));
+	// 	return (extract_pixel_from_image(&box->textures.east,
+	// 			rc->tex_x, rc->tex_y));
+	// }
+	// if (box->player.y > rc->map_y)
+	// 	return (extract_pixel_from_image(&box->textures.north,
+	// 			rc->tex_x, rc->tex_y));
+	// return (extract_pixel_from_image(&box->textures.south,
+	// 		rc->tex_x, rc->tex_y));
+
+
+
 	if (!ray->side)
 	{
-		if (cube->map.orient == WEST)
+		if (cube->player.pos.x > ray->map.x)
 			return (extract_pixel_from_image(&cube->texture.west, ray->tex.x,
 					ray->tex.y));
-		else if (cube->map.orient == EAST)
-			return (extract_pixel_from_image(&cube->texture.east, ray->tex.x,
-					ray->tex.y));
+		return (extract_pixel_from_image(&cube->texture.east, ray->tex.x,
+				ray->tex.y));
 	}
 	else
 	{
-		if (cube->map.orient == NORTH)
+		if (cube->player.pos.y > ray->map.y)
 			return (extract_pixel_from_image(&cube->texture.north, ray->tex.x,
 					ray->tex.y));
-		else if (cube->map.orient == SOUTH)
-			return (extract_pixel_from_image(&cube->texture.south, ray->tex.x,
-					ray->tex.y));
+		return (extract_pixel_from_image(&cube->texture.south, ray->tex.x,
+				ray->tex.y));
 	}
 	return (0);
 }

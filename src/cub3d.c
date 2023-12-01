@@ -6,7 +6,7 @@
 /*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 19:02:54 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/11/29 18:13:16 by adi-nata         ###   ########.fr       */
+/*   Updated: 2023/12/01 17:10:14 by adi-nata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void	start(t_cube *cube)
 	mlx_innit(cube);
 
 	//raycaster(cube);
-
 
 	ft_convert_image(cube);
 	ft_get_cam_pos(cube);

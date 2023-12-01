@@ -6,7 +6,7 @@
 /*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 11:37:01 by  gcavanna         #+#    #+#             */
-/*   Updated: 2023/11/30 20:03:45 by adi-nata         ###   ########.fr       */
+/*   Updated: 2023/12/01 19:52:06 by adi-nata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,15 @@ void	ft_init_ray(int x, t_cube *cube, t_ray *ray)
 		* ray->camera_x;
 	ray->map.x = (int)cube->player.pos.x;
 	ray->map.y = (int)cube->player.pos.y;
-	ray->delta_dist.x = fabs(1 / ray->dir.x);
-	ray->delta_dist.y = fabs(1 / ray->dir.y);
+	if (ray->dir.x == 0)
+		ray->delta_dist.x = 1e30;
+	else
+		ray->delta_dist.x = fabs(1 / ray->dir.x);
+
+	if (ray->dir.y == 0)
+		ray->delta_dist.y = 1e30;
+	else
+		ray->delta_dist.y = fabs(1 / ray->dir.y);
 	ray->hit = 0;
 }
 
@@ -42,7 +49,7 @@ void	ft_init_side_distance(t_cube *cube, t_ray *ray)
 	else
 	{
 		ray->step_x = 1;
-		ray->side_dist.x = (ray->map.x + 1.0f - cube->player.pos.x)
+		ray->side_dist.x = (ray->map.x + 1.0 - cube->player.pos.x)
 			* ray->delta_dist.x;
 	}
 	if (ray->dir.y < 0)
@@ -54,20 +61,20 @@ void	ft_init_side_distance(t_cube *cube, t_ray *ray)
 	else
 	{
 		ray->step_y = 1;
-		ray->side_dist.y = (ray->map.y + 1.0f - cube->player.pos.y)
+		ray->side_dist.y = (ray->map.y + 1.0 - cube->player.pos.y)
 			* ray->delta_dist.y;
 	}
 }
 
 void	ft_wall_collision_detection(t_cube *cube, t_ray *ray)
 {
-	while (ray->hit == 0)
+	while (!ray->hit)
 	{
 		if (ray->side_dist.x < ray->side_dist.y)
 		{
 			ray->side_dist.x += ray->delta_dist.x;
 			ray->map.x += ray->step_x;
-			ray->side = 1;
+			ray->side = 0;
 		}
 		else
 		{
@@ -75,15 +82,18 @@ void	ft_wall_collision_detection(t_cube *cube, t_ray *ray)
 			ray->map.y += ray->step_y;
 			ray->side = 1;
 		}
-		if (ray->map.x < 0 || ray->map.y < 0 || ray->map.y >= cube->map.size.x || ray->map.x >= cube->map.size.y)
-		{
-			printf("ray->map.y = %f ", ray->map.y);
-			printf("cube->map.y = %f ", cube->map.size.y);
-			printf("ray coordinates are out of bounds\n");
-			return;
-		}
+		// if (ray->map.x < 0 || ray->map.y < 0 || ray->map.y >= cube->map.size.x || ray->map.x >= cube->map.size.y)
+		// {
+		// 	printf("ray->map.y = %f ", ray->map.y);
+		// 	printf("cube->map.y = %f ", cube->map.size.y);
+		// 	printf("ray coordinates are out of bounds\n");
+		// 	return;
+		// }
+		printf("loco: %d\n", cube->map.maprix[(int)ray->map.x][(int)ray->map.y]);
 		if (cube->map.maprix[(int)ray->map.x][(int)ray->map.y] == 1)
+		{
 			ray->hit = true;
+		}
 	}
 }
 
