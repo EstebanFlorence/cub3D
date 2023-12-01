@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: gcavanna <gcavanna@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/07 16:36:29 by adi-nata          #+#    #+#              #
-#    Updated: 2023/11/29 18:13:07 by adi-nata         ###   ########.fr        #
+#    Updated: 2023/12/01 16:57:40 by gcavanna         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,7 @@ SRCS		=   ${SRC_DIR}/cub3d.c\
 \
 				${SRC_DIR}/algo/dda_ray.c			${SRC_DIR}/algo/dda_ray_utils.c\
 				${SRC_DIR}/algo/player_info.c		${SRC_DIR}/algo/window_loop.c\
+				${SRC_DIR}/algo/player_infoutils.c\
 
 OBJS        =	${patsubst ${SRC_DIR}/%.c,${OBJ_DIR}/%.o,${SRCS}}
 

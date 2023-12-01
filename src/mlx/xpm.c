@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   xpm.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: gcavanna <gcavanna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 15:03:47 by gcavanna          #+#    #+#             */
-/*   Updated: 2023/11/28 17:05:29 by adi-nata         ###   ########.fr       */
+/*   Updated: 2023/12/01 16:48:50 by gcavanna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,14 @@
 
 void	load_texture(t_cube *cube, int i, t_image *image)
 {
-	//printf("prova ale, path = %s - ", cube->texture.path[i]);
-	image->ptr = mlx_xpm_file_to_image(cube->mlx, cube->texture.path[i], &image->width, &image->height);
+	image->ptr = mlx_xpm_file_to_image(cube->mlx, cube->texture.path[i],
+			&image->width, &image->height);
 	if (!image->ptr)
 		printf("gestire caso immagine inesistente\n");
 	image->data = mlx_get_data_addr(image->ptr,
 			&image->bitsxpixel,
-			&image->size_line, &image->endian);	
+			&image->size_line,
+			&image->endian);	
 }
 
 void	ft_convert_image(t_cube *cube)

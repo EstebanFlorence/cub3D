@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   window_loop.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: gcavanna <gcavanna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 16:40:55 by gcavanna          #+#    #+#             */
-/*   Updated: 2023/11/30 18:55:57 by adi-nata         ###   ########.fr       */
+/*   Updated: 2023/12/01 16:52:09 by gcavanna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	extract_pixel_from_image(t_image *img, int point_x, int point_y)
 {
 	return (*(uint32_t *)(img->data + (point_y * img->size_line) + (point_x
-				* img->bitsxpixel / 8)));
+			* img->bitsxpixel / 8)));
 }
 
 uint32_t	get_color(t_cube *cube, t_ray *ray)

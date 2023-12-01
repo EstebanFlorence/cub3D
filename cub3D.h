@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: gcavanna <gcavanna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 16:49:27 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/11/30 19:46:59 by adi-nata         ###   ########.fr       */
+/*   Updated: 2023/12/01 16:53:38 by gcavanna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,18 +48,18 @@
 # define MARGIN	0.05f
 
 
-typedef struct	s_key
+typedef struct s_key
 {
 	//	bool key;
 }				t_key;
 
-typedef struct	s_coord
+typedef struct s_coord
 {
 	double		x;
 	double		y;
 }				t_coord;
 
-typedef struct	s_ray
+typedef struct s_ray
 {
 	t_coord		dir;
 //	int			map_x;
@@ -78,7 +78,6 @@ typedef struct	s_ray
 	int			draw_start;
 	int			step_x;
 	int			step_y;
-//	t_coord		step;
 	bool		hit;
 	int			side;
 //	int			tex_x;
@@ -89,7 +88,7 @@ typedef struct	s_ray
 	double		camera_x;
 }				t_ray;
 
-typedef struct	s_cam
+typedef struct s_cam
 {
 	t_coord		pos;
 	t_coord		dir;
@@ -100,7 +99,7 @@ typedef struct	s_cam
 //	double		rot_speed;
 }				t_cam;
 
-typedef struct	s_image
+typedef struct s_image
 {
 	void		*ptr;
 	char		*data;
@@ -111,7 +110,7 @@ typedef struct	s_image
 	int			endian;
 }				t_image;
 
-typedef struct	s_tex
+typedef struct s_tex
 {
 	int			cardinal[4];
 	char		*path[4];
@@ -124,7 +123,7 @@ typedef struct	s_tex
 
 }				t_tex;
 
-typedef struct	s_map
+typedef struct s_map
 {
 //	int			cardinal[4];
 //	char		*path[4];
@@ -138,7 +137,7 @@ typedef struct	s_map
 
 }				t_map;
 
-typedef struct	s_cube
+typedef struct s_cube
 {
 	char		*mapath;
 	int			fd;
@@ -154,7 +153,6 @@ typedef struct	s_cube
 
 int				check(int ac);
 int				cube_innit(char **av, t_cube *cube);
-void			else_innit(t_cube *cube, t_map *map, t_tex *texture, t_cam *player);
 void			map_innit(t_cube *cube);
 void			texture_innit(t_cube *cube);
 void			player_innit(t_cube *cube, t_cam *player);
@@ -177,10 +175,10 @@ int				exit_hook(t_cube *cube);
 int				key_hook(int key, t_cube *cube);
 
 //				Movements
-void		move_left(t_cube *cube);
-void		move_right(t_cube *cube);
-void		move_up(t_cube *cube);
-void		move_down(t_cube *cube);
+void			move_left(t_cube *cube);
+void			move_right(t_cube *cube);
+void			move_up(t_cube *cube);
+void			move_down(t_cube *cube);
 
 
 //				Parsing
@@ -227,6 +225,10 @@ uint32_t		get_color(t_cube *cube, t_ray *ray);
 //player
 void			set_plr_pov(t_cam *player, int dir);
 void			ft_get_cam_pos(t_cube *cube);
+void			set_plr_pov_north(t_cam *player);
+void			set_plr_pov_south(t_cam *player);
+void			set_plr_pov_west(t_cam *player);
+void			set_plr_pov_east(t_cam *player);
 
 //xpm
 void			load_north_texture(t_cube *cube);
