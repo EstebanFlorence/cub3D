@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dda_ray.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: gcavanna <gcavanna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 11:37:01 by  gcavanna         #+#    #+#             */
-/*   Updated: 2023/12/02 16:19:34 by adi-nata         ###   ########.fr       */
+/*   Updated: 2023/12/02 19:22:25 by gcavanna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,14 +82,6 @@ void	ft_wall_collision_detection(t_cube *cube, t_ray *ray)
 			ray->map.y += ray->step_y;
 			ray->side = 1;
 		}
-		// if (ray->map.x < 0 || ray->map.y < 0 || ray->map.y >= cube->map.size.x || ray->map.x >= cube->map.size.y)
-		// {
-		// 	printf("ray->map.y = %f ", ray->map.y);
-		// 	printf("cube->map.y = %f ", cube->map.size.y);
-		// 	printf("ray coordinates are out of bounds\n");
-		// 	return;
-		// }
-		printf("loco: %d\n", cube->map.maprix[(int)ray->map.y][(int)ray->map.x]);
 		if (cube->map.maprix[(int)ray->map.y][(int)ray->map.x] == 1)
 		{
 			ray->hit = true;
@@ -102,6 +94,9 @@ void	ft_raycasting(t_cube *cube)
 	int			x;
 	t_ray		ray;
 
+	if (cube->img)
+		free(cube->img);
+	cube->img = NULL;
 	cube->img = new_img(cube->mlx);
 	x = 0;
 	while (x < WIN_WIDTH)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: gcavanna <gcavanna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 17:48:03 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/12/02 17:02:53 by adi-nata         ###   ########.fr       */
+/*   Updated: 2023/12/02 19:30:39 by gcavanna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,14 +88,29 @@ void	mlx_innit(t_cube *cube)
 
 int	exit_hook(t_cube *cube)
 {
+	mlx_destroy_image(cube->mlx, cube->texture.north.ptr);
+	mlx_destroy_image(cube->mlx, cube->texture.south.ptr);
+	mlx_destroy_image(cube->mlx, cube->texture.west.ptr);
+	mlx_destroy_image(cube->mlx, cube->texture.east.ptr);
 	mlx_destroy_image(cube->mlx, cube->img->ptr);
 	mlx_destroy_window(cube->mlx, cube->win);
 	mlx_destroy_display(cube->mlx);
 	free(cube->img);
 	free(cube->mlx);
 
-	cube_destroy(cube);
+	int	i;
 
+	free(cube->mapath);
+	i = 0;
+	while (i < 4 && cube->texture.path[i])
+		free(cube->texture.path[i++]);
+	i = -1;
+	if (cube->map.maprix)
+	{
+		while (++i < cube->map.size.y && cube->map.maprix[i])
+			free(cube->map.maprix[i]);
+		free(cube->map.maprix);
+	}
 	exit (EXIT_SUCCESS);
 	return (0);
 }

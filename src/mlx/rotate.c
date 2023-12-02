@@ -6,46 +6,12 @@
 /*   By: gcavanna <gcavanna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 16:37:42 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/12/02 18:19:49 by gcavanna         ###   ########.fr       */
+/*   Updated: 2023/12/02 18:26:15 by gcavanna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-/* void	rotate_dx(t_cube *cube)
-{
-	double	dir_x;
-	double	plane_x;
-
-	dir_x = cube->player.dir.x;
-	cube->player.dir.x = cube->player.dir.x * cos((-1) * MOV_SPEED)
-						- cube->player.dir.y * sin((-1) * MOV_SPEED);
-	cube->player.dir.y = dir_x * sin((-1) * MOV_SPEED) + cube->player.dir.y
-						* cos((-1) * MOV_SPEED);
-	plane_x = cube->player.plane.x;
-	cube->player.plane.x = cube->player.plane.x * cos((-1) * MOV_SPEED)
-							- cube->player.plane.y * sin((-1) * MOV_SPEED);
-	cube->player.plane.y = plane_x * sin((-1) * MOV_SPEED) 
-							- cube->player.plane.y;
-
-}
-
-void	rotate_sx(t_cube *cube)
-{
-	double	dir_x;
-	double	plane_x;
-
-	dir_x = cube->player.dir.x;
-	cube->player.dir.x = cube->player.dir.x * cos(MOV_SPEED)
-						- cube->player.dir.y * sin(MOV_SPEED);
-	cube->player.dir.y = dir_x * sin(MOV_SPEED) + cube->player.dir.y
-						* cos(MOV_SPEED);
-	plane_x = cube->player.plane.x;
-	cube->player.plane.x = cube->player.plane.x * cos(MOV_SPEED)
-							- cube->player.plane.y * sin(MOV_SPEED);
-	cube->player.plane.y = plane_x * sin(MOV_SPEED) 
-							- cube->player.plane.y;
-} */
 void	rotate_dx(t_cube *cube)
 {
 	double	olddirx;

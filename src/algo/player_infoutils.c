@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_infoutils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: gcavanna <gcavanna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 16:55:34 by gcavanna          #+#    #+#             */
-/*   Updated: 2023/12/01 18:54:19 by adi-nata         ###   ########.fr       */
+/*   Updated: 2023/12/02 19:15:29 by gcavanna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	set_plr_pov_south(t_cam *player)
 	player->plane.x = 0.66;
 }
 
-void	set_plr_pov_east(t_cam *player)
+void	set_plr_pov_west(t_cam *player)
 {
 	player->dir.y = 0;
 	player->dir.x = -1;
@@ -48,7 +48,7 @@ void	set_plr_pov_east(t_cam *player)
 	player->plane.y = 0.66;
 }
 
-void	set_plr_pov_west(t_cam *player)
+void	set_plr_pov_east(t_cam *player)
 {
 	player->dir.y = 0;
 	player->dir.x = 1;

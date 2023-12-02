@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dda_ray_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: gcavanna <gcavanna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 11:58:00 by  gcavanna         #+#    #+#             */
-/*   Updated: 2023/12/01 18:55:57 by adi-nata         ###   ########.fr       */
+/*   Updated: 2023/12/02 19:39:23 by gcavanna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,32 +71,13 @@ t_image	*new_img(void *mlx_ptr)
 void	put_pixel_in_image(t_image *img, int x, int y, uint32_t color)
 {
 	char	*dst;
-	// if (y > 626)
-	// 	return ;
+
 	dst = img->data + (y * img->size_line + x * (img->bitsxpixel / 8));
 	*(uint32_t *)dst = color;
 }
 
 void	draw_wall(int x, t_cube *cube, t_ray *ray)
 {
-	// double	step;
-	// double	wall_pos;
-	// int		y;
-
-	// step = 1.0 * TEXTURE_HEIGHT / ray->line_height;
-	// wall_pos = (ray->draw_start - WIN_HEIGHT / 2
-	// 		+ ray->line_height / 2) * step;
-	// y = ray->draw_start;
-	// while (y < ray->draw_end)
-	// {
-	// 	ray->tex.y = (int)wall_pos & (TEXTURE_HEIGHT - 1);
-	// 	wall_pos += step;
-	// 	ray->color = cube->texture.path[(int)ray->tex_pos].add
-	// 	[TEXTURE_HEIGHT * ray->text_y + ray->text_x];
-	// 	my_pixel_put(x, y, ray->color, vlx);
-	// 	y++;
-	// }
-
 	int	y;
 
 	y = -1;
@@ -112,7 +93,7 @@ void	draw_wall(int x, t_cube *cube, t_ray *ray)
 		put_pixel_in_image(cube->img, x, y, get_color(cube, ray));
 		y += 1;
 	}
-	while (y < WIN_HEIGHT / 2)
+	while (y < WIN_HEIGHT)
 	{
 		put_pixel_in_image(cube->img, x, y, cube->texture.skyground[1]);
 		y += 1;
