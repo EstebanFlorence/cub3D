@@ -6,7 +6,7 @@
 /*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 11:37:01 by  gcavanna         #+#    #+#             */
-/*   Updated: 2023/12/01 19:52:06 by adi-nata         ###   ########.fr       */
+/*   Updated: 2023/12/02 16:19:34 by adi-nata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,8 +89,8 @@ void	ft_wall_collision_detection(t_cube *cube, t_ray *ray)
 		// 	printf("ray coordinates are out of bounds\n");
 		// 	return;
 		// }
-		printf("loco: %d\n", cube->map.maprix[(int)ray->map.x][(int)ray->map.y]);
-		if (cube->map.maprix[(int)ray->map.x][(int)ray->map.y] == 1)
+		printf("loco: %d\n", cube->map.maprix[(int)ray->map.y][(int)ray->map.x]);
+		if (cube->map.maprix[(int)ray->map.y][(int)ray->map.x] == 1)
 		{
 			ray->hit = true;
 		}

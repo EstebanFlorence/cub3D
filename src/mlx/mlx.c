@@ -6,7 +6,7 @@
 /*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 17:48:03 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/12/01 17:18:22 by adi-nata         ###   ########.fr       */
+/*   Updated: 2023/12/02 17:02:53 by adi-nata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,17 @@ void	pixelput(t_image *img, int x, int y, int color)
 
 void	mov_backnforth(int key, t_cube *cube)
 {
-	if (key == ARROW_UP)
+	if (key == W_KEY)
 		move_up(cube);
-	if (key == ARROW_DOWN)
+	if (key == S_KEY)
 		move_down(cube);
 }
 
 void	mov_leftnright(int key, t_cube *cube)
 {
-	if (key == ARROW_LEFT)
+	if (key == A_KEY)
 		move_left(cube);
-	if (key == ARROW_RIGHT)
+	if (key == D_KEY)
 		move_right(cube);
 }
 
@@ -42,10 +42,15 @@ int	key_hook(int key, t_cube *cube)
 {
 	if (key == B_ESC)
 		exit_hook(cube);
-	if (key == ARROW_UP || key == ARROW_DOWN)
+	if (key == W_KEY || key == S_KEY)
 		mov_backnforth(key, cube);
-	if (key == ARROW_LEFT || key == ARROW_RIGHT)
+	if (key == A_KEY || key == D_KEY)
 		mov_leftnright(key, cube);
+
+	if (key == ARROW_LEFT)
+		rotate_sx(cube);
+	if (key == ARROW_RIGHT)
+		rotate_dx(cube);
 
 	window_loop(cube);
 
