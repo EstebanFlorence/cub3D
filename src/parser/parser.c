@@ -6,16 +6,25 @@
 /*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 19:02:51 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/12/03 21:38:04 by adi-nata         ###   ########.fr       */
+/*   Updated: 2023/12/03 22:15:40 by adi-nata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-int	check_path(char *path)
+int	check_path(char **tok)
 {
+	char	*path;
+
+	if (tok[0][0] == 'F' || tok[0][0] == 'C')
+		return (0);
+	path = ft_strtrim(tok[1], "\n");
 	if (open(path, O_RDONLY) < 0)
+	{
+		free(path);
 		return (1);
+	}
+	free(path);
 	return (0);
 }
 
@@ -42,7 +51,7 @@ int	check_next_line_tex(char **tok, int *id, t_cube *cube)
 		add_element(tok, id, CEILING, cube);
 	else
 		return (1);
-	if (check_path(tok[1]))
+	if (check_path(tok))
 		return (1);
 	return (0);
 }
