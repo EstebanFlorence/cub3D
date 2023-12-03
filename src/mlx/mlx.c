@@ -6,7 +6,7 @@
 /*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 17:48:03 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/12/03 18:38:36 by adi-nata         ###   ########.fr       */
+/*   Updated: 2023/12/03 18:51:02 by adi-nata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,4 @@ void	mlx_destroy(t_cube *cube)
 	mlx_destroy_display(cube->mlx);
 	free(cube->img);
 	free(cube->mlx);
-	cube_destroy(cube);
 }

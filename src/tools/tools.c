@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tools.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gcavanna <gcavanna@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 16:00:03 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/12/02 19:32:53 by gcavanna         ###   ########.fr       */
+/*   Updated: 2023/12/03 21:53:20 by adi-nata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ int	open_path(t_cube *cube)
 	cube->fd = open(cube->mapath, O_RDONLY);
 	if (cube->fd == -1)
 	{
-		//	Free
 		free(cube->mapath);
 		return (puterr(1));
 	}
@@ -48,7 +47,7 @@ int	puterr(int n)
 	}
 	else if (n == 3)
 	{
-		write(STDERR_FILENO, "Error!\nInvalid identifier\n", 27);
+		write(STDERR_FILENO, "Error!\nInvalid file\n", 21);
 	}
 	else if (n == 4)
 	{
@@ -65,7 +64,8 @@ void	cube_destroy(t_cube *cube)
 {
 	int	i;
 
-	free(cube->mapath);
+	if (cube->mapath)
+		free(cube->mapath);
 	i = 0;
 	while (i < 4 && cube->texture.path[i])
 		free(cube->texture.path[i++]);
@@ -76,5 +76,4 @@ void	cube_destroy(t_cube *cube)
 			free(cube->map.maprix[i]);
 		free(cube->map.maprix);
 	}
-	mlx_destroy_display(cube->mlx);
 }

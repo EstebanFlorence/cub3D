@@ -6,11 +6,18 @@
 /*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 19:02:51 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/12/03 18:43:00 by adi-nata         ###   ########.fr       */
+/*   Updated: 2023/12/03 21:38:04 by adi-nata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
+
+int	check_path(char *path)
+{
+	if (open(path, O_RDONLY) < 0)
+		return (1);
+	return (0);
+}
 
 int	check_next_line_tex(char **tok, int *id, t_cube *cube)
 {
@@ -20,7 +27,7 @@ int	check_next_line_tex(char **tok, int *id, t_cube *cube)
 	while (tok[n])
 		n++;
 	if (n > 2)
-		return (puterr(2));
+		return (1);
 	if (ft_strncmp(tok[0], "NO", ft_strlen(tok[0])) == 0)
 		add_element(tok, id, NORTH, cube);
 	else if (ft_strncmp(tok[0], "SO", ft_strlen(tok[0])) == 0)
@@ -34,10 +41,9 @@ int	check_next_line_tex(char **tok, int *id, t_cube *cube)
 	else if (ft_strncmp(tok[0], "C", ft_strlen(tok[0])) == 0)
 		add_element(tok, id, CEILING, cube);
 	else
-	{
-		free_next_line(tok);
-		return (puterr(3));
-	}
+		return (1);
+	if (check_path(tok[1]))
+		return (1);
 	return (0);
 }
 
@@ -58,7 +64,11 @@ int	check_next_line(char *line, int *id, t_cube *cube)
 	}
 	if (!tok)
 		return (puterr(2));
-	check_next_line_tex(tok, id, cube);
+	if (check_next_line_tex(tok, id, cube))
+	{
+		free_next_line(tok);
+		return (puterr(2));
+	}
 	free_next_line(tok);
 	return (0);
 }
@@ -74,7 +84,7 @@ int	parse_line(int *i, int *n, char *line, t_cube *cube)
 	else if (*i == -1)
 	{
 		(*n)++;
-		if (check_next_map(*n, line, cube))	// Ocio
+		if (check_next_map(*n, line, cube))
 		{
 			get_next_line(-42);
 			cube_destroy(cube);

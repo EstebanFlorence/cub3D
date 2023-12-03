@@ -6,7 +6,7 @@
 /*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 16:49:27 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/12/03 18:46:58 by adi-nata         ###   ########.fr       */
+/*   Updated: 2023/12/03 21:31:40 by adi-nata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@
 # define TILE_SIZE_X (MAP_WIDTH / NUM_TILES_X)
 # define TILE_SIZE_Y (MAP_HEIGHT / NUM_TILES_Y)
 
-# define MOV_SPEED 0.022f
+# define MOV_SPEED 0.05f
 # define ROT_SPEED 0.01
 # define MARGIN	0.05f
 
@@ -166,6 +166,7 @@ void			start(t_cube *cube);
 
 //				Tools
 int				open_path(t_cube *cube);
+int				check_path(char *path);
 int				puterr(int n);
 void			get_next_close(char *line, t_cube *cube);
 
@@ -187,7 +188,7 @@ void			rotate_sx(t_cube *cube);
 void			rotate_dx(t_cube *cube);
 
 //				Parsing
-void			parser(t_cube *cube);
+void				parser(t_cube *cube);
 void			free_next_line(char **tok);
 void			gotomap(char **line, int start, t_cube *cube);
 void			fill_map(char *line, t_cube *cube);

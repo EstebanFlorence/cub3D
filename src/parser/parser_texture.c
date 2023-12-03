@@ -6,7 +6,7 @@
 /*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/03 18:08:13 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/12/03 18:09:47 by adi-nata         ###   ########.fr       */
+/*   Updated: 2023/12/03 21:39:41 by adi-nata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,7 @@ void	add_color(int type, char **tok, t_cube *cube)
 	while (rgb[n])
 		n++;
 	if (n > 3)
-	{
 		puterr(2);
-		//	Free + exit
-	}
 	add_rgb(type, rgb, cube);
 	n = -1;
 	while (rgb[++n])
