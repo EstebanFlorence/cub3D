@@ -6,7 +6,7 @@
 #    By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/07 16:36:29 by adi-nata          #+#    #+#              #
-#    Updated: 2023/12/02 16:38:08 by adi-nata         ###   ########.fr        #
+#    Updated: 2023/12/03 18:40:17 by adi-nata         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,9 +21,11 @@ SRCS		=   ${SRC_DIR}/cub3d.c\
 				${SRC_DIR}/tools/tools.c			${SRC_DIR}/tools/checkinnit.c\
 \
 				${SRC_DIR}/parser/parser.c			${SRC_DIR}/parser/parser_tools.c\
-				${SRC_DIR}/parser/parser_map.c\
+				${SRC_DIR}/parser/parser_map1.c		${SRC_DIR}/parser/parser_map2.c\
+				${SRC_DIR}/parser/parser_texture.c	${SRC_DIR}/parser/parser_map_tools.c\
 \
-				${SRC_DIR}/mlx/mlx.c				${SRC_DIR}/mlx/xpm.c\
+				${SRC_DIR}/mlx/mlx.c				${SRC_DIR}/mlx/hooker.c\
+				${SRC_DIR}/mlx/xpm.c\
 				${SRC_DIR}/mlx/move.c				${SRC_DIR}/mlx/rotate.c\
 \
 				${SRC_DIR}/algo/dda_ray.c			${SRC_DIR}/algo/dda_ray_utils.c\

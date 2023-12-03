@@ -6,13 +6,13 @@
 /*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 20:01:14 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/11/30 17:07:42 by adi-nata         ###   ########.fr       */
+/*   Updated: 2023/12/03 18:39:52 by adi-nata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
- void	texture_innit(t_cube *cube)
+void	texture_innit(t_cube *cube)
 {
 	cube->texture.cardinal[0] = 0;
 	cube->texture.cardinal[1] = 0;
@@ -24,7 +24,6 @@
 	cube->texture.path[3] = NULL;
 	cube->texture.skyground[0] = -1;
 	cube->texture.skyground[1] = -1;
-
 	cube->texture.north.ptr = NULL;
 	cube->texture.south.ptr = NULL;
 	cube->texture.east.ptr = NULL;
@@ -33,16 +32,13 @@
 
 void	map_innit(t_cube *cube)
 {
-//	cube->map.width = 0;
-//	cube->map.height = 0;
 	cube->map.size.x = 0;
 	cube->map.size.y = 0;
 	cube->map.orient = 0;
 	cube->map.maprix = NULL;
+}
 
-} 
-
-int		cube_innit(char **av, t_cube *cube)
+int	cube_innit(char **av, t_cube *cube)
 {
 	cube->mapath = ft_strjoin("./maps/", av[1]);
 	cube->fd = open(cube->mapath, O_RDONLY);

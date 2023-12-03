@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gcavanna <gcavanna@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 16:49:27 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/12/02 18:25:31 by gcavanna         ###   ########.fr       */
+/*   Updated: 2023/12/03 18:46:58 by adi-nata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,18 +48,18 @@
 # define MARGIN	0.05f
 
 
-typedef struct s_key
+typedef struct	s_key
 {
 	//	bool key;
 }				t_key;
 
-typedef struct s_coord
+typedef struct	s_coord
 {
 	double		x;
 	double		y;
 }				t_coord;
 
-typedef struct s_ray
+typedef struct	s_ray
 {
 	t_coord		dir;
 //	int			map_x;
@@ -88,7 +88,7 @@ typedef struct s_ray
 	double		camera_x;
 }				t_ray;
 
-typedef struct s_cam
+typedef struct	s_cam
 {
 	t_coord		pos;
 	t_coord		dir;
@@ -99,7 +99,7 @@ typedef struct s_cam
 //	double		rot_speed;
 }				t_cam;
 
-typedef struct s_image
+typedef struct	s_image
 {
 	void		*ptr;
 	char		*data;
@@ -110,7 +110,7 @@ typedef struct s_image
 	int			endian;
 }				t_image;
 
-typedef struct s_tex
+typedef struct	s_tex
 {
 	int			cardinal[4];
 	char		*path[4];
@@ -123,12 +123,15 @@ typedef struct s_tex
 
 }				t_tex;
 
-typedef struct s_map
+typedef struct	s_index
 {
-//	int			cardinal[4];
-//	char		*path[4];
-//	int			skyground[2][3];
+	int	x;
+	int	y;
+	int	i;
+}		t_index;
 
+typedef struct	s_map
+{
 //	int			width;
 //	int			height;
 	t_coord		size;
@@ -137,7 +140,7 @@ typedef struct s_map
 
 }				t_map;
 
-typedef struct s_cube
+typedef struct	s_cube
 {
 	char		*mapath;
 	int			fd;
@@ -183,8 +186,6 @@ void			move_down(t_cube *cube);
 void			rotate_sx(t_cube *cube);
 void			rotate_dx(t_cube *cube);
 
-void			speedup(t_cube *cube);
-
 //				Parsing
 void			parser(t_cube *cube);
 void			free_next_line(char **tok);
@@ -195,6 +196,7 @@ void			add_element(char **tok, int *id, int type, t_cube *cube);
 void			add_path(char *path, int i, int type, t_cube *cube);
 void			add_color(int type, char **tok, t_cube *cube);
 void			add_rgb(int type, char **rgb, t_cube *cube);
+void			map_index(t_index *index);
 int				check_next_line(char *line, int *id, t_cube *cube);
 int				check_next_map(int start, char *line, t_cube *cube);
 int				mapalloc(char *line, t_cube *cube);
@@ -206,7 +208,7 @@ int				is_map(char *prev_line, char *line, t_cube *cube);
 int				is_valid(char c);
 int				is_orient(char **tok);
 int				is_mapstart(char *line, char **tok, t_cube *cube);
-int				coordinate(int i, char *line);
+int				coordinate(char c);
 
 //raycasting
 void			ft_wall_height(t_ray *ray);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dda_ray.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gcavanna <gcavanna@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 11:37:01 by  gcavanna         #+#    #+#             */
-/*   Updated: 2023/12/02 19:22:25 by gcavanna         ###   ########.fr       */
+/*   Updated: 2023/12/03 14:54:28 by adi-nata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void	ft_init_ray(int x, t_cube *cube, t_ray *ray)
 		ray->delta_dist.x = 1e30;
 	else
 		ray->delta_dist.x = fabs(1 / ray->dir.x);
-
 	if (ray->dir.y == 0)
 		ray->delta_dist.y = 1e30;
 	else

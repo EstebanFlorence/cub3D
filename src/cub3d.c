@@ -6,7 +6,7 @@
 /*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 19:02:54 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/12/01 17:10:14 by adi-nata         ###   ########.fr       */
+/*   Updated: 2023/12/03 14:54:19 by adi-nata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,6 @@
 void	start(t_cube *cube)
 {
 	mlx_innit(cube);
-
-	//raycaster(cube);
-
 	ft_convert_image(cube);
 	ft_get_cam_pos(cube);
 	mlx_loop_hook(cube->mlx, window_loop, cube);
@@ -27,7 +24,7 @@ void	start(t_cube *cube)
 
 int	main(int ac, char **av)
 {
-	t_cube cube;
+	t_cube	cube;
 
 	if (check(ac))
 		return (1);
