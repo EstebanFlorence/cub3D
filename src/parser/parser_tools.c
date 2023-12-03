@@ -6,7 +6,7 @@
 /*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 17:24:47 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/12/03 18:43:19 by adi-nata         ###   ########.fr       */
+/*   Updated: 2023/12/03 22:51:35 by adi-nata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,10 +66,7 @@ int	is_mapstart(char *line, char **tok, t_cube *cube)
 		{
 			if (line[i] != '1' && line[i] != ' '
 				&& line[i] != '\t' && line[i] != '\n')
-			{
-				puterr(4);
 				return (0);
-			}
 			i++;
 		}
 		return (1);

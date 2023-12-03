@@ -6,7 +6,7 @@
 /*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 16:49:27 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/12/03 22:13:43 by adi-nata         ###   ########.fr       */
+/*   Updated: 2023/12/03 22:24:46 by adi-nata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,30 +40,19 @@
 # define TILES_X 15
 # define TILES_Y 20
 
-# define TILE_SIZE_X (MAP_WIDTH / NUM_TILES_X)
-# define TILE_SIZE_Y (MAP_HEIGHT / NUM_TILES_Y)
-
 # define MOV_SPEED 0.05f
 # define ROT_SPEED 0.01
 # define MARGIN	0.05f
 
-
-typedef struct	s_key
-{
-	//	bool key;
-}				t_key;
-
-typedef struct	s_coord
+typedef struct s_coord
 {
 	double		x;
 	double		y;
 }				t_coord;
 
-typedef struct	s_ray
+typedef struct s_ray
 {
 	t_coord		dir;
-//	int			map_x;
-//	int			map_y;
 	t_coord		map;
 	t_coord		delta_dist;
 	t_coord		side_dist;
@@ -80,26 +69,19 @@ typedef struct	s_ray
 	int			step_y;
 	bool		hit;
 	int			side;
-//	int			tex_x;
-//	int			tex_y;
 	t_coord		tex;
-//	t_texture	texture;
-
 	double		camera_x;
 }				t_ray;
 
-typedef struct	s_cam
+typedef struct s_cam
 {
 	t_coord		pos;
 	t_coord		dir;
 	t_coord		plane;
 	t_coord		ray_dir;
-//	Macros?
-	double		speed;
-//	double		rot_speed;
 }				t_cam;
 
-typedef struct	s_image
+typedef struct s_image
 {
 	void		*ptr;
 	char		*data;
@@ -110,7 +92,7 @@ typedef struct	s_image
 	int			endian;
 }				t_image;
 
-typedef struct	s_tex
+typedef struct s_tex
 {
 	int			cardinal[4];
 	char		*path[4];
@@ -123,24 +105,22 @@ typedef struct	s_tex
 
 }				t_tex;
 
-typedef struct	s_index
+typedef struct s_index
 {
 	int	x;
 	int	y;
 	int	i;
 }		t_index;
 
-typedef struct	s_map
+typedef struct s_map
 {
-//	int			width;
-//	int			height;
 	t_coord		size;
 	int			orient;
 	int			**maprix;
 
 }				t_map;
 
-typedef struct	s_cube
+typedef struct s_cube
 {
 	char		*mapath;
 	int			fd;
@@ -183,7 +163,6 @@ void			move_left(t_cube *cube);
 void			move_right(t_cube *cube);
 void			move_up(t_cube *cube);
 void			move_down(t_cube *cube);
-
 void			rotate_sx(t_cube *cube);
 void			rotate_dx(t_cube *cube);
 
