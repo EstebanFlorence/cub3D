@@ -6,7 +6,7 @@
 /*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 16:49:27 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/12/03 22:24:46 by adi-nata         ###   ########.fr       */
+/*   Updated: 2023/12/04 12:49:53 by adi-nata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@
 
 # define MOV_SPEED 0.05f
 # define ROT_SPEED 0.01
-# define MARGIN	0.05f
+# define MARGIN	0.2f
 
 typedef struct s_coord
 {

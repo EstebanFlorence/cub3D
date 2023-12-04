@@ -6,7 +6,7 @@
 /*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 11:37:01 by  gcavanna         #+#    #+#             */
-/*   Updated: 2023/12/03 14:54:28 by adi-nata         ###   ########.fr       */
+/*   Updated: 2023/12/04 13:19:05 by adi-nata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,24 +17,27 @@ unsigned int	color_convert(int r, int g, int b)
 	return (r << 16 | g << 8 | b);
 }
 
-void	ft_init_ray(int x, t_cube *cube, t_ray *ray)
+void	ft_wall_collision_detection(t_cube *cube, t_ray *ray)
 {
-	ray->camera_x = 2 * x / (double)WIN_WIDTH - 1;
-	ray->dir.x = cube->player.dir.x + cube->player.plane.x
-		* ray->camera_x;
-	ray->dir.y = cube->player.dir.y + cube->player.plane.y
-		* ray->camera_x;
-	ray->map.x = (int)cube->player.pos.x;
-	ray->map.y = (int)cube->player.pos.y;
-	if (ray->dir.x == 0)
-		ray->delta_dist.x = 1e30;
-	else
-		ray->delta_dist.x = fabs(1 / ray->dir.x);
-	if (ray->dir.y == 0)
-		ray->delta_dist.y = 1e30;
-	else
-		ray->delta_dist.y = fabs(1 / ray->dir.y);
-	ray->hit = 0;
+	while (!ray->hit)
+	{
+		if (ray->side_dist.x < ray->side_dist.y)
+		{
+			ray->side_dist.x += ray->delta_dist.x;
+			ray->map.x += ray->step_x;
+			ray->side = 0;
+		}
+		else
+		{
+			ray->side_dist.y += ray->delta_dist.y;
+			ray->map.y += ray->step_y;
+			ray->side = 1;
+		}
+		if (cube->map.maprix[(int)ray->map.y][(int)ray->map.x] == 1)
+		{
+			ray->hit = true;
+		}
+	}
 }
 
 void	ft_init_side_distance(t_cube *cube, t_ray *ray)
@@ -65,27 +68,24 @@ void	ft_init_side_distance(t_cube *cube, t_ray *ray)
 	}
 }
 
-void	ft_wall_collision_detection(t_cube *cube, t_ray *ray)
+void	ft_init_ray(int x, t_cube *cube, t_ray *ray)
 {
-	while (!ray->hit)
-	{
-		if (ray->side_dist.x < ray->side_dist.y)
-		{
-			ray->side_dist.x += ray->delta_dist.x;
-			ray->map.x += ray->step_x;
-			ray->side = 0;
-		}
-		else
-		{
-			ray->side_dist.y += ray->delta_dist.y;
-			ray->map.y += ray->step_y;
-			ray->side = 1;
-		}
-		if (cube->map.maprix[(int)ray->map.y][(int)ray->map.x] == 1)
-		{
-			ray->hit = true;
-		}
-	}
+	ray->camera_x = 2 * x / (double)WIN_WIDTH - 1;
+	ray->dir.x = cube->player.dir.x + cube->player.plane.x
+		* ray->camera_x;
+	ray->dir.y = cube->player.dir.y + cube->player.plane.y
+		* ray->camera_x;
+	ray->map.x = (int)cube->player.pos.x;
+	ray->map.y = (int)cube->player.pos.y;
+	if (ray->dir.x == 0)
+		ray->delta_dist.x = 1e30;
+	else
+		ray->delta_dist.x = fabs(1 / ray->dir.x);
+	if (ray->dir.y == 0)
+		ray->delta_dist.y = 1e30;
+	else
+		ray->delta_dist.y = fabs(1 / ray->dir.y);
+	ray->hit = 0;
 }
 
 void	ft_raycasting(t_cube *cube)
@@ -105,7 +105,7 @@ void	ft_raycasting(t_cube *cube)
 		ft_wall_collision_detection(cube, &ray);
 		ft_wall_height(&ray);
 		ft_texture_coord(cube, &ray);
-		draw_wall(x, cube, &ray);
+		draw_wall(WIN_WIDTH - x, cube, &ray);
 		x += 1;
 	}
 }

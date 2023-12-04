@@ -3,22 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   rotate.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gcavanna <gcavanna@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 16:37:42 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/12/02 18:26:15 by gcavanna         ###   ########.fr       */
+/*   Updated: 2023/12/04 15:02:01 by adi-nata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void	rotate_dx(t_cube *cube)
+void	rotate_sx(t_cube *cube)
 {
 	double	olddirx;
 	double	oldplanex;
 
 	olddirx = cube->player.dir.x;
-	cube->player.dir.x = cube->player.dir.x * cos((-1) * ROT_SPEED)
+	cube->player.dir.x = cube->player.dir.x * cos((-1) * MOV_SPEED)
 		- cube->player.dir.y * sin((-1) * MOV_SPEED);
 	cube->player.dir.y = olddirx * sin((-1) * MOV_SPEED) + cube->player.dir.y
 		* cos((-1) * MOV_SPEED);
@@ -29,7 +29,7 @@ void	rotate_dx(t_cube *cube)
 		+ cube->player.plane.y * cos((-1) * MOV_SPEED);
 }
 
-void	rotate_sx(t_cube *cube)
+void	rotate_dx(t_cube *cube)
 {
 	double	olddirx;
 	double	oldplanex;

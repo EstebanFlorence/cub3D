@@ -6,7 +6,7 @@
 /*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/03 18:36:47 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/12/03 18:38:31 by adi-nata         ###   ########.fr       */
+/*   Updated: 2023/12/04 12:09:33 by adi-nata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ int	key_hook(int key, t_cube *cube)
 		rotate_sx(cube);
 	if (key == ARROW_RIGHT)
 		rotate_dx(cube);
+	printf("position => x: %f , y: %f\n", cube->player.pos.x, cube->player.pos.y);
 	window_loop(cube);
 	return (0);
 }
