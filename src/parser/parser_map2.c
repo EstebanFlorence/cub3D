@@ -6,13 +6,22 @@
 /*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/03 18:13:39 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/12/04 11:23:58 by adi-nata         ###   ########.fr       */
+/*   Updated: 2023/12/04 16:52:57 by adi-nata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void	fill_map(char *line, t_cube *cube)
+void	put_player(t_index *index, t_cube *cube)
+{
+	if (cube->map.maprix[index->y][index->x] > 1)
+	{
+		cube->player.pos.x = index->x;
+		cube->player.pos.y = index->y;
+	}
+}
+
+int	fill_map(char *line, t_cube *cube)
 {
 	t_index	index;
 
@@ -22,11 +31,7 @@ void	fill_map(char *line, t_cube *cube)
 		while (line[++(index.i)])
 		{
 			cube->map.maprix[index.y][index.x] = coordinate(line[index.i]);
-			if (cube->map.maprix[index.y][index.x] > 1)
-			{
-				cube->player.pos.x = index.x;
-				cube->player.pos.y = index.y;
-			}
+			put_player(&index, cube);
 			(index.x)++;
 		}
 		free(line);
@@ -38,6 +43,9 @@ void	fill_map(char *line, t_cube *cube)
 	}
 	get_next_line(-42);
 	close(cube->fd);
+	if (cube->player.pos.x == -1 && cube->player.pos.y == -1)
+		return (1);
+	return (0);
 }
 
 void	gotomap(char **line, int start, t_cube *cube)
@@ -54,11 +62,13 @@ void	gotomap(char **line, int start, t_cube *cube)
 	}
 }
 
-void	add_map(int start, t_cube *cube)
+int	add_map(int start, t_cube *cube)
 {
 	char	*line;
 
 	line = NULL;
 	gotomap(&line, start, cube);
-	fill_map(line, cube);
+	if (fill_map(line, cube))
+		return (1);
+	return (0);
 }

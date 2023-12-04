@@ -6,7 +6,7 @@
 /*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 20:01:14 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/12/03 21:50:56 by adi-nata         ###   ########.fr       */
+/*   Updated: 2023/12/04 16:54:06 by adi-nata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ int	cube_innit(char **av, t_cube *cube)
 	}
 	texture_innit(cube);
 	map_innit(cube);
+	cube->player.pos.x = -1;
+	cube->player.pos.y = -1;
 	return (0);
 }
 

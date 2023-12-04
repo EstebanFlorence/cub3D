@@ -6,7 +6,7 @@
 /*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 16:49:27 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/12/04 12:49:53 by adi-nata         ###   ########.fr       */
+/*   Updated: 2023/12/04 16:53:58 by adi-nata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,7 +138,6 @@ int				check(int ac);
 int				cube_innit(char **av, t_cube *cube);
 void			map_innit(t_cube *cube);
 void			texture_innit(t_cube *cube);
-void			player_innit(t_cube *cube, t_cam *player);
 void			cube_destroy(t_cube *cube);
 void			add_element(char **tok, int *id, int type, t_cube *cube);
 int				open_path(t_cube *cube);
@@ -170,13 +169,13 @@ void			rotate_dx(t_cube *cube);
 void			parser(t_cube *cube);
 void			free_next_line(char **tok);
 void			gotomap(char **line, int start, t_cube *cube);
-void			fill_map(char *line, t_cube *cube);
-void			add_map(int start, t_cube *cube);
 void			add_element(char **tok, int *id, int type, t_cube *cube);
 void			add_path(char *path, int i, int type, t_cube *cube);
 void			add_color(int type, char **tok, t_cube *cube);
 void			add_rgb(int type, char **rgb, t_cube *cube);
 void			map_index(t_index *index);
+int				add_map(int start, t_cube *cube);
+int				fill_map(char *line, t_cube *cube);
 int				check_next_line(char *line, int *id, t_cube *cube);
 int				check_next_map(int start, char *line, t_cube *cube);
 int				mapalloc(char *line, t_cube *cube);

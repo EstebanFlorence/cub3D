@@ -6,7 +6,7 @@
 /*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 14:37:05 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/12/03 18:31:20 by adi-nata         ###   ########.fr       */
+/*   Updated: 2023/12/04 16:50:07 by adi-nata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,7 @@ int	check_next_map(int start, char *line, t_cube *cube)
 		return (1);
 	if (open_path(cube))
 		return (1);
-	add_map(start, cube);
+	if (add_map(start, cube))
+		return (puterr(4));
 	return (0);
 }

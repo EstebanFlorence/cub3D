@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dda_ray_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gcavanna <gcavanna@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 11:58:00 by  gcavanna         #+#    #+#             */
-/*   Updated: 2023/12/02 19:39:23 by gcavanna         ###   ########.fr       */
+/*   Updated: 2023/12/04 16:58:24 by adi-nata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void	draw_wall(int x, t_cube *cube, t_ray *ray)
 	y = -1;
 	while (++y < ray->draw_start)
 	{
-		put_pixel_in_image(cube->img, x, y, cube->texture.skyground[0]);
+		put_pixel_in_image(cube->img, x, y, cube->texture.skyground[1]);
 	}
 	y = ray->draw_start;
 	while (y < ray->draw_end)
@@ -95,7 +95,7 @@ void	draw_wall(int x, t_cube *cube, t_ray *ray)
 	}
 	while (y < WIN_HEIGHT)
 	{
-		put_pixel_in_image(cube->img, x, y, cube->texture.skyground[1]);
+		put_pixel_in_image(cube->img, x, y, cube->texture.skyground[0]);
 		y += 1;
 	}
 }

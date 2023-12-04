@@ -6,7 +6,7 @@
 /*   By: adi-nata <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 19:02:51 by adi-nata          #+#    #+#             */
-/*   Updated: 2023/12/03 22:15:40 by adi-nata         ###   ########.fr       */
+/*   Updated: 2023/12/04 15:16:36 by adi-nata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,16 +121,3 @@ void	parser(t_cube *cube)
 		n++;
 	}
 }
-/* 	x = 0;
-	y = 0;
-	while (y < cube->map.size.y)
-	{
-		while (x < cube->map.size.x)
-		{
-			printf("%d", cube->map.maprix[y][x]);
-			x++;
-		}
-		printf("\n");
-		x = 0;
-		y++;
-	} */
