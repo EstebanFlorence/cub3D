@@ -68,7 +68,7 @@ Your map must be composed of only six possible characters:
 4. **Space Separation:**
    - Except for the map, each type of information from an element can be separated by one or more spaces.
 
-### Example Map:
+**Example Map:**
 
 Here is an example of a simple valid map:
 
@@ -95,7 +95,7 @@ Here is an example of a simple valid map:
 
 Replace ```path_to_the_x_texture``` with the name of your texture file.
 
-### Example:
+**Example:**
 ``` file.cub
 NO ./north_texture.xpm
 ```
@@ -109,7 +109,7 @@ NO ./north_texture.xpm
 
 R,G,B colors in range [0,255]:
 
-### Example:
+**Example:**
 ``` file.cub
 F  0, 255, 255
 ```
