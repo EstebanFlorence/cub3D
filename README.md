@@ -32,15 +32,14 @@ cub3D uses the [miniLibX](https://github.com/42Paris/minilibx-linux) library
   ./cub3D file.cub
   ```
 
+- Move around using the `W` `A` `S` `D`
+- Look around using the ```arrow keys```
+
 **NB.** The scene description file with the .cub extension must be located in the **maps/** directory
 
-
-
 <div align="center">
-<img width="796" alt="Screenshot" src="https://github.com/EstebanFlorence/cub3D/assets/77881363/ad528e33-6307-4484-ac72-8565b6ea4a5c">
+<img width="600" height="464" alt="cub3Dlook" src="https://github.com/EstebanFlorence/cub3D/assets/77881363/9c05f789-7c0a-4e1c-bef4-c597b331fde2">
 </div>
-
-
 
 ## Creating Your Own Map for cub3D
 
@@ -144,3 +143,7 @@ Don't put 'maps/' before the file name in the command.
 ./cub3D prova.cub
 ```
 Now you're ready to explore your custom map using the cub3D raycasting engine!
+
+<div align="center">
+<img width="796" alt="Screenshot" src="https://github.com/EstebanFlorence/cub3D/assets/77881363/ad528e33-6307-4484-ac72-8565b6ea4a5c">
+</div>
