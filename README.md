@@ -131,13 +131,16 @@ F  0, 255, 255
 4. **Save and Run:**
   - Save the file in **maps/** and run the cub3D program with your map file as follows:
 
+You can find some scene description file examples in maps/.
+
 ```shell
-./cub3D maps/your_map_file.cub
+./cub3D your_map_file.cub
 ```
 Replace ```your_map_file``` with the name of your map file.
+Don't put 'maps/' before the file name in the command.
 
 **Example Command:**
 ```shell
-./cub3D maps/prova.cub
+./cub3D prova.cub
 ```
 Now you're ready to explore your custom map using the cub3D raycasting engine!
