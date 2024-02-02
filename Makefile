@@ -26,9 +26,9 @@ SRCS		=   ${SRC_DIR}/cub3d.c\
 \
 				${SRC_DIR}/mlx/mlx.c				${SRC_DIR}/mlx/hooker.c\
 				${SRC_DIR}/mlx/xpm.c\
-				${SRC_DIR}/mlx/move.c				${SRC_DIR}/mlx/rotate.c\
 \
 				${SRC_DIR}/algo/dda_ray.c			${SRC_DIR}/algo/dda_ray_utils.c\
+				${SRC_DIR}/algo/move.c				${SRC_DIR}/algo/rotate.c\
 				${SRC_DIR}/algo/player_info.c		${SRC_DIR}/algo/window_loop.c\
 				${SRC_DIR}/algo/player_infoutils.c\
 
@@ -42,23 +42,21 @@ LIB			=	libft
 
 LIBX		=	minilibx-linux
 
-FLAGS		=	-g -I./ -Ilibft/include/ -Wall -Wextra -Werror
+FLAGS		=	-g -Iinclude/ -Ilibft/include/ -Wall -Wextra -Werror
 
 LIBFLAGS	=	-L./libft/include/ -lft
 
+LIBXFLAGS	=	-L${LIBX} -lmlx -framework OpenGL -framework AppKit -lX11
+
 ARG			=	prova.cub
 
-MAKEFLAGS	+=	--silent
-
-
-#	Flags for Macs
-
-MAC_CFLAGS	=	-g -Wall -Wextra -Werror -I./ -Ilibft/include/ -I${LIBX}
-
-LIBXFLAGS	=	-L${LIBX} -lmlx -framework OpenGL -framework AppKit -lX11
+# Flags for Macs
+MAC_CFLAGS	=	-g -Wall -Wextra -Werror -I/include -Ilibft/include/ -I${LIBX}
 
 X11FLAGS	=	-L/usr/X11/lib -lXext -lX11
 
+
+MAKEFLAGS	+=	--silent
 
 CLR_RMV		=	\033[0m
 RED		    =	\033[1;31m
@@ -113,6 +111,8 @@ re:				fclean all
 run:			all
 				./${NAME} ${ARG}
 
+
+# Rules for MacOS
 mac:			${OBJS}
 				@echo "${GREEN}Compilation ${CLR_RMV}of ${YELLOW}${LIB} ${CLR_RMV}..."
 				@make -C ./libft
@@ -134,5 +134,6 @@ runmac:			mac
 memac:			all
 				export MallocStackLogging=1
 				leaks --atExit --list -- ./${NAME} ${ARG}
+
 
 .PHONY:			all clean fclean re bonus

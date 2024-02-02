@@ -14,9 +14,9 @@
 # define CUB3D_H
 
 # include "key.h"
-# include "libft/include/ft_printf.h"
-# include "libft/include/libft.h"
-# include "minilibx-linux/mlx.h"
+# include "../libft/include/ft_printf.h"
+# include "../libft/include/libft.h"
+# include "../minilibx-linux/mlx.h"
 # include <math.h>
 # include <stdbool.h>
 # include <stdint.h>

@@ -4,8 +4,10 @@ WE ./img/west.xpm
 EA ./img/west.xpm
 
 F 255,0,0
+WE ./img/west.xpm
 
-C 255,0,0
+C 255,54,0
+F 105,190,40
 
 
 NO ./img/north.xpm
