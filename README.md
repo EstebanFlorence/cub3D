@@ -78,6 +78,7 @@ Here is an example of a simple valid map:
 100001
 111111
 ```
+You can find more in maps/.
 
 ### Adding Walls Textures:
 - North Texture:
@@ -130,7 +131,6 @@ F  0, 255, 255
 4. **Save and Run:**
   - Save the file in **maps/** and run the cub3D program with your map file as follows:
 
-You can find some scene description file examples in maps/.
 
 ```shell
 ./cub3D your_map_file.cub
