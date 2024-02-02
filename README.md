@@ -32,7 +32,7 @@ cub3D uses the [miniLibX](https://github.com/42Paris/minilibx-linux) library
   ./cub3D file.cub
   ```
 
-NB  .cub files must be located in maps/
+**NB.** The scene description file with the .cub extension must be located in the **maps/** directory
 
 
 
@@ -120,10 +120,13 @@ F  0, 255, 255
   - Open a text editor and create a new file for your map. Save it with a .cub extension.
 
 2. **Define Map Elements:**
-  - Use the characters `0`, `1` to define the map layout and `N`, `S`, `E`, `W`  for the player's starting position.
+   - Use the characters `0`, `1` to define the map layout and `N`, `S`, `E`, `W`  for the player's starting position.
 
 3. **Enclose the Map:**
-  - Ensure that the map is enclosed by walls on all sides.
+   - Ensure that the map is enclosed by walls on all sides.
+
+5. **Add Textures and Define Floor and Ceiling**
+   - Write the walls' texture file names next to their respective cardinal point identifier and define the floor's and ceiling's colors.
 
 4. **Save and Run:**
   - Save the file in **maps/** and run the cub3D program with your map file as follows:
