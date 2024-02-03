@@ -32,8 +32,8 @@ cub3D uses the [miniLibX](https://github.com/42Paris/minilibx-linux) library
   ./cub3D file.cub
   ```
 
-- Move around using the `W` `A` `S` `D`
-- Look around using the ```arrow keys```
+- Move around using the `W` `A` `S` `D` keys.
+- Look around using the ```arrow keys```.
 
 **NB.** The scene description file with the .cub extension must be located in the **maps/** directory
 
@@ -113,6 +113,7 @@ R,G,B colors in range [0,255]:
 ``` file.cub
 F  0, 255, 255
 ```
+You can find more in maps/.
 
 
 ### How to Integrate Your Map
